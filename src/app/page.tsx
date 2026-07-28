@@ -1,65 +1,407 @@
+import Link from "next/link";
 import Image from "next/image";
+import { Metadata } from "next";
+import {
+  ArrowRight,
+  Check,
+  Clock,
+  DollarSign,
+  ShieldCheck,
+  TrendingUp,
+  FileText,
+  Wallet,
+  Sparkles,
+  Users,
+  BadgeCheck,
+  HeartHandshake,
+  LineChart,
+  Landmark,
+  Layers,
+} from "lucide-react";
+import heroImg from "@/assets/hero-owner.jpg";
+import handshakeImg from "@/assets/handshake.jpg";
+import { CtaLink } from "@/components/brand";
+
+export const metadata: Metadata = {
+  title: "IRIS Capital Partners — Fast Business Funding, Built on Trust",
+  description:
+    "Business term loans and lines of credit from $5,000 to $500,000. Transparent terms, fast approvals, and same-day funding for U.S. small businesses.",
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+    <main className="min-h-screen bg-background pb-20">
+      <Hero />
+      <Highlights />
+      <HowItWorks />
+      <Services />
+      <WhyIris />
+      <Stats />
+      <CtaBanner />
+    </main>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(29,78,216,0.1)_0%,transparent_70%)]"
+      />
+      <div className="container-page pt-14 pb-16 md:pt-20 md:pb-24">
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
+          <div className="max-w-2xl">
+            <span className="eyebrow">
+              <BadgeCheck className="h-3.5 w-3.5" /> Trusted by 12,000+ U.S. businesses
+            </span>
+            <h1 className="mt-5 text-5xl font-bold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-[4.25rem]">
+              Fast business funding.
+              <br />
+              <span className="text-brand-deep">Built on trust.</span>
+            </h1>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-500">
+              Business funding from <strong className="font-semibold text-foreground">$5,000 to $500,000</strong> with
+              transparent terms, fast approvals, and funding available as soon as the same day.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <CtaLink to="/apply">Apply now</CtaLink>
+              <CtaLink to="/contact" variant="secondary">Speak with us</CtaLink>
+            </div>
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-500">
+              {["Soft credit pull", "No obligation", "5-minute application"].map((f) => (
+                <li key={f} className="flex items-center gap-2">
+                  <Check className="h-4 w-4 text-success" /> {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-elevated">
+              <Image
+                src={heroImg}
+                alt="Small business owner working on her laptop in a bright office"
+                width={1600}
+                height={1200}
+                priority
+                className="aspect-[4/5] w-full object-cover md:aspect-[5/6]"
+              />
+            </div>
+            <FloatingCard
+              className="absolute -left-4 top-6 md:-left-8"
+              icon={<TrendingUp className="h-4 w-4" />}
+              title="Approved"
+              body="$85,000 term loan"
+              trailing="24h"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <FloatingCard
+              className="absolute -right-4 bottom-8 md:-right-8"
+              icon={<ShieldCheck className="h-4 w-4" />}
+              title="Transparent terms"
+              body="No hidden fees"
+            />
+          </div>
         </div>
-      </main>
+      </div>
+    </section>
+  );
+}
+
+function FloatingCard({
+  className,
+  icon,
+  title,
+  body,
+  trailing,
+}: {
+  className?: string;
+  icon: React.ReactNode;
+  title: string;
+  body: string;
+  trailing?: string;
+}) {
+  return (
+    <div
+      className={`hidden md:flex ${className ?? ""} min-w-[220px] items-center gap-3 rounded-2xl border border-border bg-card p-3.5 shadow-elevated`}
+    >
+      <div className="grid h-10 w-10 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+        {icon}
+      </div>
+      <div className="flex-1">
+        <p className="text-xs font-medium text-gray-500">{title}</p>
+        <p className="text-sm font-semibold text-foreground">{body}</p>
+      </div>
+      {trailing && (
+        <span className="rounded-full bg-success/10 px-2 py-1 text-xs font-semibold text-success">
+          {trailing}
+        </span>
+      )}
     </div>
+  );
+}
+
+function Highlights() {
+  const items = [
+    { icon: DollarSign, label: "Funding", value: "$5K – $500K" },
+    { icon: Clock, label: "Funding speed", value: "As fast as 24 hours" },
+    { icon: ShieldCheck, label: "Collateral", value: "No collateral required" },
+    { icon: TrendingUp, label: "Rates", value: "Competitive rates" },
+  ];
+  return (
+    <section className="container-page">
+      <div className="grid gap-4 rounded-3xl border border-border bg-card p-4 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
+        {items.map(({ icon: Icon, label, value }) => (
+          <div key={label} className="flex items-center gap-4 rounded-2xl p-4 transition-colors hover:bg-accent/60">
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+              <Icon className="h-5 w-5" />
+            </div>
+            <div>
+              <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+                {label}
+              </p>
+              <p className="mt-0.5 text-base font-semibold text-foreground">{value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  const steps = [
+    {
+      n: "01",
+      icon: FileText,
+      title: "Apply",
+      body: "Complete our 5-minute online application. Soft credit pull only — no impact to your credit score.",
+    },
+    {
+      n: "02",
+      icon: Sparkles,
+      title: "Review",
+      body: "A dedicated specialist reviews your application and works with you to structure the right offer.",
+    },
+    {
+      n: "03",
+      icon: Wallet,
+      title: "Receive funds",
+      body: "Approve your terms, sign digitally, and receive funds in your business bank account — often the same day.",
+    },
+  ];
+  return (
+    <section className="container-page mt-28">
+      <div className="mx-auto max-w-2xl text-center">
+        <span className="eyebrow">How it works</span>
+        <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+          Funding in three simple steps
+        </h2>
+        <p className="mt-4 text-gray-500">
+          A clear, human process — from application to funds in your account.
+        </p>
+      </div>
+      <div className="mt-14 grid gap-6 md:grid-cols-3">
+        {steps.map(({ n, icon: Icon, title, body }, i) => (
+          <div
+            key={n}
+            className="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
+          >
+            <div className="flex items-center justify-between">
+              <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand text-brand-foreground shadow-soft">
+                <Icon className="h-5 w-5" />
+              </div>
+              <span className="text-5xl font-bold text-brand/10">{n}</span>
+            </div>
+            <h3 className="mt-6 text-xl font-semibold">{title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-gray-500">{body}</p>
+            {i < steps.length - 1 && (
+              <div
+                aria-hidden
+                className="absolute right-6 top-1/2 hidden h-px w-8 -translate-y-1/2 bg-border md:block"
+              />
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  const services = [
+    {
+      icon: Landmark,
+      title: "Business Term Loan",
+      desc: "Predictable, fixed-payment funding for expansion, equipment, hiring, or working capital.",
+      bullets: ["$5K – $500K", "Terms 6–60 months", "Fixed monthly payments"],
+      to: "/business-term-loan",
+    },
+    {
+      icon: Layers,
+      title: "Business Line of Credit",
+      desc: "Flexible working capital you can draw on as needed. Only pay interest on what you use.",
+      bullets: ["Revolving credit", "Draw anytime", "Interest on used funds only"],
+      to: "/line-of-credit",
+    },
+  ];
+  return (
+    <section className="container-page mt-28">
+      <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="max-w-xl">
+          <span className="eyebrow">Funding solutions</span>
+          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+            Two flexible ways to fund your business
+          </h2>
+        </div>
+        <Link href="/apply" className="hidden text-sm font-semibold text-brand-deep hover:underline md:inline-flex md:items-center md:gap-1">
+          Start your application <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {services.map(({ icon: Icon, title, desc, bullets, to }) => (
+          <div
+            key={title}
+            className="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated md:p-10"
+          >
+            <div className="grid h-14 w-14 place-items-center rounded-2xl bg-brand/10 text-brand-deep">
+              <Icon className="h-6 w-6" />
+            </div>
+            <h3 className="mt-6 text-2xl font-semibold">{title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-gray-500">{desc}</p>
+            <ul className="mt-6 space-y-2.5">
+              {bullets.map((b) => (
+                <li key={b} className="flex items-center gap-2 text-sm text-foreground">
+                  <Check className="h-4 w-4 text-success" /> {b}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 flex gap-3">
+              <Link
+                href={to}
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-brand px-5 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
+              >
+                Learn more <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/apply"
+                className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-background px-5 text-sm font-semibold text-foreground hover:bg-accent"
+              >
+                Apply
+              </Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function WhyIris() {
+  const points = [
+    { icon: Clock, title: "Fast decisions", body: "Most applications reviewed within one business day." },
+    { icon: ShieldCheck, title: "Transparent terms", body: "No hidden fees. Every rate and cost explained upfront." },
+    { icon: Users, title: "Experienced specialists", body: "A real funding advisor guides you from start to finish." },
+    { icon: HeartHandshake, title: "Dedicated support", body: "Long-term relationships, not one-time transactions." },
+    { icon: LineChart, title: "Funding solutions", body: "Term loans and lines of credit tailored to your growth." },
+    { icon: BadgeCheck, title: "Trust first", body: "Straightforward answers, always. No pressure, ever." },
+  ];
+  return (
+    <section className="mt-28 border-y border-border bg-white/50">
+      <div className="container-page py-20">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+          <div>
+            <div className="overflow-hidden rounded-3xl border border-border shadow-elevated">
+              <Image
+                src={handshakeImg}
+                alt="Business partners shaking hands"
+                width={1400}
+                height={1000}
+                className="aspect-[5/4] w-full object-cover"
+              />
+            </div>
+          </div>
+          <div>
+            <span className="eyebrow">Why IRIS</span>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+              Financing that respects your time and your business
+            </h2>
+            <p className="mt-4 text-gray-500">
+              We work with small and medium businesses across the United States to
+              structure funding that actually fits — and stands behind it with real support.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {points.map(({ icon: Icon, title, body }) => (
+                <div key={title} className="rounded-2xl border border-border bg-white p-5">
+                  <div className="grid h-9 w-9 place-items-center rounded-lg bg-brand/10 text-brand-deep">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <h4 className="mt-3 text-sm font-semibold">{title}</h4>
+                  <p className="mt-1 text-sm text-gray-500">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Stats() {
+  const stats = [
+    { v: "$1.4B+", l: "Loans processed" },
+    { v: "24 hours", l: "Average approval time" },
+    { v: "4.9 / 5", l: "Customer satisfaction" },
+    { v: "12,000+", l: "Businesses funded" },
+  ];
+  return (
+    <section className="container-page mt-28">
+      <div className="grid gap-6 rounded-3xl border border-border bg-white p-8 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-12">
+        {stats.map(({ v, l }) => (
+          <div key={l} className="text-center sm:text-left">
+            <p className="text-4xl font-bold tracking-tight text-brand-deep md:text-5xl">{v}</p>
+            <p className="mt-2 text-sm font-medium text-gray-500">{l}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function CtaBanner() {
+  return (
+    <section className="container-page mt-28">
+      <div className="relative overflow-hidden rounded-3xl border border-brand/20 bg-brand p-10 text-brand-foreground shadow-elevated md:p-16">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl"
+        />
+        <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+          <div>
+            <h2 className="max-w-xl text-3xl font-bold tracking-tight md:text-4xl">
+              Ready to grow your business?
+            </h2>
+            <p className="mt-3 max-w-lg text-white/80">
+              Apply in five minutes. Get a decision — often within 24 hours.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/apply"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-brand-deep transition-all hover:bg-white/95 hover:-translate-y-0.5"
+            >
+              Apply today <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex h-12 items-center justify-center rounded-xl border border-white/30 px-6 text-sm font-semibold text-white hover:bg-white/10"
+            >
+              Talk to a specialist
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
