@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState, useRef, useEffect } from "react";
 import {
   Landmark,
   Check,
@@ -31,7 +32,7 @@ export default function TermLoanPage() {
       <ProductStats
         items={[
           { icon: CircleDollarSign, label: "Loan amounts", value: "$5K – $500K" },
-          { icon: Calendar, label: "Terms", value: "6 – 60 months" },
+          { icon: Calendar, label: "Terms", value: "6 – 24 months" },
           { icon: Clock, label: "Funding speed", value: "As fast as 24 hrs" },
           { icon: TrendingUp, label: "Rates", value: "Competitive fixed" },
         ]}
@@ -39,7 +40,7 @@ export default function TermLoanPage() {
       <FeaturesGrid
         title="Why choose a term loan"
         items={[
-          { title: "Fixed monthly payments", body: "Know your exact payment every month for the life of the loan." },
+          { title: "Fixed payments", body: "Know your exact payment for the life of the loan." },
           { title: "One lump sum", body: "Full amount funded upfront so you can execute your plan without delay." },
           { title: "Build business credit", body: "On-time payments help you strengthen your business credit profile." },
           { title: "Use it your way", body: "Expansion, inventory, marketing, equipment, or refinancing — your call." },
@@ -66,13 +67,13 @@ function ProductHero({
   image: string;
 }) {
   return (
-    <section className="container-page pt-14 pb-16 md:pt-20 md:pb-24">
-      <div className="grid items-center gap-12 lg:grid-cols-2">
+    <section className="container-page pt-8 pb-8 md:pb-24">
+      <div className="grid items-start gap-12 lg:grid-cols-2">
         <div>
           <span className="eyebrow">
             <Landmark className="h-3.5 w-3.5" /> {eyebrow}
           </span>
-          <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+          <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
             {title}
           </h1>
           <p className="mt-6 max-w-lg text-lg text-gray-500">{body}</p>
@@ -147,13 +148,13 @@ function FeaturesGrid({
     <section className="container-page mt-24">
       <div className="max-w-2xl">
         <span className="eyebrow">Benefits</span>
-        <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">{title}</h2>
+        <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">{title}</h2>
       </div>
-      <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-10 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0">
         {items.map(({ title, body }) => (
           <div
             key={title}
-            className="group rounded-2xl border border-border bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
+            className="group w-[85vw] max-w-[300px] shrink-0 snap-center rounded-2xl border border-border bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated md:w-auto md:max-w-none md:shrink"
           >
             <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand/10 text-brand-deep">
               <Check className="h-5 w-5" />
@@ -176,14 +177,30 @@ function EligibilitySection() {
     "Owner 18+ years old",
     "Personal credit score 550+",
   ];
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="mt-24 border-y border-border bg-white">
+    <section ref={sectionRef} className="mt-24 border-y border-border bg-white">
       <div className="container-page grid gap-12 py-20 lg:grid-cols-2 lg:items-center">
         <div>
           <span className="eyebrow">
             <ShieldCheck className="h-3.5 w-3.5" /> Basic eligibility
           </span>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             What you'll need to qualify
           </h2>
           <p className="mt-4 max-w-lg text-gray-500">
@@ -192,8 +209,14 @@ function EligibilitySection() {
           </p>
         </div>
         <ul className="grid gap-3 sm:grid-cols-2">
-          {items.map((i) => (
-            <li key={i} className="flex items-center gap-3 rounded-xl border border-border bg-white p-4">
+          {items.map((i, idx) => (
+            <li
+              key={i}
+              className={`flex items-center gap-3 rounded-xl border border-border bg-white p-4 transition-all duration-500 ease-out ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+              style={{ transitionDelay: `${idx * 100}ms` }}
+            >
               <span className="grid h-8 w-8 place-items-center rounded-lg bg-success/10 text-success">
                 <Check className="h-4 w-4" />
               </span>

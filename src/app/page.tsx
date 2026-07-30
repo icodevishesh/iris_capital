@@ -18,7 +18,7 @@ import {
   Landmark,
   Layers,
 } from "lucide-react";
-import heroImg from "@/assets/hero-owner.jpg";
+import heroImg from "@/assets/owner-dog.jpg";
 import handshakeImg from "@/assets/handshake.jpg";
 import { CtaLink } from "@/components/brand";
 
@@ -30,13 +30,13 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background pb-20">
+    <main className="min-h-screen bg-background">
       <Hero />
       <Highlights />
       <HowItWorks />
       <Services />
       <WhyIris />
-      <Stats />
+      {/* <Stats /> */}
       <CtaBanner />
     </main>
   );
@@ -49,13 +49,10 @@ function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(29,78,216,0.1)_0%,transparent_70%)]"
       />
-      <div className="container-page pt-14 pb-16 md:pt-20 md:pb-24">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
+      <div className="container-page pt-8 pb-8 md:pb-24">
+        <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_1fr]">
           <div className="max-w-2xl">
-            <span className="eyebrow">
-              <BadgeCheck className="h-3.5 w-3.5" /> Trusted by 12,000+ U.S. businesses
-            </span>
-            <h1 className="mt-5 text-5xl font-bold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-[4.25rem]">
+            <h1 className="text-5xl font-bold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-[4.25rem]">
               Fast business funding.
               <br />
               <span className="text-brand-deep">Built on trust.</span>
@@ -78,29 +75,16 @@ function Hero() {
           </div>
 
           <div className="relative">
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-elevated">
+            <div className="relative overflow-hidden rounded-3xl border border-gray-300 bg-card shadow-elevated">
               <Image
                 src={heroImg}
-                alt="Small business owner working on her laptop in a bright office"
-                width={1600}
-                height={1200}
+                alt="Hero Image"
+                width={1400}
+                height={1000}
                 priority
-                className="aspect-[4/5] w-full object-cover md:aspect-[5/6]"
+                className="aspect-[4/3] w-full object-contain md:aspect-[6/5]"
               />
             </div>
-            <FloatingCard
-              className="absolute -left-4 top-6 md:-left-8"
-              icon={<TrendingUp className="h-4 w-4" />}
-              title="Approved"
-              body="$85,000 term loan"
-              trailing="24h"
-            />
-            <FloatingCard
-              className="absolute -right-4 bottom-8 md:-right-8"
-              icon={<ShieldCheck className="h-4 w-4" />}
-              title="Transparent terms"
-              body="No hidden fees"
-            />
           </div>
         </div>
       </div>
@@ -194,18 +178,18 @@ function HowItWorks() {
     <section className="container-page mt-28">
       <div className="mx-auto max-w-2xl text-center">
         <span className="eyebrow">How it works</span>
-        <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+        <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
           Funding in three simple steps
         </h2>
         <p className="mt-4 text-gray-500">
           A clear, human process — from application to funds in your account.
         </p>
       </div>
-      <div className="mt-14 grid gap-6 md:grid-cols-3">
+      <div className="mt-14 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
         {steps.map(({ n, icon: Icon, title, body }, i) => (
           <div
             key={n}
-            className="group relative overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
+            className="group relative w-[85vw] max-w-[320px] shrink-0 snap-center overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated md:w-auto md:max-w-none md:shrink"
           >
             <div className="flex items-center justify-between">
               <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand text-brand-foreground shadow-soft">
@@ -250,7 +234,7 @@ function Services() {
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div className="max-w-xl">
           <span className="eyebrow">Funding solutions</span>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             Two flexible ways to fund your business
           </h2>
         </div>
@@ -307,37 +291,39 @@ function WhyIris() {
     { icon: BadgeCheck, title: "Trust first", body: "Straightforward answers, always. No pressure, ever." },
   ];
   return (
-    <section className="mt-28 border-y border-border bg-white/50">
-      <div className="container-page py-20">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-center">
-          <div>
-            <div className="overflow-hidden rounded-3xl border border-border shadow-elevated">
+    <section className="mt-16 sm:mt-28 border-y border-border bg-white/50">
+      <div className="container-page py-12 sm:py-20">
+        <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12 lg:items-stretch">
+          <div className="flex flex-col">
+            <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto lg:h-full w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-border shadow-elevated">
               <Image
                 src={handshakeImg}
                 alt="Business partners shaking hands"
                 width={1400}
                 height={1000}
-                className="aspect-[5/4] w-full object-cover"
+                className="h-full w-full object-cover"
               />
             </div>
           </div>
-          <div>
-            <span className="eyebrow">Why IRIS</span>
-            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+          <div className="flex flex-col justify-center min-w-0">
+            <div>
+              <span className="eyebrow">Why IRIS</span>
+            </div>
+            <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
               Financing that respects your time and your business
             </h2>
-            <p className="mt-4 text-gray-500">
+            <p className="mt-4 text-sm sm:text-base text-gray-500">
               We work with small and medium businesses across the United States to
               structure funding that actually fits — and stands behind it with real support.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <div className="mt-6 sm:mt-8 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0">
               {points.map(({ icon: Icon, title, body }) => (
-                <div key={title} className="rounded-2xl border border-border bg-white p-5">
+                <div key={title} className="w-[75vw] max-w-[260px] shrink-0 snap-center rounded-2xl border border-border bg-white p-5 sm:w-auto sm:max-w-none sm:shrink">
                   <div className="grid h-9 w-9 place-items-center rounded-lg bg-brand/10 text-brand-deep">
                     <Icon className="h-4 w-4" />
                   </div>
                   <h4 className="mt-3 text-sm font-semibold">{title}</h4>
-                  <p className="mt-1 text-sm text-gray-500">{body}</p>
+                  <p className="mt-1 text-xs sm:text-sm text-gray-500">{body}</p>
                 </div>
               ))}
             </div>
@@ -348,30 +334,30 @@ function WhyIris() {
   );
 }
 
-function Stats() {
-  const stats = [
-    { v: "$1.4B+", l: "Loans processed" },
-    { v: "24 hours", l: "Average approval time" },
-    { v: "4.9 / 5", l: "Customer satisfaction" },
-    { v: "12,000+", l: "Businesses funded" },
-  ];
-  return (
-    <section className="container-page mt-28">
-      <div className="grid gap-6 rounded-3xl border border-border bg-white p-8 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-12">
-        {stats.map(({ v, l }) => (
-          <div key={l} className="text-center sm:text-left">
-            <p className="text-4xl font-bold tracking-tight text-brand-deep md:text-5xl">{v}</p>
-            <p className="mt-2 text-sm font-medium text-gray-500">{l}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
+// function Stats() {
+//   const stats = [
+//     { v: "$1.4B+", l: "Loans processed" },
+//     { v: "24 hours", l: "Average approval time" },
+//     { v: "4.9 / 5", l: "Customer satisfaction" },
+//     { v: "12,000+", l: "Businesses funded" },
+//   ];
+//   return (
+//     <section className="container-page mt-28">
+//       <div className="grid gap-6 rounded-3xl border border-border bg-white p-8 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-12">
+//         {stats.map(({ v, l }) => (
+//           <div key={l} className="text-center sm:text-left">
+//             <p className="text-4xl font-bold tracking-tight text-brand-deep md:text-5xl">{v}</p>
+//             <p className="mt-2 text-sm font-medium text-gray-500">{l}</p>
+//           </div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
 
 function CtaBanner() {
   return (
-    <section className="container-page mt-28">
+    <section className="container-page mt-20">
       <div className="relative overflow-hidden rounded-3xl border border-brand/20 bg-brand p-10 text-brand-foreground shadow-elevated md:p-16">
         <div
           aria-hidden

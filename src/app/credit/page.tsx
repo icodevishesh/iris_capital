@@ -23,13 +23,13 @@ import heroImg from "@/assets/hero-owner.jpg";
 export default function LineOfCreditPage() {
   return (
     <div>
-      <section className="container-page pt-14 pb-16 md:pt-20 md:pb-24">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
+      <section className="container-page pt-8 pb-8 md:pb-24">
+        <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
             <span className="eyebrow">
               <Layers className="h-3.5 w-3.5" /> Business Line of Credit
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+            <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               Flexible working capital, on demand
             </h1>
             <p className="mt-6 max-w-lg text-lg text-gray-500">
@@ -96,11 +96,11 @@ export default function LineOfCreditPage() {
       <section className="container-page mt-24">
         <div className="max-w-2xl">
           <span className="eyebrow">Funding features</span>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             Working capital, exactly when you need it
           </h2>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0">
           {[
             { icon: Repeat, title: "Revolving credit", body: "As you repay, your available credit refills automatically." },
             { icon: Zap, title: "Instant draws", body: "Transfer to your business bank account in minutes." },
@@ -111,7 +111,7 @@ export default function LineOfCreditPage() {
           ].map(({ icon: Icon, title, body }) => (
             <div
               key={title}
-              className="rounded-2xl border border-border bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
+              className="group w-[85vw] max-w-[300px] shrink-0 snap-center rounded-2xl border border-border bg-white p-6 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated md:w-auto md:max-w-none md:shrink"
             >
               <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand/10 text-brand-deep">
                 <Icon className="h-5 w-5" />
@@ -127,7 +127,7 @@ export default function LineOfCreditPage() {
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <span className="eyebrow">FAQ</span>
-            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">Common questions</h2>
+            <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">Common questions</h2>
           </div>
           <Accordion type="single" collapsible className="mt-10 divide-y divide-border rounded-2xl border border-border bg-white px-6 shadow-soft">
             {[

@@ -24,7 +24,7 @@ export function Footer() {
               Transparent business funding for U.S. small and medium businesses.
               Fast approvals. Real specialists.
             </p>
-            <div className="mt-6 flex gap-2">
+            <div className="mt-6 hidden md:flex gap-2">
               {[
                 {
                   Icon: (

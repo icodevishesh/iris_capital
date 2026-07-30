@@ -20,6 +20,7 @@ type Category = (typeof CATEGORIES)[number];
 type Post = {
   id: string;
   title: string;
+  slug: string;
   subtitle: string;
   author: string;
   category: Category;
@@ -29,7 +30,18 @@ type Post = {
   updatedAt?: string;
 };
 
-type Draft = Omit<Post, "id" | "updatedAt"> & { id?: string };
+// `slug` is derived from the title on save, so it isn't part of the editable draft.
+type Draft = Omit<Post, "id" | "slug" | "updatedAt"> & { id?: string };
+
+// Build a URL-friendly slug from a title.
+// e.g. "This is Iris Capital" -> "this-is-iris-capital"
+function slugify(title: string) {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 function formatDate(iso: string) {
   try {
@@ -115,6 +127,7 @@ export default function BlogsAdmin() {
   const save = async (draft: Draft) => {
     const payload = {
       title: draft.title,
+      slug: slugify(draft.title),
       subtitle: draft.subtitle,
       author: draft.author,
       category: draft.category,
@@ -147,7 +160,7 @@ export default function BlogsAdmin() {
     <div>
       <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Blog CMS</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Blogs</h1>
           <p className="mt-1 text-sm text-gray-500">Create, edit, and publish articles.</p>
         </div>
         <button
@@ -293,9 +306,9 @@ function PostEditor({
         className="flex h-full w-full max-w-2xl flex-col bg-card shadow-elevated"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between gap-4 border-b border-border p-6">
-          <h2 className="text-xl font-bold tracking-tight">
-            {p.id ? "Edit blog" : "Add blog"}
+        <div className="flex items-center justify-between gap-4 border-b border-border p-3">
+          <h2 className="text-xl font-semibold">
+            {p.id ? "Edit Blog" : "Add Blog"}
           </h2>
           <button
             aria-label="Close"
@@ -351,7 +364,7 @@ function PostEditor({
             <input
               value={p.title}
               onChange={(e) => setP({ ...p, title: e.target.value })}
-              className="admin-input"
+              className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
               placeholder="How to choose the right funding"
             />
           </Field>
@@ -360,7 +373,7 @@ function PostEditor({
             <input
               value={p.subtitle}
               onChange={(e) => setP({ ...p, subtitle: e.target.value })}
-              className="admin-input"
+              className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
               placeholder="A short supporting line"
             />
           </Field>
@@ -370,7 +383,7 @@ function PostEditor({
               <input
                 value={p.author}
                 onChange={(e) => setP({ ...p, author: e.target.value })}
-                className="admin-input"
+                className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
                 placeholder="Ana Ruiz"
               />
             </Field>
@@ -378,7 +391,7 @@ function PostEditor({
               <select
                 value={p.category}
                 onChange={(e) => setP({ ...p, category: e.target.value as Category })}
-                className="admin-input"
+                className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c}>{c}</option>
@@ -397,7 +410,7 @@ function PostEditor({
                   createdAt: new Date(e.target.value).toISOString(),
                 })
               }
-              className="admin-input"
+              className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
             />
           </Field>
 
@@ -423,14 +436,14 @@ function PostEditor({
             </div>
             {preview ? (
               <div
-                className="prose-admin min-h-[220px] rounded-xl border border-input bg-background p-4 text-sm"
+                className="min-h-[220px] rounded-xl border border-border bg-background p-4 text-sm [&_a]:text-brand [&_a]:underline [&_h1]:my-2 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-bold [&_h3]:mb-1 [&_h3]:mt-3 [&_h3]:text-base [&_h3]:font-bold [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-2 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5"
                 dangerouslySetInnerHTML={{ __html: p.content || "<p class='text-gray-400'>Nothing to preview.</p>" }}
               />
             ) : (
               <textarea
                 value={p.content}
                 onChange={(e) => setP({ ...p, content: e.target.value })}
-                className="admin-input min-h-[220px] py-3 font-mono text-[13px] leading-relaxed"
+                className="min-h-[220px] w-full rounded-xl border border-border bg-background p-3.5 font-mono text-[13px] leading-relaxed text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
                 placeholder="<h2>Section heading</h2>\n<p>Write your article using HTML tags for formatting…</p>\n<ul>\n  <li>Point one</li>\n</ul>"
               />
             )}
@@ -441,7 +454,7 @@ function PostEditor({
           </div>
         </div>
 
-        <div className="flex justify-end gap-3 border-t border-border p-6">
+        <div className="flex justify-end gap-3 border-t border-border p-3">
           <button
             onClick={onClose}
             className="h-10 rounded-xl border border-border bg-background px-4 text-sm font-semibold hover:bg-accent"
@@ -458,18 +471,6 @@ function PostEditor({
           </button>
         </div>
       </div>
-
-      <style>{`
-        .admin-input { width: 100%; min-height: 40px; border-radius: 12px; border: 1px solid var(--input); background: var(--background); padding: 0 14px; font-size: 14px; outline: none; }
-        .admin-input:focus { border-color: var(--brand); }
-        textarea.admin-input { padding: 12px 14px; }
-        .prose-admin h1, .prose-admin h2, .prose-admin h3 { font-weight: 700; margin: 0.6em 0 0.3em; }
-        .prose-admin h2 { font-size: 1.25rem; }
-        .prose-admin h3 { font-size: 1.1rem; }
-        .prose-admin p { margin: 0.5em 0; }
-        .prose-admin ul, .prose-admin ol { margin: 0.5em 0; padding-left: 1.4em; list-style: revert; }
-        .prose-admin a { color: var(--brand); text-decoration: underline; }
-      `}</style>
     </div>
   );
 }

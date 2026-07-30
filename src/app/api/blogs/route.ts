@@ -12,6 +12,7 @@ export const dynamic = "force-dynamic";
 
 const createSchema = z.object({
   title: z.string().trim().min(1).max(200),
+  slug: z.string().trim().max(200).default(""),
   subtitle: z.string().trim().max(300).default(""),
   author: z.string().trim().min(1).max(120),
   category: z.enum(BLOG_CATEGORIES),

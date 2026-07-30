@@ -31,14 +31,14 @@ const NAV_ITEMS = [
     label: "Applications",
     href: "/admin/applications",
     icon: FileText,
-    badge: "6 pending",
+    badge: "",
     badgeColor: "bg-amber-500/10 text-amber-600 border border-amber-500/20",
   },
   {
     label: "Leads",
     href: "/admin/leads",
     icon: Users,
-    badge: "New",
+    badge: "",
     badgeColor: "bg-brand/10 text-brand-deep border border-brand/20",
   },
   {
@@ -97,13 +97,13 @@ export default function AdminLayout({
 
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col justify-between border-r border-border bg-card shadow-soft transition-transform duration-300 md:static md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 flex h-screen w-72 flex-col justify-between border-r border-border bg-card shadow-soft transition-transform duration-300 md:translate-x-0 ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div>
+        <div className="flex flex-col min-h-0 flex-1">
           {/* Header / Brand */}
-          <div className="flex h-16 items-center justify-between border-b border-border px-6">
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-6">
             <Link
               href="/admin/dashboard"
               className="flex items-center gap-2.5 font-bold tracking-tight text-foreground"
@@ -128,22 +128,8 @@ export default function AdminLayout({
             </button>
           </div>
 
-          {/* System Status Pill */}
-          <div className="px-4 pt-4 pb-2">
-            <div className="flex items-center justify-between rounded-xl border border-border bg-slate-50 px-3 py-2 text-xs">
-              <div className="flex items-center gap-2 text-gray-600">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-                </span>
-                <span className="font-medium text-slate-700">System Live</span>
-              </div>
-              <span className="font-mono text-[10px] text-gray-500">v2.4.0</span>
-            </div>
-          </div>
-
           {/* Navigation Items */}
-          <nav className="space-y-1 px-3 py-3">
+          <nav className="flex-1 space-y-1 overflow-y-auto px-3 py-3">
             <div className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-wider text-gray-400">
               Management
             </div>
@@ -205,7 +191,7 @@ export default function AdminLayout({
         </div>
 
         {/* User / Sidebar Footer */}
-        <div className="border-t border-border p-4">
+        <div className="shrink-0 border-t border-border p-4">
           <div className="flex items-center justify-between rounded-2xl border border-border bg-slate-50/80 p-3">
             <div className="flex items-center gap-3 overflow-hidden">
               <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand/10 font-semibold text-brand-deep">
@@ -229,7 +215,7 @@ export default function AdminLayout({
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex flex-1 flex-col min-w-0">
+      <div className="flex flex-1 flex-col min-w-0 md:pl-72">
         {/* Top Navbar */}
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-card/80 px-4 backdrop-blur-md md:px-8">
           <div className="flex items-center gap-4">

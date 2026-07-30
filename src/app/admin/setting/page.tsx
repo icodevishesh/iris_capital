@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -8,48 +7,37 @@ export default function SettingsPage() {
   const [company, setCompany] = useState("IRIS Capital Partners");
   const [email, setEmail] = useState("hello@iriscapital.com");
   const [phone, setPhone] = useState("1 (800) 555-0134");
-  const [notify, setNotify] = useState(true);
 
   return (
     <div>
-      <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
+      <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
       <p className="mt-1 text-sm text-gray-500">Manage your workspace preferences.</p>
 
       <div className="mt-8 space-y-6">
         <Card title="Company profile" desc="Public-facing company information.">
           <FormField label="Company name">
-            <input value={company} onChange={(e) => setCompany(e.target.value)} className="admin-input" />
+            <input
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+            />
           </FormField>
           <div className="grid gap-4 md:grid-cols-2">
             <FormField label="Support email">
-              <input value={email} onChange={(e) => setEmail(e.target.value)} className="admin-input" />
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              />
             </FormField>
             <FormField label="Support phone">
-              <input value={phone} onChange={(e) => setPhone(e.target.value)} className="admin-input" />
+              <input
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              />
             </FormField>
           </div>
-        </Card>
-
-        <Card title="Notifications" desc="Choose how you'd like to be notified about new applications.">
-          <label className="flex items-center justify-between gap-4 rounded-xl border border-border bg-background p-4">
-            <div>
-              <p className="text-sm font-medium">Email me on new applications</p>
-              <p className="text-xs text-gray-500">Receive an email the moment a lead completes the funnel.</p>
-            </div>
-            <button
-              type="button"
-              role="switch"
-              aria-checked={notify}
-              onClick={() => setNotify((v) => !v)}
-              className={`relative h-6 w-11 rounded-full transition-colors ${notify ? "bg-brand" : "bg-muted"}`}
-            >
-              <span
-                className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-soft transition-transform ${
-                  notify ? "translate-x-5" : "translate-x-0.5"
-                }`}
-              />
-            </button>
-          </label>
         </Card>
 
         <div className="flex justify-end">
@@ -61,7 +49,6 @@ export default function SettingsPage() {
           </button>
         </div>
       </div>
-      <style>{`.admin-input { width: 100%; height: 44px; border-radius: 12px; border: 1px solid var(--input); background: var(--background); padding: 0 14px; font-size: 14px; outline: none; } .admin-input:focus { border-color: var(--brand); }`}</style>
     </div>
   );
 }

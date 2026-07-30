@@ -54,6 +54,7 @@ export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
 
 export interface Blog {
   title: string;
+  slug: string; // URL-friendly, derived from the title
   subtitle: string;
   author: string;
   category: BlogCategory;

@@ -73,7 +73,7 @@ export default function DashboardHome() {
     <div>
       <div className="flex flex-col justify-between gap-2 md:flex-row md:items-end">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
           <p className="mt-1 text-sm text-gray-500">Overview of your funding pipeline.</p>
         </div>
         <p className="text-xs text-gray-500">Last updated just now</p>

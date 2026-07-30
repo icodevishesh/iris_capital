@@ -2,20 +2,24 @@
 import Link from "next/link";
 import { ArrowRight, Compass, Handshake, Heart, ShieldCheck, Sparkles, Users } from "lucide-react";
 import handshakeImg from "@/assets/handshake.jpg";
-import ownerDogImg from "@/assets/owner-dog.jpg";
+import ownerDogImg from "@/assets/professional-girl.png";
 
 export default function AboutPage() {
   return (
     <div>
-      <section className="container-page pt-14 pb-16 md:pt-20 md:pb-20">
+      <section className="container-page pt-8 pb-8 md:pb-24">
         <div className="mx-auto max-w-3xl text-center">
-          <span className="eyebrow">About IRIS</span>
-          <h1 className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-            Real people funding real businesses
+          <span className="eyebrow">About IRIS Capital Partners</span>
+          <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+            Direct Business Lending.<br />
+            <span className="text-brand-deep">Built on Trust.</span>
           </h1>
-          <p className="mt-6 text-lg text-gray-500">
-            We founded IRIS Capital Partners because small business owners deserve
-            transparent terms, human support, and funding that arrives when they need it.
+          <p className="mt-6 text-lg leading-relaxed text-gray-600">
+           
+          </p>
+          <p className="mt-4 text-base leading-relaxed text-gray-500">
+             IRIS Capital Partners is a privately operated lending firm committed to delivering fast, transparent, and responsible financing solutions to small and mid-sized businesses across the United States. <br/><br/>
+            We understand that access to capital is critical to sustainable growth. Whether you are expanding operations, acquiring equipment, managing working capital, or pursuing new opportunities, our role is to provide structured financing that supports your long-term success.
           </p>
         </div>
         <div className="mt-14 overflow-hidden rounded-3xl border border-border shadow-elevated">
@@ -32,19 +36,15 @@ export default function AboutPage() {
       <section className="container-page mt-8 md:mt-16">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <span className="eyebrow">Our story</span>
-            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
-              Built by operators, for operators
+            <span className="eyebrow">Our Philosophy</span>
+            <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Financing should be clear, efficient, and aligned with <span className="text-brand-deep">real-world business needs.</span>
             </h2>
-            <p className="mt-4 text-gray-500">
-              After years watching hard-working business owners get stuck in slow, opaque
-              lending processes, our founders set out to build a different kind of lender —
-              one that treats speed, honesty, and long-term relationships as the product.
+            <p className="mt-6 text-base leading-relaxed text-gray-500">
+              Traditional lending institutions often impose lengthy approval timelines, rigid qualification standards, and excessive documentation requirements.
             </p>
-            <p className="mt-4 text-gray-500">
-              Today, IRIS Capital Partners funds thousands of American businesses each year,
-              from local restaurants to growing SaaS companies. Every application is reviewed
-              by a real human specialist.
+            <p className="mt-4 text-base leading-relaxed text-gray-500">
+              We take a performance-based approach — evaluating your business revenue, operation stability, and growth trajectory to structure practical financing solutions.
             </p>
           </div>
           <div className="overflow-hidden rounded-3xl border border-border shadow-elevated">
@@ -60,7 +60,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mt-24 border-y border-border bg-white/50">
+      <section className="mt-12 border-y border-border bg-white/50 md:mt-24">
         <div className="container-page grid gap-10 py-20 md:grid-cols-3">
           {[
             {
@@ -90,44 +90,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="container-page mt-24">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow">Timeline</span>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">Our journey</h2>
-        </div>
-        <ol className="relative mx-auto mt-14 max-w-2xl border-l-2 border-border pl-8">
-          {[
-            { year: "2016", title: "IRIS founded", body: "Launched with a mission to fund underserved small businesses." },
-            { year: "2018", title: "$100M funded", body: "Passed our first major funding milestone across 15 states." },
-            { year: "2021", title: "Nationwide", body: "Now supporting businesses in all 50 U.S. states." },
-            { year: "2024", title: "$1B+ funded", body: "Crossed $1 billion in cumulative funding to 12,000+ businesses." },
-          ].map((e) => (
-            <li key={e.year} className="mb-10 last:mb-0">
-              <div className="absolute -left-[9px] mt-1.5 h-4 w-4 rounded-full border-2 border-background bg-brand" />
-              <p className="text-sm font-semibold text-brand-deep">{e.year}</p>
-              <h3 className="mt-1 text-lg font-semibold">{e.title}</h3>
-              <p className="mt-1 text-sm text-gray-500">{e.body}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="container-page mt-24">
+      <section className="container-page mt-12 md:mt-24">
         <div className="max-w-2xl">
           <span className="eyebrow">Why businesses choose us</span>
-          <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
+          <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
             The difference is in the details
           </h2>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0">
           {[
             { icon: ShieldCheck, t: "Transparent" },
             { icon: Users, t: "Human specialists" },
             { icon: Handshake, t: "Relationship-first" },
             { icon: Sparkles, t: "Fast & fair" },
           ].map(({ icon: Icon, t }) => (
-            <div key={t} className="rounded-2xl border border-border bg-white p-6 text-center shadow-soft">
+            <div key={t} className="w-[60vw] max-w-[220px] shrink-0 snap-center rounded-2xl border border-border bg-white p-6 text-center shadow-soft md:w-auto md:max-w-none md:shrink">
               <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-brand/10 text-brand-deep">
                 <Icon className="h-5 w-5" />
               </div>
@@ -137,7 +114,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container-page mt-24">
+      <section className="container-page mt-12 md:mt-24">
         <div className="rounded-3xl border border-border bg-white p-10 text-center shadow-soft md:p-16">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
             Let's fund your next chapter

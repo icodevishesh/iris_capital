@@ -90,13 +90,13 @@ export default function BlogPage() {
 
   return (
     <div>
-      <section className="container-page pt-14 pb-10 md:pt-20">
+      <section className="container-page pt-8 pb-10">
         <div className="max-w-2xl">
           <span className="eyebrow">Blog</span>
-          <h1 className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+          <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
             Insights for growing businesses
           </h1>
-          <p className="mt-5 text-lg text-gray-500">
+          <p className="mt-5 text-md md:text-lg text-gray-500">
             Guides, playbooks, and honest takes on funding and running a small business.
           </p>
         </div>

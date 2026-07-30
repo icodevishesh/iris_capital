@@ -20,13 +20,13 @@ export default function ContactPage() {
 
   return (
     <div>
-      <section className="container-page pt-14 pb-10 md:pt-20">
+      <section className="container-page pt-8 pb-10">
         <div className="max-w-2xl">
           <span className="eyebrow">Contact</span>
-          <h1 className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight md:text-6xl">
+          <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
             Talk to a funding specialist
           </h1>
-          <p className="mt-5 text-lg text-gray-500">
+          <p className="mt-5 text-md md:text-lg text-gray-500">
             Have a question about funding? A real person will get back to you within one business day.
           </p>
         </div>
