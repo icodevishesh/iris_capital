@@ -29,9 +29,8 @@ export default function AdminLoginPage() {
         return;
       }
       toast.success("Welcome back");
-      // Full navigation so the proxy re-evaluates the new session cookie.
-      router.replace("/admin/dashboard");
-      router.refresh();
+      // Perform full page redirect so proxy and server cookies evaluate cleanly.
+      window.location.href = "/admin/dashboard";
     } catch {
       setError("Something went wrong. Please try again.");
       setSubmitting(false);
