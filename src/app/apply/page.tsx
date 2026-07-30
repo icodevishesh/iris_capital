@@ -143,7 +143,7 @@ export default function ApplyPage() {
           <h1 className="mt-4 text-4xl font-bold tracking-tight md:text-5xl">
             Apply for funding
           </h1>
-          <p className="mt-3 text-gray-500">
+          <p className="mt-3 text-gray-600">
             5 minutes. Soft credit check. No obligation.
           </p>
         </div>
@@ -161,16 +161,16 @@ export default function ApplyPage() {
                         ? "border-brand bg-brand text-brand-foreground"
                         : active
                           ? "border-brand bg-brand/10 text-brand-deep"
-                          : "border-border bg-card text-gray-500"
+                          : "border-border bg-card text-gray-600"
                     }`}
                   >
                     {done ? <Check className="h-5 w-5" /> : <Icon className="h-4 w-4" />}
                   </div>
                   <div className="hidden sm:block">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-500">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-gray-600">
                       Step {n}
                     </p>
-                    <p className={`text-sm font-semibold ${active || done ? "text-foreground" : "text-gray-500"}`}>
+                    <p className={`text-sm font-semibold ${active || done ? "text-foreground" : "text-gray-600"}`}>
                       {title}
                     </p>
                   </div>
@@ -224,7 +224,7 @@ export default function ApplyPage() {
             )}
           </div>
         </div>
-        <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-gray-500">
+        <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-gray-600">
           Applying will not affect your credit score. IRIS Capital Partners uses a soft pull to review your application.
         </p>
       </section>
@@ -247,7 +247,7 @@ function Step1({
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight">Tell us about you</h2>
-      <p className="mt-1 text-sm text-gray-500">We'll use this to reach out with your offer.</p>
+      <p className="mt-1 text-sm text-gray-600">We'll use this to reach out with your offer.</p>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         <Field label="Full name" error={errors.fullName}>
           <input value={form.fullName} onChange={(e) => setForm({ ...form, fullName: e.target.value })} className="input" placeholder="Jane Cooper" autoComplete="name" />
@@ -281,7 +281,7 @@ function Step2({
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight">About your business</h2>
-      <p className="mt-1 text-sm text-gray-500">This helps us structure the right funding for you.</p>
+      <p className="mt-1 text-sm text-gray-600">This helps us structure the right funding for you.</p>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         <Field label="Time in business" error={errors.timeInBusiness}>
           <select value={form.timeInBusiness} onChange={(e) => setForm({ ...form, timeInBusiness: e.target.value })} className="input">
@@ -343,7 +343,7 @@ function Step3({ files, setFiles }: { files: File[]; setFiles: (f: File[]) => vo
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight">Upload documents</h2>
-      <p className="mt-1 text-sm text-gray-500">
+      <p className="mt-1 text-sm text-gray-600">
         Please upload your last 3 months of business bank statements. PDF, JPG, or PNG. Up to 10MB per file.
       </p>
 
@@ -366,7 +366,7 @@ function Step3({ files, setFiles }: { files: File[]; setFiles: (f: File[]) => vo
           <Upload className="h-6 w-6" />
         </div>
         <p className="mt-4 text-base font-semibold">Drag & drop files here</p>
-        <p className="mt-1 text-sm text-gray-500">or click to browse</p>
+        <p className="mt-1 text-sm text-gray-600">or click to browse</p>
         <input
           type="file"
           multiple
@@ -385,13 +385,13 @@ function Step3({ files, setFiles }: { files: File[]; setFiles: (f: File[]) => vo
               </div>
               <div className="flex-1 truncate">
                 <p className="truncate text-sm font-medium">{f.name}</p>
-                <p className="text-xs text-gray-500">{(f.size / 1024).toFixed(0)} KB</p>
+                <p className="text-xs text-gray-600">{(f.size / 1024).toFixed(0)} KB</p>
               </div>
               <button
                 type="button"
                 aria-label={`Remove ${f.name}`}
                 onClick={() => setFiles(files.filter((_, idx) => idx !== i))}
-                className="grid h-9 w-9 place-items-center rounded-lg text-gray-500 hover:bg-accent hover:text-foreground"
+                className="grid h-9 w-9 place-items-center rounded-lg text-gray-600 hover:bg-accent hover:text-foreground"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -429,12 +429,12 @@ function Step4({
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight">Review your application</h2>
-      <p className="mt-1 text-sm text-gray-500">Take a moment to confirm your details before you submit.</p>
+      <p className="mt-1 text-sm text-gray-600">Take a moment to confirm your details before you submit.</p>
       <dl className="mt-6 divide-y divide-border rounded-2xl border border-border bg-background">
         {rows.map(([k, v]) => (
           <div key={k} className="grid grid-cols-[140px_1fr] gap-4 p-4 text-sm md:grid-cols-[200px_1fr]">
-            <dt className="text-gray-500">{k}</dt>
-            <dd className="font-medium">{v || <span className="text-gray-500">—</span>}</dd>
+            <dt className="text-gray-600">{k}</dt>
+            <dd className="font-medium">{v || <span className="text-gray-600">—</span>}</dd>
           </div>
         ))}
       </dl>
@@ -445,7 +445,7 @@ function Step4({
           onChange={(e) => setForm({ ...form, consent: e.target.checked })}
           className="mt-1 h-4 w-4 rounded border-input accent-[color:var(--brand)]"
         />
-        <span className="text-gray-500">
+        <span className="text-gray-600">
           I agree to the{" "}
           <a href="#" className="font-medium text-brand-deep underline">Terms of Service</a> and{" "}
           <a href="#" className="font-medium text-brand-deep underline">Privacy Policy</a>, and consent to a soft
@@ -465,7 +465,7 @@ function SuccessScreen() {
           <CheckCircle2 className="h-8 w-8" />
         </div>
         <h1 className="mt-6 text-3xl font-bold tracking-tight md:text-4xl">Thank you</h1>
-        <p className="mt-3 text-gray-500">
+        <p className="mt-3 text-gray-600">
           Your application has been received. A funding specialist will contact you shortly — often within one business day.
         </p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">

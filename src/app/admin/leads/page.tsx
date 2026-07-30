@@ -1,19 +1,14 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import React, { memo, useMemo, useState, useCallback } from "react";
 import { Search, Mail, Phone, Trash2, Loader2, Inbox } from "lucide-react";
-import { toast } from "sonner";
 import { StatusBadge } from "../dashboard/page";
-
-type Lead = {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-  status: "New" | "Contacted" | "Qualified";
-  createdAt: string;
-};
+import {
+  useLeadsData,
+  useUpdateLead,
+  useDeleteLead,
+  LeadItem as Lead,
+} from "@/lib/hooks/use-admin-queries";
 
 const STATUSES = ["All", "New", "Contacted", "Qualified"] as const;
 
@@ -29,45 +24,81 @@ function formatDate(iso: string) {
   }
 }
 
+const LeadRow = memo(function LeadRow({
+  l,
+  onSelect,
+  onDelete,
+}: {
+  l: Lead;
+  onSelect: (lead: Lead) => void;
+  onDelete: (e: React.MouseEvent, lead: Lead) => void;
+}) {
+  const handleClick = useCallback(() => {
+    onSelect(l);
+  }, [l, onSelect]);
+
+  const handleDelete = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onDelete(e, l);
+    },
+    [l, onDelete],
+  );
+
+  return (
+    <tr onClick={handleClick} className="cursor-pointer hover:bg-blue-600/5">
+      <td className="p-4 font-medium">{l.name}</td>
+      <td className="p-4 text-gray-600">
+        <div className="flex items-center gap-1.5">
+          <Mail className="h-3 w-3" /> {l.email}
+        </div>
+        <div className="mt-1 flex items-center gap-1.5">
+          <Phone className="h-3 w-3" /> {l.phone}
+        </div>
+      </td>
+      <td className="max-w-xs p-4 text-gray-600">
+        <p className="truncate">{l.message}</p>
+      </td>
+      <td className="p-4">
+        <StatusBadge status={l.status} />
+      </td>
+      <td className="p-4 text-gray-600">{formatDate(l.createdAt)}</td>
+      <td className="p-4">
+        <button
+          onClick={handleDelete}
+          aria-label="Delete"
+          className="grid h-9 w-9 place-items-center rounded-lg border border-border text-red-600 hover:bg-red-600/5 cursor-pointer"
+        >
+          <Trash2 className="h-4 w-4" />
+        </button>
+      </td>
+    </tr>
+  );
+});
+
 export default function LeadsPage() {
-  const [leads, setLeads] = useState<Lead[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: leads = [], isLoading } = useLeadsData();
+  const updateMutation = useUpdateLead();
+  const deleteMutation = useDeleteLead();
+
   const [q, setQ] = useState("");
   const [status, setStatus] = useState<(typeof STATUSES)[number]>("All");
   const [selected, setSelected] = useState<Lead | null>(null);
 
-  const load = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/leads");
-      if (!res.ok) throw new Error();
-      const data = await res.json();
-      setLeads(data.leads);
-    } catch {
-      toast.error("Failed to load leads");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    let active = true;
-    (async () => {
-      try {
-        const res = await fetch("/api/leads");
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        if (active) setLeads(data.leads);
-      } catch {
-        toast.error("Failed to load leads");
-      } finally {
-        if (active) setLoading(false);
-      }
-    })();
-    return () => {
-      active = false;
-    };
+  const handleSelect = useCallback((lead: Lead) => {
+    setSelected(lead);
   }, []);
+
+  const handleDeleteRow = useCallback(
+    (_e: React.MouseEvent, lead: Lead) => {
+      deleteMutation.mutate(lead.id, {
+        onSuccess: () => {
+          setSelected((prev) => (prev?.id === lead.id ? null : prev));
+        },
+      });
+    },
+    [deleteMutation],
+  );
 
   const rows = useMemo(
     () =>
@@ -76,59 +107,52 @@ export default function LeadsPage() {
         const inQ =
           !q.trim() ||
           [l.name, l.email, l.phone].some((v) =>
-            v.toLowerCase().includes(q.toLowerCase()),
+            (v || "").toLowerCase().includes(q.toLowerCase()),
           );
         return inS && inQ;
       }),
     [leads, q, status],
   );
 
-  const updateStatus = async (lead: Lead, next: Lead["status"]) => {
-    setLeads((ls) => ls.map((l) => (l.id === lead.id ? { ...l, status: next } : l)));
-    setSelected((s) => (s && s.id === lead.id ? { ...s, status: next } : s));
-    try {
-      const res = await fetch(`/api/leads/${lead.id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: next }),
-      });
-      if (!res.ok) throw new Error();
-      toast.success("Status updated");
-    } catch {
-      toast.error("Failed to update status");
-      load();
-    }
-  };
+  const updateStatus = useCallback(
+    (lead: Lead, next: Lead["status"]) => {
+      updateMutation.mutate(
+        { id: lead.id, status: next },
+        {
+          onSuccess: () => {
+            setSelected((prev) => (prev?.id === lead.id ? { ...prev, status: next } : prev));
+          },
+        },
+      );
+    },
+    [updateMutation],
+  );
 
-  const remove = async (lead: Lead) => {
-    setLeads((ls) => ls.filter((l) => l.id !== lead.id));
-    if (selected?.id === lead.id) setSelected(null);
-    try {
-      const res = await fetch(`/api/leads/${lead.id}`, { method: "DELETE" });
-      if (!res.ok) throw new Error();
-      toast.success("Lead deleted");
-    } catch {
-      toast.error("Failed to delete lead");
-      load();
-    }
-  };
+  const removeSelected = useCallback(() => {
+    if (!selected) return;
+    deleteMutation.mutate(selected.id, {
+      onSuccess: () => {
+        setSelected(null);
+      },
+    });
+  }, [deleteMutation, selected]);
 
   return (
     <div>
       <div className="flex flex-col justify-between gap-2 md:flex-row md:items-end">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Leads</h1>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-gray-600">
             Contact form submissions from your website.
           </p>
         </div>
-        <p className="text-xs text-gray-500">{leads.length} total</p>
+        <p className="text-xs text-gray-600">{leads.length} total</p>
       </div>
 
       <div className="mt-6 rounded-2xl border border-border bg-card shadow-soft">
         <div className="flex flex-col gap-3 border-b border-border p-4 md:flex-row md:items-center">
           <div className="relative w-full md:max-w-xs">
-            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
@@ -141,10 +165,10 @@ export default function LeadsPage() {
               <button
                 key={s}
                 onClick={() => setStatus(s)}
-                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+                className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
                   status === s
                     ? "bg-brand text-brand-foreground"
-                    : "border border-border bg-background text-gray-500 hover:text-foreground"
+                    : "border border-border bg-background text-gray-600 hover:text-foreground"
                 }`}
               >
                 {s}
@@ -153,8 +177,8 @@ export default function LeadsPage() {
           </div>
         </div>
 
-        {loading ? (
-          <div className="flex items-center justify-center gap-2 py-20 text-sm text-gray-500">
+        {isLoading ? (
+          <div className="flex items-center justify-center gap-2 py-20 text-sm text-gray-600">
             <Loader2 className="h-4 w-4 animate-spin" /> Loading leads…
           </div>
         ) : rows.length === 0 ? (
@@ -162,13 +186,13 @@ export default function LeadsPage() {
             <div className="grid h-12 w-12 place-items-center rounded-2xl bg-muted text-gray-400">
               <Inbox className="h-6 w-6" />
             </div>
-            <p className="text-sm text-gray-500">No leads found.</p>
+            <p className="text-sm text-gray-600">No leads found.</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
+                <tr className="text-left text-xs uppercase tracking-wider text-gray-600">
                   <th className="p-4 font-semibold">Name</th>
                   <th className="p-4 font-semibold">Contact</th>
                   <th className="p-4 font-semibold">Message</th>
@@ -179,40 +203,12 @@ export default function LeadsPage() {
               </thead>
               <tbody className="divide-y divide-border">
                 {rows.map((l) => (
-                  <tr
+                  <LeadRow
                     key={l.id}
-                    onClick={() => setSelected(l)}
-                    className="cursor-pointer hover:bg-accent/60"
-                  >
-                    <td className="p-4 font-medium">{l.name}</td>
-                    <td className="p-4 text-gray-500">
-                      <div className="flex items-center gap-1.5">
-                        <Mail className="h-3 w-3" /> {l.email}
-                      </div>
-                      <div className="mt-1 flex items-center gap-1.5">
-                        <Phone className="h-3 w-3" /> {l.phone}
-                      </div>
-                    </td>
-                    <td className="max-w-xs p-4 text-gray-500">
-                      <p className="truncate">{l.message}</p>
-                    </td>
-                    <td className="p-4">
-                      <StatusBadge status={l.status} />
-                    </td>
-                    <td className="p-4 text-gray-500">{formatDate(l.createdAt)}</td>
-                    <td className="p-4">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          remove(l);
-                        }}
-                        aria-label="Delete"
-                        className="grid h-9 w-9 place-items-center rounded-lg border border-border text-gray-400 hover:bg-destructive/10 hover:text-destructive"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </td>
-                  </tr>
+                    l={l}
+                    onSelect={handleSelect}
+                    onDelete={handleDeleteRow}
+                  />
                 ))}
               </tbody>
             </table>
@@ -225,7 +221,7 @@ export default function LeadsPage() {
           lead={selected}
           onClose={() => setSelected(null)}
           onStatus={(s) => updateStatus(selected, s)}
-          onDelete={() => remove(selected)}
+          onDelete={removeSelected}
         />
       )}
     </div>
@@ -252,7 +248,7 @@ function LeadDetail({
         <div className="flex items-start justify-between gap-4 border-b border-border p-6">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">{lead.name}</h2>
-            <p className="mt-1 text-sm text-gray-500">{formatDate(lead.createdAt)}</p>
+            <p className="mt-1 text-sm text-gray-600">{formatDate(lead.createdAt)}</p>
           </div>
           <StatusBadge status={lead.status} />
         </div>
@@ -272,7 +268,7 @@ function LeadDetail({
             </a>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600">
               Message
             </h3>
             <p className="mt-2 whitespace-pre-wrap rounded-xl border border-border bg-background p-4 text-sm">
@@ -280,7 +276,7 @@ function LeadDetail({
             </p>
           </div>
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600">
               Status
             </h3>
             <select
@@ -297,13 +293,13 @@ function LeadDetail({
         <div className="flex items-center justify-between gap-3 border-t border-border p-6">
           <button
             onClick={onDelete}
-            className="inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-background px-4 text-sm font-semibold text-destructive hover:bg-destructive/10"
+            className="inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-background px-4 text-sm font-semibold text-red-600 hover:bg-red-600/5 cursor-pointer"
           >
             <Trash2 className="h-4 w-4" /> Delete
           </button>
           <button
             onClick={onClose}
-            className="inline-flex h-10 items-center justify-center rounded-xl bg-brand px-5 text-sm font-semibold text-brand-foreground hover:bg-brand-deep"
+            className="inline-flex h-10 items-center justify-center rounded-xl bg-brand px-5 text-sm font-semibold text-brand-foreground hover:bg-brand-deep cursor-pointer"
           >
             Close
           </button>

@@ -15,7 +15,7 @@ export function Logo({ className }: { className?: string }) {
         </svg>
       </span>
       <span className="text-[1.05rem] font-bold tracking-tight text-foreground">
-        IRIS <span className="font-medium text-gray-500">Capital</span>
+        IRIS <span className="font-medium text-gray-600">Capital</span>
       </span>
     </Link>
   );

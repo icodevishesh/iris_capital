@@ -26,7 +26,7 @@ export default function ContactPage() {
           <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
             Talk to a funding specialist
           </h1>
-          <p className="mt-5 text-md md:text-lg text-gray-500">
+          <p className="mt-5 text-md md:text-lg text-gray-600">
             Have a question about funding? A real person will get back to you within one business day.
           </p>
         </div>
@@ -36,16 +36,16 @@ export default function ContactPage() {
         <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
           <div className="space-y-4">
             {[
-              { icon: Mail, label: "Email", value: "hello@iriscapital.com" },
-              { icon: Phone, label: "Phone", value: "1 (800) 555-0134" },
-              { icon: MapPin, label: "Office", value: "225 W 39th Street, New York, NY" },
+              { icon: Mail, label: "Email", value: "info@iriscapital.com" },
+              { icon: Phone, label: "Phone", value: "+1 4438574714" },
+              { icon: MapPin, label: "Office", value: "1000 NW NORTH RIVER DR, MIAMI, US" },
             ].map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-start gap-4 rounded-2xl border border-border bg-white p-6 shadow-soft">
                 <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand-deep">
                   <Icon className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">{label}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">{label}</p>
                   <p className="mt-1 font-medium">{value}</p>
                 </div>
               </div>

@@ -25,10 +25,14 @@ function readMinutes(html: string) {
   return Math.max(1, Math.round(words / 200));
 }
 
-async function getBlog(id: string): Promise<(Blog & { id: string }) | null> {
-  if (!ObjectId.isValid(id)) return null;
+async function getBlog(slug: string): Promise<(Blog & { id: string }) | null> {
   const db = await getDb();
-  const doc = await db.collection(COLLECTIONS.blogs).findOne({ _id: new ObjectId(id) });
+  // Primary lookup is by the SEO-friendly slug. Fall back to the ObjectId so any
+  // older `/blogs/<id>` links (or bookmarks) keep working.
+  let doc = await db.collection(COLLECTIONS.blogs).findOne({ slug });
+  if (!doc && ObjectId.isValid(slug)) {
+    doc = await db.collection(COLLECTIONS.blogs).findOne({ _id: new ObjectId(slug) });
+  }
   if (!doc) return null;
   return serialize(doc) as unknown as Blog & { id: string };
 }
@@ -46,10 +50,10 @@ async function getAllBlogs(): Promise<(Blog & { id: string })[]> {
 export default async function BlogDetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
-  const [blog, allBlogs] = await Promise.all([getBlog(id), getAllBlogs()]);
+  const { slug } = await params;
+  const [blog, allBlogs] = await Promise.all([getBlog(slug), getAllBlogs()]);
   if (!blog) notFound();
 
   const otherBlogs = allBlogs.filter((b) => b.id !== blog.id);
@@ -61,15 +65,15 @@ export default async function BlogDetailPage({
         <div className="mx-auto max-w-4xl">
           <Link
             href="/blogs"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-gray-500 hover:text-foreground"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-gray-600 hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" /> All articles
           </Link>
           <h1 className="mt-4 text-2xl font-bold leading-tight tracking-tight md:text-4xl">
             {blog.title}
           </h1>
-          {blog.subtitle && <p className="mt-4 text-sm text-gray-500">{blog.subtitle}</p>}
-          <div className="mt-6 flex items-center gap-4 text-sm text-gray-500">
+          {blog.subtitle && <p className="mt-4 text-sm text-gray-600">{blog.subtitle}</p>}
+          <div className="mt-6 flex items-center gap-4 text-sm text-gray-600">
             <span className="font-medium text-foreground">{blog.author}</span>
             <span>·</span>
             <span>{formatDate(blog.createdAt)}</span>

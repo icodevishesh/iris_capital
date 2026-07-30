@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Shield, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 
 const NAV_ITEMS = [
   { label: "Business Term Loan", href: "/terms" },
@@ -25,10 +26,14 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/80 bg-background/80 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground">
-          <div className="grid h-9 w-9 place-items-center rounded-2xl bg-brand text-brand-foreground shadow-soft">
-            <Shield className="h-5 w-5" />
-          </div>
-          <span className="font-bold">IRIS <span className="font-semibold text-gray-600">Capital</span></span>
+          <Image
+            src="/iris-logo-v2.png"
+            alt="IRIS Capital Partners"
+            width={180}
+            height={48}
+            priority
+            className="h-18 w-auto object-contain"
+          />
         </Link>
         <nav className="hidden items-center gap-8 text-sm font-medium md:flex">
           {NAV_ITEMS.map((item) => {
@@ -40,7 +45,7 @@ export function Header() {
                 className={
                   isActive
                     ? "font-semibold text-blue-600 underline decoration-blue-600 decoration-2 underline-offset-8"
-                    : "text-gray-500 underline-offset-8 transition-colors hover:text-blue-600 hover:underline hover:decoration-blue-600"
+                    : "text-gray-600 underline-offset-8 transition-colors hover:text-blue-600 hover:underline hover:decoration-blue-600"
                 }
               >
                 {item.label}

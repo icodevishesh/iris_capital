@@ -20,6 +20,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { toast } from "sonner";
+import { QueryProvider } from "@/components/providers/query-provider";
 
 const NAV_ITEMS = [
   {
@@ -65,7 +66,7 @@ export default function AdminLayout({
 
   // The login page renders without the admin chrome (sidebar / topbar).
   if (pathname === "/admin/login") {
-    return <>{children}</>;
+    return <QueryProvider>{children}</QueryProvider>;
   }
 
   const logout = async () => {
@@ -86,7 +87,8 @@ export default function AdminLayout({
   const breadcrumbs = getBreadcrumbs();
 
   return (
-    <div className="min-h-screen bg-slate-50/60 font-sans text-foreground flex flex-col md:flex-row">
+    <QueryProvider>
+      <div className="min-h-screen bg-slate-50/60 font-sans text-foreground flex flex-col md:flex-row">
       {/* Mobile backdrop */}
       {mobileOpen && (
         <div
@@ -113,7 +115,7 @@ export default function AdminLayout({
               </div>
               <div className="flex flex-col">
                 <span className="text-sm font-bold leading-none text-foreground">
-                  IRIS <span className="text-gray-500 font-normal">Capital</span>
+                  IRIS <span className="text-gray-600 font-normal">Capital</span>
                 </span>
                 <span className="mt-1 text-[10px] font-semibold tracking-wider text-brand uppercase">
                   Admin Portal
@@ -122,7 +124,7 @@ export default function AdminLayout({
             </Link>
             <button
               onClick={() => setMobileOpen(false)}
-              className="grid h-8 w-8 place-items-center rounded-lg text-gray-500 hover:bg-accent md:hidden"
+              className="grid h-8 w-8 place-items-center rounded-lg text-gray-600 hover:bg-accent md:hidden"
             >
               <X className="h-5 w-5" />
             </button>
@@ -227,7 +229,7 @@ export default function AdminLayout({
             </button>
 
             {/* Breadcrumb */}
-            <nav className="hidden sm:flex items-center gap-2 text-xs text-gray-500 font-medium">
+            <nav className="hidden sm:flex items-center gap-2 text-xs text-gray-600 font-medium">
               <Link href="/admin/dashboard" className="hover:text-foreground">
                 Admin
               </Link>
@@ -288,5 +290,6 @@ export default function AdminLayout({
         </main>
       </div>
     </div>
+    </QueryProvider>
   );
 }

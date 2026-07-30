@@ -9,6 +9,7 @@ const CATEGORIES = ["All", "Funding 101", "Growth", "Cash Flow", "Case Studies"]
 
 type Blog = {
   id: string;
+  slug: string;
   title: string;
   subtitle: string;
   author: string;
@@ -96,18 +97,18 @@ export default function BlogPage() {
           <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
             Insights for growing businesses
           </h1>
-          <p className="mt-5 text-md md:text-lg text-gray-500">
+          <p className="mt-5 text-md md:text-lg text-gray-600">
             Guides, playbooks, and honest takes on funding and running a small business.
           </p>
         </div>
       </section>
 
       {loading ? (
-        <section className="container-page flex items-center justify-center gap-2 py-24 text-sm text-gray-500">
+        <section className="container-page flex items-center justify-center gap-2 py-24 text-sm text-gray-600">
           <Loader2 className="h-4 w-4 animate-spin" /> Loading articles…
         </section>
       ) : blogs.length === 0 ? (
-        <section className="container-page py-24 text-center text-gray-500">
+        <section className="container-page py-24 text-center text-gray-600">
           No articles published yet. Check back soon.
         </section>
       ) : (
@@ -115,8 +116,8 @@ export default function BlogPage() {
           {featured && (
             <section className="container-page">
               <Link
-                href={`/blogs/${featured.id}`}
-                className="group grid overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all hover:shadow-elevated md:grid-cols-[340px_1fr] lg:grid-cols-[400px_1fr]"
+                href={`/blogs/${featured.slug || featured.id}`}
+                className="group grid overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition-all hover:shadow-elevated md:grid-cols-[340px_1fr] lg:grid-cols-[400px_1fr]"
               >
                 <div className="h-60 overflow-hidden md:h-[300px]">
                   <BannerImage
@@ -130,9 +131,9 @@ export default function BlogPage() {
                     {featured.title}
                   </h2>
                   {featured.subtitle && (
-                    <p className="mt-2 text-sm text-gray-500 line-clamp-2">{featured.subtitle}</p>
+                    <p className="mt-2 text-sm text-gray-600 line-clamp-2">{featured.subtitle}</p>
                   )}
-                  <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-gray-500">
+                  <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-gray-600">
                     <span>{featured.author}</span>
                     <span>·</span>
                     <span>{formatDate(featured.createdAt)}</span>
@@ -151,7 +152,7 @@ export default function BlogPage() {
           <section className="container-page mt-16">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
               <div className="relative w-full md:max-w-sm">
-                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+                <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-600" />
                 <input
                   type="search"
                   value={q}
@@ -168,7 +169,7 @@ export default function BlogPage() {
                     className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                       cat === c
                         ? "bg-brand text-brand-foreground"
-                        : "border border-border bg-white text-gray-500 hover:text-foreground"
+                        : "border border-border bg-white text-gray-600 hover:text-foreground"
                     }`}
                   >
                     {c}
@@ -182,7 +183,7 @@ export default function BlogPage() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {grid.map((a) => (
                 <Link
-                  href={`/blogs/${a.id}`}
+                  href={`/blogs/${a.slug || a.id}`}
                   key={a.id}
                   className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated"
                 >
@@ -197,8 +198,8 @@ export default function BlogPage() {
                       {a.category}
                     </span>
                     <h3 className="mt-2 text-lg font-semibold leading-snug">{a.title}</h3>
-                    <p className="mt-2 flex-1 text-sm text-gray-500">{a.subtitle}</p>
-                    <div className="mt-4 flex items-center justify-between text-xs text-gray-500">
+                    <p className="mt-2 flex-1 text-sm text-gray-600">{a.subtitle}</p>
+                    <div className="mt-4 flex items-center justify-between text-xs text-gray-600">
                       <span>{formatDate(a.createdAt)}</span>
                       <span className="flex items-center gap-1">
                         <Clock className="h-3 w-3" /> {readMinutes(a.content)} min
@@ -209,7 +210,7 @@ export default function BlogPage() {
               ))}
             </div>
             {(q || cat !== "All") && filtered.length === 0 && (
-              <p className="mt-8 text-center text-sm text-gray-500">
+              <p className="mt-8 text-center text-sm text-gray-600">
                 No articles match your search.
               </p>
             )}
@@ -224,7 +225,7 @@ export default function BlogPage() {
             <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
               Monthly insights, in your inbox
             </h2>
-            <p className="mt-3 text-gray-500">
+            <p className="mt-3 text-gray-600">
               Short, useful briefings for small business owners. Unsubscribe anytime.
             </p>
             <form

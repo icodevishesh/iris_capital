@@ -7,47 +7,49 @@ import ownerDogImg from "@/assets/professional-girl.png";
 export default function AboutPage() {
   return (
     <div>
-      <section className="container-page pt-8 pb-8 md:pb-24">
-        <div className="mx-auto max-w-3xl text-center">
+      <section className="container-page pt-6 pb-8 md:pb-14">
+        <div className="grid gap-0 md:gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="mx-auto max-w-3xl">
           <span className="eyebrow">About IRIS Capital Partners</span>
-          <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+          <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-5xl">
             Direct Business Lending.<br />
             <span className="text-brand-deep">Built on Trust.</span>
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-gray-600">
            
           </p>
-          <p className="mt-4 text-base leading-relaxed text-gray-500">
+          <p className="mt-4 text-base leading-relaxed text-gray-600">
              IRIS Capital Partners is a privately operated lending firm committed to delivering fast, transparent, and responsible financing solutions to small and mid-sized businesses across the United States. <br/><br/>
             We understand that access to capital is critical to sustainable growth. Whether you are expanding operations, acquiring equipment, managing working capital, or pursuing new opportunities, our role is to provide structured financing that supports your long-term success.
           </p>
-        </div>
-        <div className="mt-14 overflow-hidden rounded-3xl border border-border shadow-elevated">
+          </div>
+          <div className="mt-14 overflow-hidden rounded-3xl border border-border shadow-elevated">
           <img
             src={handshakeImg.src}
             alt="Business partners meeting"
             width={1600}
             height={800}
-            className="aspect-[16/7] w-full object-cover"
+            className="aspect-7/5 w-full object-cover"
           />
+          </div>
         </div>
       </section>
 
-      <section className="container-page mt-8 md:mt-16">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div>
+      <section className="container-page mt-8 border-t border-border">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center pt-12 md:pt-20">
+          <div className="lg:order-2">
             <span className="eyebrow">Our Philosophy</span>
             <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
               Financing should be clear, efficient, and aligned with <span className="text-brand-deep">real-world business needs.</span>
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-gray-500">
+            <p className="mt-6 text-base leading-relaxed text-gray-600">
               Traditional lending institutions often impose lengthy approval timelines, rigid qualification standards, and excessive documentation requirements.
             </p>
-            <p className="mt-4 text-base leading-relaxed text-gray-500">
+            <p className="mt-4 text-base leading-relaxed text-gray-600">
               We take a performance-based approach — evaluating your business revenue, operation stability, and growth trajectory to structure practical financing solutions.
             </p>
           </div>
-          <div className="overflow-hidden rounded-3xl border border-border shadow-elevated">
+          <div className="overflow-hidden rounded-3xl border border-border shadow-elevated lg:order-1">
             <img
               src={ownerDogImg.src}
               alt="Small business owner at home with her dog"
@@ -61,7 +63,7 @@ export default function AboutPage() {
       </section>
 
       <section className="mt-12 border-y border-border bg-white/50 md:mt-24">
-        <div className="container-page grid gap-10 py-20 md:grid-cols-3">
+        <div className="container-page grid gap-10 py-12 md:py-20 md:grid-cols-3">
           {[
             {
               icon: Compass,
@@ -79,12 +81,15 @@ export default function AboutPage() {
               body: "No hidden fees. No pressure tactics. A real person to talk to — from application through payoff.",
             },
           ].map(({ icon: Icon, title, body }) => (
-            <div key={title} className="rounded-2xl border border-border bg-white p-8 shadow-soft">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+            <div
+              key={title}
+              className="group rounded-2xl border border-border bg-white p-8 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-lg"
+            >
+              <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand/10 text-brand-deep transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
                 <Icon className="h-5 w-5" />
               </div>
-              <h3 className="mt-6 text-xl font-semibold">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">{body}</p>
+              <h3 className="mt-6 text-xl font-semibold transition-colors duration-300 group-hover:text-brand-deep">{title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-gray-600">{body}</p>
             </div>
           ))}
         </div>
@@ -104,19 +109,23 @@ export default function AboutPage() {
             { icon: Handshake, t: "Relationship-first" },
             { icon: Sparkles, t: "Fast & fair" },
           ].map(({ icon: Icon, t }) => (
-            <div key={t} className="w-[60vw] max-w-[220px] shrink-0 snap-center rounded-2xl border border-border bg-white p-6 text-center shadow-soft md:w-auto md:max-w-none md:shrink">
-              <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+            <div
+              key={t}
+              className="group w-[60vw] max-w-[220px] shrink-0 snap-center rounded-2xl border border-border bg-white p-6 text-center shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-lg md:w-auto md:max-w-none md:shrink"
+            >
+              <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-brand/10 text-brand-deep transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
                 <Icon className="h-5 w-5" />
               </div>
-              <p className="mt-4 font-semibold">{t}</p>
+              <p className="mt-4 font-semibold transition-colors duration-300 group-hover:text-brand-deep">{t}</p>
             </div>
           ))}
         </div>
       </section>
 
+      {/* CTC section */}
       <section className="container-page mt-12 md:mt-24">
-        <div className="rounded-3xl border border-border bg-white p-10 text-center shadow-soft md:p-16">
-          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+        <div className="rounded-3xl border border-border bg-white p-8 text-center shadow-soft md:p-16">
+          <h2 className="text-xl font-bold tracking-tight md:text-4xl">
             Let's fund your next chapter
           </h2>
           <Link

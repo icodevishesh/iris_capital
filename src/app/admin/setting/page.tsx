@@ -11,7 +11,7 @@ export default function SettingsPage() {
   return (
     <div>
       <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
-      <p className="mt-1 text-sm text-gray-500">Manage your workspace preferences.</p>
+      <p className="mt-1 text-sm text-gray-600">Manage your workspace preferences.</p>
 
       <div className="mt-8 space-y-6">
         <Card title="Company profile" desc="Public-facing company information.">
@@ -66,7 +66,7 @@ function Card({
     <div className="rounded-2xl border border-border bg-card p-6 shadow-soft md:p-8">
       <div className="max-w-lg">
         <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="mt-1 text-sm text-gray-500">{desc}</p>
+        <p className="mt-1 text-sm text-gray-600">{desc}</p>
       </div>
       <div className="mt-6 space-y-4">{children}</div>
     </div>

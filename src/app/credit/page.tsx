@@ -32,7 +32,7 @@ export default function LineOfCreditPage() {
             <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
               Flexible working capital, on demand
             </h1>
-            <p className="mt-6 max-w-lg text-lg text-gray-500">
+            <p className="mt-6 max-w-lg text-lg text-gray-600">
               Draw funds when you need them. Only pay interest on what you use.
               A revolving line that grows with your business.
             </p>
@@ -50,7 +50,7 @@ export default function LineOfCreditPage() {
                 Speak with us
               </Link>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-500">
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-600">
               {["Draw anytime", "No draw fees", "Interest on used funds only"].map((f) => (
                 <li key={f} className="flex items-center gap-2">
                   <Check className="h-4 w-4 text-success" /> {f}
@@ -83,7 +83,7 @@ export default function LineOfCreditPage() {
                 <Icon className="h-5 w-5" />
               </div>
               <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+                <p className="text-xs font-medium uppercase tracking-wider text-gray-600">
                   {label}
                 </p>
                 <p className="mt-0.5 text-base font-semibold">{value}</p>
@@ -117,7 +117,7 @@ export default function LineOfCreditPage() {
                 <Icon className="h-5 w-5" />
               </div>
               <h3 className="mt-4 text-lg font-semibold">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">{body}</p>
+              <p className="mt-2 text-sm leading-relaxed text-gray-600">{body}</p>
             </div>
           ))}
         </div>
@@ -140,7 +140,7 @@ export default function LineOfCreditPage() {
                 <AccordionTrigger className="py-5 text-left text-base font-semibold hover:no-underline">
                   {q}
                 </AccordionTrigger>
-                <AccordionContent className="pb-5 text-sm leading-relaxed text-gray-500">
+                <AccordionContent className="pb-5 text-sm leading-relaxed text-gray-600">
                   {a}
                 </AccordionContent>
               </AccordionItem>
@@ -152,7 +152,7 @@ export default function LineOfCreditPage() {
       <section className="container-page mt-24">
         <div className="rounded-3xl border border-border bg-white p-10 text-center shadow-soft md:p-16">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Open your line of credit</h2>
-          <p className="mx-auto mt-3 max-w-lg text-gray-500">
+          <p className="mx-auto mt-3 max-w-lg text-gray-600">
             Apply in minutes. Access your credit the moment you need it.
           </p>
           <Link

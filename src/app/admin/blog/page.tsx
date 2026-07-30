@@ -14,6 +14,9 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+import { useQueryClient } from "@tanstack/react-query";
+import { useBlogsData, ADMIN_KEYS } from "@/lib/hooks/use-admin-queries";
+
 const CATEGORIES = ["Funding 101", "Growth", "Cash Flow", "Case Studies"] as const;
 type Category = (typeof CATEGORIES)[number];
 
@@ -64,42 +67,9 @@ function toDateInput(iso: string) {
 }
 
 export default function BlogsAdmin() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { data: posts = [], isLoading: loading } = useBlogsData();
+  const queryClient = useQueryClient();
   const [editing, setEditing] = useState<Draft | null>(null);
-
-  const load = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/blogs");
-      if (!res.ok) throw new Error();
-      const data = await res.json();
-      setPosts(data.blogs);
-    } catch {
-      toast.error("Failed to load posts");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    let active = true;
-    (async () => {
-      try {
-        const res = await fetch("/api/blogs");
-        if (!res.ok) throw new Error();
-        const data = await res.json();
-        if (active) setPosts(data.blogs);
-      } catch {
-        toast.error("Failed to load posts");
-      } finally {
-        if (active) setLoading(false);
-      }
-    })();
-    return () => {
-      active = false;
-    };
-  }, []);
 
   const startNew = () =>
     setEditing({
@@ -113,14 +83,13 @@ export default function BlogsAdmin() {
     });
 
   const remove = async (id: string) => {
-    setPosts((ps) => ps.filter((x) => x.id !== id));
     try {
       const res = await fetch(`/api/blogs/${id}`, { method: "DELETE" });
       if (!res.ok) throw new Error();
       toast.success("Post deleted");
+      queryClient.invalidateQueries({ queryKey: ADMIN_KEYS.blogs });
     } catch {
       toast.error("Failed to delete post");
-      load();
     }
   };
 
@@ -150,7 +119,7 @@ export default function BlogsAdmin() {
       }
       toast.success(draft.id ? "Post updated" : "Post published");
       setEditing(null);
-      load();
+      queryClient.invalidateQueries({ queryKey: ADMIN_KEYS.blogs });
     } catch (e) {
       toast.error(e instanceof Error ? e.message : "Failed to save post");
     }
@@ -161,7 +130,7 @@ export default function BlogsAdmin() {
       <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Blogs</h1>
-          <p className="mt-1 text-sm text-gray-500">Create, edit, and publish articles.</p>
+          <p className="mt-1 text-sm text-gray-600">Create, edit, and publish articles.</p>
         </div>
         <button
           onClick={startNew}
@@ -173,7 +142,7 @@ export default function BlogsAdmin() {
 
       <div className="mt-6 rounded-2xl border border-border bg-card shadow-soft">
         {loading ? (
-          <div className="flex items-center justify-center gap-2 py-20 text-sm text-gray-500">
+          <div className="flex items-center justify-center gap-2 py-20 text-sm text-gray-600">
             <Loader2 className="h-4 w-4 animate-spin" /> Loading posts…
           </div>
         ) : posts.length === 0 ? (
@@ -181,7 +150,7 @@ export default function BlogsAdmin() {
             <div className="grid h-12 w-12 place-items-center rounded-2xl bg-muted text-gray-400">
               <Inbox className="h-6 w-6" />
             </div>
-            <p className="text-sm text-gray-500">No blog posts yet.</p>
+            <p className="text-sm text-gray-600">No blog posts yet.</p>
             <button
               onClick={startNew}
               className="inline-flex h-9 items-center gap-2 rounded-xl bg-brand px-4 text-sm font-semibold text-brand-foreground hover:bg-brand-deep"
@@ -193,7 +162,7 @@ export default function BlogsAdmin() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wider text-gray-500">
+                <tr className="text-left text-xs uppercase tracking-wider text-gray-600">
                   <th className="p-4 font-semibold">Post</th>
                   <th className="p-4 font-semibold">Category</th>
                   <th className="p-4 font-semibold">Author</th>
@@ -203,7 +172,7 @@ export default function BlogsAdmin() {
               </thead>
               <tbody className="divide-y divide-border">
                 {posts.map((p) => (
-                  <tr key={p.id} className="hover:bg-accent/60">
+                  <tr key={p.id} className="hover:bg-blue-600/5">
                     <td className="p-4">
                       <div className="flex items-center gap-3">
                         {p.bannerImage ? (
@@ -218,30 +187,30 @@ export default function BlogsAdmin() {
                             <ImageIcon className="h-4 w-4" />
                           </div>
                         )}
-                        <div className="min-w-0">
-                          <p className="truncate font-medium">{p.title}</p>
+                        <div className="min-w-0 max-w-md">
+                          <p className="line-clamp-1 font-medium">{p.title}</p>
                           {p.subtitle && (
-                            <p className="truncate text-xs text-gray-500">{p.subtitle}</p>
+                            <p className="line-clamp-1 text-xs text-gray-600">{p.subtitle}</p>
                           )}
                         </div>
                       </div>
                     </td>
-                    <td className="p-4 text-gray-500">{p.category}</td>
-                    <td className="p-4 text-gray-500">{p.author}</td>
-                    <td className="p-4 text-gray-500">{formatDate(p.createdAt)}</td>
+                    <td className="p-4 text-gray-600">{p.category}</td>
+                    <td className="p-4 text-gray-600">{p.author}</td>
+                    <td className="p-4 text-gray-600">{formatDate(p.createdAt)}</td>
                     <td className="p-4">
                       <div className="flex justify-end gap-2">
                         <button
                           onClick={() => setEditing(p)}
                           aria-label="Edit"
-                          className="grid h-9 w-9 place-items-center rounded-lg border border-border text-gray-500 hover:bg-accent hover:text-foreground"
+                          className="grid h-9 w-9 place-items-center rounded-lg border border-border text-gray-600 hover:bg-accent hover:text-blue-600"
                         >
                           <Edit3 className="h-4 w-4" />
                         </button>
                         <button
                           onClick={() => remove(p.id)}
                           aria-label="Delete"
-                          className="grid h-9 w-9 place-items-center rounded-lg border border-border text-gray-500 hover:bg-destructive/10 hover:text-destructive"
+                          className="grid h-9 w-9 place-items-center rounded-lg border border-border text-red-600 hover:bg-red-600/10 hover:text-red-600"
                         >
                           <Trash2 className="h-4 w-4" />
                         </button>
@@ -313,7 +282,7 @@ function PostEditor({
           <button
             aria-label="Close"
             onClick={onClose}
-            className="grid h-10 w-10 place-items-center rounded-xl text-gray-500 hover:bg-accent hover:text-foreground"
+            className="grid h-10 w-10 place-items-center rounded-xl text-gray-600 hover:bg-accent hover:text-foreground"
           >
             <X className="h-4 w-4" />
           </button>
@@ -344,7 +313,7 @@ function PostEditor({
                   </button>
                 </>
               ) : (
-                <div className="flex flex-col items-center gap-2 py-8 text-gray-500">
+                <div className="flex flex-col items-center gap-2 py-8 text-gray-600">
                   <ImageIcon className="h-6 w-6" />
                   <p className="text-sm font-medium">Click to upload a banner</p>
                   <p className="text-xs">PNG or JPG, up to 3MB</p>
@@ -421,7 +390,7 @@ function PostEditor({
               <button
                 type="button"
                 onClick={() => setPreview((v) => !v)}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-semibold text-gray-500 hover:text-foreground"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background px-2.5 py-1 text-xs font-semibold text-gray-600 hover:text-foreground"
               >
                 {preview ? (
                   <>
@@ -447,7 +416,7 @@ function PostEditor({
                 placeholder="<h2>Section heading</h2>\n<p>Write your article using HTML tags for formatting…</p>\n<ul>\n  <li>Point one</li>\n</ul>"
               />
             )}
-            <p className="mt-1.5 text-xs text-gray-500">
+            <p className="mt-1.5 text-xs text-gray-600">
               Use tags like <code>&lt;h2&gt;</code>, <code>&lt;p&gt;</code>,{" "}
               <code>&lt;strong&gt;</code>, <code>&lt;ul&gt;</code>, and <code>&lt;a&gt;</code> for formatting.
             </p>

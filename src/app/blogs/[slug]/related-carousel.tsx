@@ -54,7 +54,7 @@ export function RelatedBlogsCarousel({ blogs }: { blogs: BlogWithId[] }) {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-xs font-medium text-gray-500">
+            <span className="text-xs font-medium text-gray-600">
               {selectedIndex + 1} of {blogs.length}
             </span>
             <div className="flex items-center gap-1.5">
@@ -81,7 +81,7 @@ export function RelatedBlogsCarousel({ blogs }: { blogs: BlogWithId[] }) {
             {blogs.map((b) => (
               <div key={b.id} className="min-w-0 flex-[0_0_100%]">
                 <Link
-                  href={`/blogs/${b.id}`}
+                  href={`/blogs/${b.slug || b.id}`}
                   className="group grid md:grid-cols-[320px_1fr] lg:grid-cols-[360px_1fr]"
                 >
                   <div className="h-56 overflow-hidden md:h-[280px]">
@@ -108,9 +108,9 @@ export function RelatedBlogsCarousel({ blogs }: { blogs: BlogWithId[] }) {
                       {b.title}
                     </h3>
                     {b.subtitle && (
-                      <p className="mt-2 text-sm text-gray-500 line-clamp-2">{b.subtitle}</p>
+                      <p className="mt-2 text-sm text-gray-600 line-clamp-2">{b.subtitle}</p>
                     )}
-                    <div className="mt-4 flex items-center gap-3 text-xs text-gray-500">
+                    <div className="mt-4 flex items-center gap-3 text-xs text-gray-600">
                       <span>{b.author}</span>
                       <span>·</span>
                       <span>{formatDate(b.createdAt)}</span>

@@ -55,7 +55,7 @@ export default function AdminLoginPage() {
           className="rounded-3xl border border-border bg-card p-8 shadow-soft"
         >
           <h2 className="text-lg font-semibold">Sign in</h2>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-gray-600">
             Enter your administrator credentials to continue.
           </p>
 

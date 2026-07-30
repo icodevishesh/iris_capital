@@ -49,7 +49,7 @@ function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(29,78,216,0.1)_0%,transparent_70%)]"
       />
-      <div className="container-page pt-8 pb-8 md:pb-24">
+      <div className="container-page pt-8 md:pt-14 pb-8 md:pb-24">
         <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_1fr]">
           <div className="max-w-2xl">
             <h1 className="text-5xl font-bold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-[4.25rem]">
@@ -57,7 +57,7 @@ function Hero() {
               <br />
               <span className="text-brand-deep">Built on trust.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-500">
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-600">
               Business funding from <strong className="font-semibold text-foreground">$5,000 to $500,000</strong> with
               transparent terms, fast approvals, and funding available as soon as the same day.
             </p>
@@ -65,7 +65,7 @@ function Hero() {
               <CtaLink to="/apply">Apply now</CtaLink>
               <CtaLink to="/contact" variant="secondary">Speak with us</CtaLink>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-500">
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-600">
               {["Soft credit pull", "No obligation", "5-minute application"].map((f) => (
                 <li key={f} className="flex items-center gap-2">
                   <Check className="h-4 w-4 text-success" /> {f}
@@ -113,7 +113,7 @@ function FloatingCard({
         {icon}
       </div>
       <div className="flex-1">
-        <p className="text-xs font-medium text-gray-500">{title}</p>
+        <p className="text-xs font-medium text-gray-600">{title}</p>
         <p className="text-sm font-semibold text-foreground">{body}</p>
       </div>
       {trailing && (
@@ -136,12 +136,12 @@ function Highlights() {
     <section className="container-page">
       <div className="grid gap-4 rounded-3xl border border-border bg-card p-4 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
         {items.map(({ icon: Icon, label, value }) => (
-          <div key={label} className="flex items-center gap-4 rounded-2xl p-4 transition-colors hover:bg-accent/60">
+          <div key={label} className="flex items-center gap-4 rounded-2xl p-4 transition-colors hover:bg-blue-600/5">
             <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand-deep">
               <Icon className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+              <p className="text-xs font-medium uppercase tracking-wider text-gray-600">
                 {label}
               </p>
               <p className="mt-0.5 text-base font-semibold text-foreground">{value}</p>
@@ -181,7 +181,7 @@ function HowItWorks() {
         <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
           Funding in three simple steps
         </h2>
-        <p className="mt-4 text-gray-500">
+        <p className="mt-4 text-gray-600">
           A clear, human process — from application to funds in your account.
         </p>
       </div>
@@ -198,7 +198,7 @@ function HowItWorks() {
               <span className="text-5xl font-bold text-brand/10">{n}</span>
             </div>
             <h3 className="mt-6 text-xl font-semibold">{title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-gray-500">{body}</p>
+            <p className="mt-2 text-sm leading-relaxed text-gray-600">{body}</p>
             {i < steps.length - 1 && (
               <div
                 aria-hidden
@@ -252,7 +252,7 @@ function Services() {
               <Icon className="h-6 w-6" />
             </div>
             <h3 className="mt-6 text-2xl font-semibold">{title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-gray-500">{desc}</p>
+            <p className="mt-3 text-sm leading-relaxed text-gray-600">{desc}</p>
             <ul className="mt-6 space-y-2.5">
               {bullets.map((b) => (
                 <li key={b} className="flex items-center gap-2 text-sm text-foreground">
@@ -312,7 +312,7 @@ function WhyIris() {
             <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl">
               Financing that respects your time and your business
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-gray-500">
+            <p className="mt-4 text-sm sm:text-base text-gray-600">
               We work with small and medium businesses across the United States to
               structure funding that actually fits — and stands behind it with real support.
             </p>
@@ -323,7 +323,7 @@ function WhyIris() {
                     <Icon className="h-4 w-4" />
                   </div>
                   <h4 className="mt-3 text-sm font-semibold">{title}</h4>
-                  <p className="mt-1 text-xs sm:text-sm text-gray-500">{body}</p>
+                  <p className="mt-1 text-xs sm:text-sm text-gray-600">{body}</p>
                 </div>
               ))}
             </div>
@@ -347,7 +347,7 @@ function WhyIris() {
 //         {stats.map(({ v, l }) => (
 //           <div key={l} className="text-center sm:text-left">
 //             <p className="text-4xl font-bold tracking-tight text-brand-deep md:text-5xl">{v}</p>
-//             <p className="mt-2 text-sm font-medium text-gray-500">{l}</p>
+//             <p className="mt-2 text-sm font-medium text-gray-600">{l}</p>
 //           </div>
 //         ))}
 //       </div>
