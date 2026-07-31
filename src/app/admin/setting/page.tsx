@@ -19,7 +19,7 @@ export default function SettingsPage() {
             <input
               value={company}
               onChange={(e) => setCompany(e.target.value)}
-              className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              className="h-10 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
             />
           </FormField>
           <div className="grid gap-4 md:grid-cols-2">
@@ -27,14 +27,14 @@ export default function SettingsPage() {
               <input
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                className="h-10 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
               />
             </FormField>
             <FormField label="Support phone">
               <input
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                className="h-10 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
               />
             </FormField>
           </div>
@@ -43,7 +43,7 @@ export default function SettingsPage() {
         <div className="flex justify-end">
           <button
             onClick={() => toast.success("Settings saved")}
-            className="h-11 rounded-xl bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft hover:bg-brand-deep"
+            className="h-11 rounded-lg bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft hover:bg-brand-deep"
           >
             Save changes
           </button>

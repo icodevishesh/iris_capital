@@ -127,7 +127,7 @@ export default function ApplicationsPage() {
         </div>
         <button
           onClick={exportCsv}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-xl border border-border bg-card px-4 text-sm font-semibold hover:bg-accent cursor-pointer"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-border bg-card px-4 text-sm font-semibold hover:bg-accent cursor-pointer"
         >
           <Download className="h-4 w-4" /> Export CSV
         </button>
@@ -141,7 +141,7 @@ export default function ApplicationsPage() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search applications"
-              className="h-10 w-full rounded-xl border border-input bg-background pl-10 pr-4 text-sm outline-none focus:border-brand"
+              className="h-10 w-full rounded-lg border border-input bg-background pl-10 pr-4 text-sm outline-none focus:border-brand"
             />
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -238,7 +238,7 @@ function AppDetail({
           <button
             aria-label="Close"
             onClick={onClose}
-            className="grid h-10 w-10 place-items-center rounded-xl text-gray-600 hover:bg-accent hover:text-foreground cursor-pointer"
+            className="grid h-10 w-10 place-items-center rounded-lg text-gray-600 hover:bg-accent hover:text-foreground cursor-pointer"
           >
             <X className="h-4 w-4" />
           </button>
@@ -266,7 +266,7 @@ function AppDetail({
                 {app.documents.map((d, i) => (
                   <li
                     key={`${d.name}-${i}`}
-                    className="flex items-center gap-3 rounded-xl border border-border bg-background p-3"
+                    className="flex items-center gap-3 rounded-lg border border-border bg-background p-3"
                   >
                     <div className="grid h-9 w-9 place-items-center rounded-lg bg-brand/10 text-brand-deep">
                       <FileText className="h-4 w-4" />
@@ -284,7 +284,7 @@ function AppDetail({
             <textarea
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              className="min-h-[100px] w-full rounded-xl border border-input bg-background p-3 text-sm outline-none focus:border-brand"
+              className="min-h-[100px] w-full rounded-lg border border-input bg-background p-3 text-sm outline-none focus:border-brand"
               placeholder="Add a note…"
             />
           </Section>
@@ -297,7 +297,7 @@ function AppDetail({
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as App["status"])}
-                className="h-10 rounded-xl border border-input bg-background px-3 text-sm"
+                className="h-10 rounded-lg border border-input bg-background px-3 text-sm"
               >
                 {["Pending", "Review", "Approved", "Declined"].map((s) => (
                   <option key={s}>{s}</option>
@@ -307,7 +307,7 @@ function AppDetail({
             <button
               onClick={() => onDelete(app.id)}
               aria-label="Delete application"
-              className="grid h-10 w-10 place-items-center rounded-xl border border-border text-red-600 hover:bg-red-600/5 cursor-pointer"
+              className="grid h-10 w-10 place-items-center rounded-lg border border-border text-red-600 hover:bg-red-600/5 cursor-pointer"
             >
               <Trash2 className="h-4 w-4" />
             </button>
@@ -317,7 +317,7 @@ function AppDetail({
               onSave(app.id, { status, notes });
               onClose();
             }}
-            className="inline-flex h-10 items-center justify-center rounded-xl bg-brand px-5 text-sm font-semibold text-brand-foreground hover:bg-brand-deep cursor-pointer"
+            className="inline-flex h-10 items-center justify-center rounded-lg bg-brand px-5 text-sm font-semibold text-brand-foreground hover:bg-brand-deep cursor-pointer"
           >
             Save changes
           </button>

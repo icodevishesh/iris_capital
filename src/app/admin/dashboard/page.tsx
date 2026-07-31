@@ -35,7 +35,7 @@ const KpiCard = memo(function KpiCard({
   return (
     <div className="rounded-2xl border border-border bg-card p-5 shadow-soft">
       <div className="flex items-center justify-between">
-        <div className="grid h-10 w-10 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+        <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand/10 text-brand-deep">
           <Icon className="h-4 w-4" />
         </div>
       </div>
@@ -175,7 +175,7 @@ export default function DashboardHome() {
                     );
                   })}
               </div>
-              <div className="mt-8 rounded-xl border border-border bg-background p-4">
+              <div className="mt-8 rounded-lg border border-border bg-background p-4">
                 <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">
                   Approval rate
                 </p>

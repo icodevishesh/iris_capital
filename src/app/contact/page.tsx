@@ -20,7 +20,7 @@ export default function ContactPage() {
 
   return (
     <div>
-      <section className="container-page pt-8 pb-10">
+      <section className="container-page py-16">
         <div className="max-w-2xl">
           <span className="eyebrow">Contact</span>
           <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
@@ -41,7 +41,7 @@ export default function ContactPage() {
               { icon: MapPin, label: "Office", value: "1000 NW NORTH RIVER DR, MIAMI, US" },
             ].map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-start gap-4 rounded-2xl border border-border bg-white p-6 shadow-soft">
-                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand-deep">
                   <Icon className="h-5 w-5" />
                 </div>
                 <div>
@@ -122,7 +122,7 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={submitting}
-              className="mt-8 inline-flex h-12 w-full items-center justify-center rounded-xl bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep disabled:opacity-60 md:w-auto"
+              className="mt-8 inline-flex h-12 w-full items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep disabled:opacity-60 md:w-auto"
             >
               {submitting ? "Sending…" : "Send message"}
             </button>

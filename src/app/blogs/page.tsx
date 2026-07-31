@@ -92,7 +92,7 @@ export default function BlogPage() {
 
   return (
     <div>
-      <section className="container-page pt-8 pb-10">
+      <section className="container-page py-8 md:py-16">
         <div className="max-w-2xl">
           <span className="eyebrow">Blog</span>
           <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
@@ -159,7 +159,7 @@ export default function BlogPage() {
                   value={q}
                   onChange={(e) => setQ(e.target.value)}
                   placeholder="Search articles"
-                  className="h-11 w-full rounded-xl border border-input bg-white pl-10 pr-4 text-sm outline-none transition-colors focus:border-brand"
+                  className="h-11 w-full rounded-lg border border-input bg-white pl-10 pr-4 text-sm outline-none transition-colors focus:border-brand"
                 />
               </div>
               <div className="flex flex-wrap gap-2">
@@ -244,11 +244,11 @@ export default function BlogPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
-                className="h-12 flex-1 rounded-xl border border-input bg-background px-4 text-sm outline-none focus:border-brand"
+                className="h-12 flex-1 rounded-lg border border-input bg-background px-4 text-sm outline-none focus:border-brand"
               />
               <button
                 type="submit"
-                className="inline-flex h-12 items-center justify-center rounded-xl bg-brand px-6 text-sm font-semibold text-brand-foreground transition-colors hover:bg-brand-deep"
+                className="inline-flex h-12 items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-brand-foreground transition-colors hover:bg-brand-deep"
               >
                 Subscribe
               </button>

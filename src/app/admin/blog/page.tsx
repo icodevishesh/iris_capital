@@ -134,7 +134,7 @@ export default function BlogsAdmin() {
         </div>
         <button
           onClick={startNew}
-          className="inline-flex h-10 items-center justify-center gap-2 rounded-xl bg-brand px-4 text-sm font-semibold text-brand-foreground shadow-soft hover:bg-brand-deep"
+          className="inline-flex h-10 items-center justify-center gap-2 rounded-lg bg-brand px-4 text-sm font-semibold text-brand-foreground shadow-soft hover:bg-brand-deep"
         >
           <Plus className="h-4 w-4" /> Add blog
         </button>
@@ -153,7 +153,7 @@ export default function BlogsAdmin() {
             <p className="text-sm text-gray-600">No blog posts yet.</p>
             <button
               onClick={startNew}
-              className="inline-flex h-9 items-center gap-2 rounded-xl bg-brand px-4 text-sm font-semibold text-brand-foreground hover:bg-brand-deep"
+              className="inline-flex h-9 items-center gap-2 rounded-lg bg-brand px-4 text-sm font-semibold text-brand-foreground hover:bg-brand-deep"
             >
               <Plus className="h-4 w-4" /> Create your first post
             </button>
@@ -282,7 +282,7 @@ function PostEditor({
           <button
             aria-label="Close"
             onClick={onClose}
-            className="grid h-10 w-10 place-items-center rounded-xl text-gray-600 hover:bg-accent hover:text-foreground"
+            className="grid h-10 w-10 place-items-center rounded-lg text-gray-600 hover:bg-accent hover:text-foreground"
           >
             <X className="h-4 w-4" />
           </button>
@@ -333,7 +333,7 @@ function PostEditor({
             <input
               value={p.title}
               onChange={(e) => setP({ ...p, title: e.target.value })}
-              className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              className="h-10 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
               placeholder="How to choose the right funding"
             />
           </Field>
@@ -342,7 +342,7 @@ function PostEditor({
             <input
               value={p.subtitle}
               onChange={(e) => setP({ ...p, subtitle: e.target.value })}
-              className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              className="h-10 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
               placeholder="A short supporting line"
             />
           </Field>
@@ -352,7 +352,7 @@ function PostEditor({
               <input
                 value={p.author}
                 onChange={(e) => setP({ ...p, author: e.target.value })}
-                className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                className="h-10 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
                 placeholder="Ana Ruiz"
               />
             </Field>
@@ -360,7 +360,7 @@ function PostEditor({
               <select
                 value={p.category}
                 onChange={(e) => setP({ ...p, category: e.target.value as Category })}
-                className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                className="h-10 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c}>{c}</option>
@@ -379,7 +379,7 @@ function PostEditor({
                   createdAt: new Date(e.target.value).toISOString(),
                 })
               }
-              className="h-10 w-full rounded-xl border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+              className="h-10 w-full rounded-lg border border-border bg-background px-3.5 text-sm text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
             />
           </Field>
 
@@ -405,14 +405,14 @@ function PostEditor({
             </div>
             {preview ? (
               <div
-                className="min-h-[220px] rounded-xl border border-border bg-background p-4 text-sm [&_a]:text-brand [&_a]:underline [&_h1]:my-2 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-bold [&_h3]:mb-1 [&_h3]:mt-3 [&_h3]:text-base [&_h3]:font-bold [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-2 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5"
+                className="min-h-[220px] rounded-lg border border-border bg-background p-4 text-sm [&_a]:text-brand [&_a]:underline [&_h1]:my-2 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-2 [&_h2]:mt-4 [&_h2]:text-lg [&_h2]:font-bold [&_h3]:mb-1 [&_h3]:mt-3 [&_h3]:text-base [&_h3]:font-bold [&_ol]:my-2 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:my-2 [&_ul]:my-2 [&_ul]:list-disc [&_ul]:pl-5"
                 dangerouslySetInnerHTML={{ __html: p.content || "<p class='text-gray-400'>Nothing to preview.</p>" }}
               />
             ) : (
               <textarea
                 value={p.content}
                 onChange={(e) => setP({ ...p, content: e.target.value })}
-                className="min-h-[220px] w-full rounded-xl border border-border bg-background p-3.5 font-mono text-[13px] leading-relaxed text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
+                className="min-h-[220px] w-full rounded-lg border border-border bg-background p-3.5 font-mono text-[13px] leading-relaxed text-foreground outline-none transition-colors focus:border-brand focus:ring-2 focus:ring-brand/20"
                 placeholder="<h2>Section heading</h2>\n<p>Write your article using HTML tags for formatting…</p>\n<ul>\n  <li>Point one</li>\n</ul>"
               />
             )}
@@ -426,14 +426,14 @@ function PostEditor({
         <div className="flex justify-end gap-3 border-t border-border p-3">
           <button
             onClick={onClose}
-            className="h-10 rounded-xl border border-border bg-background px-4 text-sm font-semibold hover:bg-accent"
+            className="h-10 rounded-lg border border-border bg-background px-4 text-sm font-semibold hover:bg-accent"
           >
             Cancel
           </button>
           <button
             onClick={submit}
             disabled={saving}
-            className="inline-flex h-10 items-center gap-2 rounded-xl bg-brand px-5 text-sm font-semibold text-brand-foreground hover:bg-brand-deep disabled:opacity-60"
+            className="inline-flex h-10 items-center gap-2 rounded-lg bg-brand px-5 text-sm font-semibold text-brand-foreground hover:bg-brand-deep disabled:opacity-60"
           >
             {saving && <Loader2 className="h-4 w-4 animate-spin" />}
             {p.id ? "Save changes" : "Publish post"}

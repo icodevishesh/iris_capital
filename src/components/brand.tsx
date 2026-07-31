@@ -7,7 +7,7 @@ export function Logo({ className }: { className?: string }) {
     <Link href="/" className={cn("flex items-center gap-2.5", className)}>
       <span
         aria-hidden
-        className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-brand-foreground shadow-soft"
+        className="grid h-9 w-9 place-items-center rounded-lg bg-brand text-brand-foreground shadow-soft"
       >
         <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
           <path d="M4 18V6M12 18V6M20 18V6" />
@@ -33,7 +33,7 @@ export function CtaLink({
   className?: string;
 }) {
   const base =
-    "group inline-flex h-12 items-center justify-center gap-2 rounded-xl px-6 text-sm font-semibold transition-all duration-200";
+    "group inline-flex h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold transition-all duration-200";
   const styles =
     variant === "primary"
       ? "bg-brand text-brand-foreground shadow-soft hover:bg-brand-deep hover:shadow-elevated hover:-translate-y-0.5"

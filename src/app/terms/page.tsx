@@ -67,7 +67,7 @@ function ProductHero({
   image: string;
 }) {
   return (
-    <section className="container-page pt-8 pb-8 md:pb-24">
+    <section className="container-page py-8 md:py-16">
       <div className="grid items-start gap-12 lg:grid-cols-2">
         <div>
           <span className="eyebrow">
@@ -80,13 +80,13 @@ function ProductHero({
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/apply"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
             >
               Apply now <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-12 items-center justify-center rounded-xl border border-border bg-card px-6 text-sm font-semibold text-foreground hover:bg-accent"
+              className="inline-flex h-12 items-center justify-center rounded-lg border border-border bg-card px-6 text-sm font-semibold text-foreground hover:bg-accent"
             >
               Speak with us
             </Link>
@@ -119,11 +119,11 @@ function ProductStats({
   items: { icon: React.ComponentType<{ className?: string }>; label: string; value: string }[];
 }) {
   return (
-    <section className="container-page">
+    <section className="container-page py-8 md:py-16">
       <div className="grid gap-4 rounded-3xl border border-border bg-white p-4 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
         {items.map(({ icon: Icon, label, value }) => (
           <div key={label} className="flex items-center gap-4 rounded-2xl p-4">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand-deep">
               <Icon className="h-5 w-5" />
             </div>
             <div>
@@ -145,7 +145,7 @@ function FeaturesGrid({
   items: { title: string; body: string }[];
 }) {
   return (
-    <section className="container-page mt-24">
+    <section className="container-page py-8 md:py-16">
       <div className="max-w-2xl">
         <span className="eyebrow">Benefits</span>
         <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">{title}</h2>
@@ -194,8 +194,8 @@ function EligibilitySection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="mt-24 border-y border-border bg-white">
-      <div className="container-page grid gap-12 py-20 lg:grid-cols-2 lg:items-center">
+    <section ref={sectionRef} className="py-8 md:py-16 border-y border-border bg-white">
+      <div className="container-page grid gap-12 lg:grid-cols-2 lg:items-center">
         <div>
           <span className="eyebrow">
             <ShieldCheck className="h-3.5 w-3.5" /> Basic eligibility
@@ -212,7 +212,7 @@ function EligibilitySection() {
           {items.map((i, idx) => (
             <li
               key={i}
-              className={`flex items-center gap-3 rounded-xl border border-border bg-white p-4 transition-all duration-500 ease-out ${
+              className={`flex items-center gap-3 rounded-lg border border-border bg-white p-4 transition-all duration-500 ease-out ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
               }`}
               style={{ transitionDelay: `${idx * 100}ms` }}
@@ -253,7 +253,7 @@ function FAQSection() {
     },
   ];
   return (
-    <section className="container-page mt-24">
+    <section className="container-page py-8 md:py-16">
       <div className="mx-auto max-w-3xl">
         <div className="text-center">
           <span className="eyebrow">FAQ</span>
@@ -280,7 +280,7 @@ function FAQSection() {
 
 function ApplyBanner() {
   return (
-    <section className="container-page mt-24">
+    <section className="container-page py-8 md:py-16 border-y border-border bg-card/50">
       <div className="rounded-3xl border border-border bg-white p-10 text-center shadow-soft md:p-16">
         <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
           See what you qualify for
@@ -290,7 +290,7 @@ function ApplyBanner() {
         </p>
         <Link
           href="/apply"
-          className="mt-8 inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-brand px-8 text-base font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
+          className="mt-8 inline-flex h-14 items-center justify-center gap-2 rounded-lg bg-brand px-8 text-base font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
         >
           Apply now <ArrowRight className="h-5 w-5" />
         </Link>

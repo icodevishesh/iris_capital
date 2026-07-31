@@ -110,7 +110,7 @@ export default function AdminLayout({
               href="/admin/dashboard"
               className="flex items-center gap-2.5 font-bold tracking-tight text-foreground"
             >
-              <div className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-brand-foreground shadow-soft">
+              <div className="grid h-9 w-9 place-items-center rounded-lg bg-brand text-brand-foreground shadow-soft">
                 <Shield className="h-5 w-5" />
               </div>
               <div className="flex flex-col">
@@ -146,7 +146,7 @@ export default function AdminLayout({
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all duration-150 ${
+                  className={`group flex items-center justify-between rounded-lg px-3.5 py-2.5 text-sm font-medium transition-all duration-150 ${
                     isActive
                       ? "bg-brand text-brand-foreground shadow-soft font-semibold"
                       : "text-gray-600 hover:bg-accent hover:text-foreground"
@@ -181,7 +181,7 @@ export default function AdminLayout({
             <Link
               href="/"
               target="_blank"
-              className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium text-gray-600 hover:bg-accent hover:text-foreground transition-colors"
+              className="flex items-center justify-between rounded-lg px-3.5 py-2.5 text-sm font-medium text-gray-600 hover:bg-accent hover:text-foreground transition-colors"
             >
               <div className="flex items-center gap-3">
                 <ExternalLink className="h-4 w-4 text-gray-400" />
@@ -196,7 +196,7 @@ export default function AdminLayout({
         <div className="shrink-0 border-t border-border p-4">
           <div className="flex items-center justify-between rounded-2xl border border-border bg-slate-50/80 p-3">
             <div className="flex items-center gap-3 overflow-hidden">
-              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-brand/10 font-semibold text-brand-deep">
+              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-brand/10 font-semibold text-brand-deep">
                 AD
               </div>
               <div className="min-w-0 flex-1">
@@ -223,7 +223,7 @@ export default function AdminLayout({
           <div className="flex items-center gap-4">
             <button
               onClick={() => setMobileOpen(true)}
-              className="grid h-9 w-9 place-items-center rounded-xl border border-border bg-background text-gray-600 hover:bg-accent md:hidden"
+              className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-background text-gray-600 hover:bg-accent md:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>
@@ -259,14 +259,14 @@ export default function AdminLayout({
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Quick search..."
-                className="h-9 w-full rounded-xl border border-input bg-slate-50 pl-9 pr-3 text-xs outline-none focus:border-brand focus:bg-card transition-colors"
+                className="h-9 w-full rounded-lg border border-input bg-slate-50 pl-9 pr-3 text-xs outline-none focus:border-brand focus:bg-card transition-colors"
               />
             </div>
 
             {/* Notifications */}
             <button
               onClick={() => toast("2 new notifications", { description: "2 applications awaiting review." })}
-              className="relative grid h-9 w-9 place-items-center rounded-xl border border-border bg-background text-gray-600 hover:bg-accent transition-colors"
+              className="relative grid h-9 w-9 place-items-center rounded-lg border border-border bg-background text-gray-600 hover:bg-accent transition-colors"
               title="Notifications"
             >
               <Bell className="h-4 w-4" />
@@ -276,7 +276,7 @@ export default function AdminLayout({
             {/* Quick Action Button */}
             <Link
               href="/admin/applications"
-              className="hidden sm:inline-flex h-9 items-center justify-center gap-1.5 rounded-xl bg-brand px-3.5 text-xs font-semibold text-brand-foreground shadow-soft hover:bg-brand-deep transition-all"
+              className="hidden sm:inline-flex h-9 items-center justify-center gap-1.5 rounded-lg bg-brand px-3.5 text-xs font-semibold text-brand-foreground shadow-soft hover:bg-brand-deep transition-all"
             >
               <Sparkles className="h-3.5 w-3.5" />
               <span>Review Apps</span>

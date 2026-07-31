@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   autoComplete="username"
-                  className="h-11 w-full rounded-xl border border-input bg-background pl-10 pr-4 text-sm outline-none focus:border-brand"
+                  className="h-11 w-full rounded-lg border border-input bg-background pl-10 pr-4 text-sm outline-none focus:border-brand"
                   placeholder="admin"
                 />
               </div>
@@ -81,7 +81,7 @@ export default function AdminLoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password"
-                  className="h-11 w-full rounded-xl border border-input bg-background pl-10 pr-4 text-sm outline-none focus:border-brand"
+                  className="h-11 w-full rounded-lg border border-input bg-background pl-10 pr-4 text-sm outline-none focus:border-brand"
                   placeholder="••••••••"
                 />
               </div>
@@ -89,7 +89,7 @@ export default function AdminLoginPage() {
           </div>
 
           {error && (
-            <p className="mt-4 rounded-xl bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
+            <p className="mt-4 rounded-lg bg-destructive/10 px-3 py-2 text-sm font-medium text-destructive">
               {error}
             </p>
           )}
@@ -97,7 +97,7 @@ export default function AdminLoginPage() {
           <button
             type="submit"
             disabled={submitting}
-            className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep disabled:opacity-60"
+            className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep disabled:opacity-60"
           >
             {submitting ? (
               <>

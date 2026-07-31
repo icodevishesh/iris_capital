@@ -17,6 +17,8 @@ import {
   LineChart,
   Landmark,
   Layers,
+  Zap,
+  Phone
 } from "lucide-react";
 import heroImg from "@/assets/owner-dog.jpg";
 import handshakeImg from "@/assets/handshake.jpg";
@@ -49,7 +51,7 @@ function Hero() {
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgba(29,78,216,0.1)_0%,transparent_70%)]"
       />
-      <div className="container-page pt-8 md:pt-14 pb-8 md:pb-24">
+      <div className="container-page py-8 md:py-16">
         <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_1fr]">
           <div className="max-w-2xl">
             <h1 className="text-5xl font-bold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-[4.25rem]">
@@ -57,21 +59,41 @@ function Hero() {
               <br />
               <span className="text-brand-deep">Built on trust.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-600">
-              Business funding from <strong className="font-semibold text-foreground">$5,000 to $500,000</strong> with
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-gray-600">
+              Business funding from <strong className="font-bold text-brand-deep">$5,000 to $500,000</strong> with
               transparent terms, fast approvals, and funding available as soon as the same day.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <CtaLink to="/apply">Apply now</CtaLink>
-              <CtaLink to="/contact" variant="secondary">Speak with us</CtaLink>
+              <CtaLink to="/apply" className="bg-brand-deep">Apply now</CtaLink>
+              <CtaLink to="/contact" variant="secondary" className="border border-[#032B6B]" >
+                <Phone className="h-4 w-4" />
+                Speak with us
+              </CtaLink>
             </div>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm text-gray-600">
-              {["Soft credit pull", "No obligation", "5-minute application"].map((f) => (
-                <li key={f} className="flex items-center gap-2">
-                  <Check className="h-4 w-4 text-success" /> {f}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-10 flex flex-wrap items-center gap-4 text-xs font-semibold text-gray-700 sm:gap-6 sm:text-sm">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EBF3FF] text-[#032B6B]">
+                  <ShieldCheck className="h-5 w-5" />
+                </div>
+                <span>Soft credit pull</span>
+              </div>
+              <div className="hidden h-8 w-px bg-gray-200 sm:block" />
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EBF3FF] text-[#032B6B]">
+                  <FileText className="h-5 w-5" />
+                </div>
+                <span>No obligation</span>
+              </div>
+              <div className="hidden h-8 w-px bg-gray-200 sm:block" />
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#EBF3FF] text-[#032B6B]">
+                  <Zap className="h-5 w-5" />
+                </div>
+                <span className="leading-tight">
+                  5-minute<br />application
+                </span>
+              </div>
+            </div>
           </div>
 
           <div className="relative">
@@ -107,9 +129,9 @@ function FloatingCard({
 }) {
   return (
     <div
-      className={`hidden md:flex ${className ?? ""} min-w-[220px] items-center gap-3 rounded-2xl border border-border bg-card p-3.5 shadow-elevated`}
+      className={`hidden md:flex ${className ?? ""} min-w-[220px] items-center gap-3 rounded-2xl border border-border bg-white p-3.5 shadow-elevated`}
     >
-      <div className="grid h-10 w-10 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+      <div className="grid h-10 w-10 place-items-center rounded-lg bg-brand/10 text-brand-deep">
         {icon}
       </div>
       <div className="flex-1">
@@ -133,11 +155,11 @@ function Highlights() {
     { icon: TrendingUp, label: "Rates", value: "Competitive rates" },
   ];
   return (
-    <section className="container-page">
-      <div className="grid gap-4 rounded-3xl border border-border bg-card p-4 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
+    <section className="container-page py-8 md:py-16">
+      <div className="grid gap-4 rounded-3xl border border-border bg-white p-4 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
         {items.map(({ icon: Icon, label, value }) => (
           <div key={label} className="flex items-center gap-4 rounded-2xl p-4 transition-colors hover:bg-blue-600/5">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand-deep">
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand-deep">
               <Icon className="h-5 w-5" />
             </div>
             <div>
@@ -175,7 +197,7 @@ function HowItWorks() {
     },
   ];
   return (
-    <section className="container-page mt-28">
+    <section className="container-page py-8 md:py-16">
       <div className="mx-auto max-w-2xl text-center">
         <span className="eyebrow">How it works</span>
         <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
@@ -189,7 +211,7 @@ function HowItWorks() {
         {steps.map(({ n, icon: Icon, title, body }, i) => (
           <div
             key={n}
-            className="group relative w-[85vw] max-w-[320px] shrink-0 snap-center overflow-hidden rounded-3xl border border-border bg-card p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated md:w-auto md:max-w-none md:shrink"
+            className="group relative w-[85vw] max-w-[320px] shrink-0 snap-center overflow-hidden rounded-3xl border border-border bg-white p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated md:w-auto md:max-w-none md:shrink"
           >
             <div className="flex items-center justify-between">
               <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand text-brand-foreground shadow-soft">
@@ -230,7 +252,7 @@ function Services() {
     },
   ];
   return (
-    <section className="container-page mt-28">
+    <section className="container-page py-8 md:py-16">
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div className="max-w-xl">
           <span className="eyebrow">Funding solutions</span>
@@ -263,13 +285,13 @@ function Services() {
             <div className="mt-8 flex gap-3">
               <Link
                 href={to}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-brand px-5 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-5 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
               >
                 Learn more <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/apply"
-                className="inline-flex h-11 items-center justify-center rounded-xl border border-border bg-background px-5 text-sm font-semibold text-foreground hover:bg-accent"
+                className="inline-flex h-11 items-center justify-center rounded-lg border border-border bg-background px-5 text-sm font-semibold text-foreground hover:bg-accent"
               >
                 Apply
               </Link>
@@ -291,8 +313,8 @@ function WhyIris() {
     { icon: BadgeCheck, title: "Trust first", body: "Straightforward answers, always. No pressure, ever." },
   ];
   return (
-    <section className="mt-16 sm:mt-28 border-y border-border bg-white/50">
-      <div className="container-page py-12 sm:py-20">
+    <section className="py-8 md:py-16 border-y border-border bg-white/50">
+      <div className="container-page">
         <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-12 lg:items-stretch">
           <div className="flex flex-col">
             <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto lg:h-full w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-border shadow-elevated">
@@ -357,15 +379,15 @@ function WhyIris() {
 
 function CtaBanner() {
   return (
-    <section className="container-page mt-20">
-      <div className="relative overflow-hidden rounded-3xl border border-brand/20 bg-brand p-10 text-brand-foreground shadow-elevated md:p-16">
+    <section className="container-page py-8 md:py-16">
+      <div className="relative overflow-hidden rounded-3xl border border-brand/20 bg-gradient-to-r from-[#032B6B] via-[#032B6B] to-[#022153] p-10 text-brand-foreground shadow-elevated md:p-16">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl"
         />
         <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <div>
-            <h2 className="max-w-xl text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="max-w-xl text-3xl font-semibold tracking-tight md:text-4xl">
               Ready to grow your business?
             </h2>
             <p className="mt-3 max-w-lg text-white/80">
@@ -375,13 +397,13 @@ function CtaBanner() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/apply"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-white px-6 text-sm font-semibold text-brand-deep transition-all hover:bg-white/95 hover:-translate-y-0.5"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-semibold text-brand-deep transition-all hover:bg-white/95 hover:-translate-y-0.5"
             >
               Apply today <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/contact"
-              className="inline-flex h-12 items-center justify-center rounded-xl border border-white/30 px-6 text-sm font-semibold text-white hover:bg-white/10"
+              className="inline-flex h-12 items-center justify-center rounded-lg border border-white/30 px-6 text-sm font-semibold text-white hover:bg-white/10"
             >
               Talk to a specialist
             </Link>

@@ -157,7 +157,7 @@ export default function LeadsPage() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search leads"
-              className="h-10 w-full rounded-xl border border-input bg-background pl-10 pr-4 text-sm outline-none focus:border-brand"
+              className="h-10 w-full rounded-lg border border-input bg-background pl-10 pr-4 text-sm outline-none focus:border-brand"
             />
           </div>
           <div className="flex flex-wrap items-center gap-2">
@@ -256,13 +256,13 @@ function LeadDetail({
           <div className="space-y-2">
             <a
               href={`mailto:${lead.email}`}
-              className="flex items-center gap-3 rounded-xl border border-border bg-background p-3 text-sm hover:bg-accent"
+              className="flex items-center gap-3 rounded-lg border border-border bg-background p-3 text-sm hover:bg-accent"
             >
               <Mail className="h-4 w-4 text-brand-deep" /> {lead.email}
             </a>
             <a
               href={`tel:${lead.phone}`}
-              className="flex items-center gap-3 rounded-xl border border-border bg-background p-3 text-sm hover:bg-accent"
+              className="flex items-center gap-3 rounded-lg border border-border bg-background p-3 text-sm hover:bg-accent"
             >
               <Phone className="h-4 w-4 text-brand-deep" /> {lead.phone}
             </a>
@@ -271,7 +271,7 @@ function LeadDetail({
             <h3 className="text-xs font-semibold uppercase tracking-wider text-gray-600">
               Message
             </h3>
-            <p className="mt-2 whitespace-pre-wrap rounded-xl border border-border bg-background p-4 text-sm">
+            <p className="mt-2 whitespace-pre-wrap rounded-lg border border-border bg-background p-4 text-sm">
               {lead.message}
             </p>
           </div>
@@ -282,7 +282,7 @@ function LeadDetail({
             <select
               value={lead.status}
               onChange={(e) => onStatus(e.target.value as Lead["status"])}
-              className="mt-2 h-10 w-full rounded-xl border border-input bg-background px-3 text-sm"
+              className="mt-2 h-10 w-full rounded-lg border border-input bg-background px-3 text-sm"
             >
               {["New", "Contacted", "Qualified"].map((s) => (
                 <option key={s}>{s}</option>
@@ -293,13 +293,13 @@ function LeadDetail({
         <div className="flex items-center justify-between gap-3 border-t border-border p-6">
           <button
             onClick={onDelete}
-            className="inline-flex h-10 items-center gap-2 rounded-xl border border-border bg-background px-4 text-sm font-semibold text-red-600 hover:bg-red-600/5 cursor-pointer"
+            className="inline-flex h-10 items-center gap-2 rounded-lg border border-border bg-background px-4 text-sm font-semibold text-red-600 hover:bg-red-600/5 cursor-pointer"
           >
             <Trash2 className="h-4 w-4" /> Delete
           </button>
           <button
             onClick={onClose}
-            className="inline-flex h-10 items-center justify-center rounded-xl bg-brand px-5 text-sm font-semibold text-brand-foreground hover:bg-brand-deep cursor-pointer"
+            className="inline-flex h-10 items-center justify-center rounded-lg bg-brand px-5 text-sm font-semibold text-brand-foreground hover:bg-brand-deep cursor-pointer"
           >
             Close
           </button>

@@ -62,14 +62,14 @@ export function RelatedBlogsCarousel({ blogs }: { blogs: BlogWithId[] }) {
               <button
                 onClick={scrollPrev}
                 aria-label="Previous article"
-                className="grid h-9 w-9 place-items-center rounded-xl border border-border bg-white text-gray-600 shadow-xs transition-colors hover:bg-accent hover:text-foreground"
+                className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-white text-gray-600 shadow-xs transition-colors hover:bg-accent hover:text-foreground"
               >
                 <ChevronLeft className="h-4 w-4" />
               </button>
               <button
                 onClick={scrollNext}
                 aria-label="Next article"
-                className="grid h-9 w-9 place-items-center rounded-xl border border-border bg-white text-gray-600 shadow-xs transition-colors hover:bg-accent hover:text-foreground"
+                className="grid h-9 w-9 place-items-center rounded-lg border border-border bg-white text-gray-600 shadow-xs transition-colors hover:bg-accent hover:text-foreground"
               >
                 <ChevronRight className="h-4 w-4" />
               </button>

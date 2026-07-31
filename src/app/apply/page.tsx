@@ -156,7 +156,7 @@ export default function ApplyPage() {
               return (
                 <div key={n} className="flex flex-1 items-center gap-3">
                   <div
-                    className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl border transition-all ${
+                    className={`grid h-10 w-10 shrink-0 place-items-center rounded-lg border transition-all ${
                       done
                         ? "border-brand bg-brand text-brand-foreground"
                         : active
@@ -200,7 +200,7 @@ export default function ApplyPage() {
               type="button"
               onClick={back}
               disabled={step === 1}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-border bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-accent disabled:opacity-40"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-background px-5 text-sm font-semibold text-foreground transition-colors hover:bg-accent disabled:opacity-40"
             >
               <ArrowLeft className="h-4 w-4" /> Back
             </button>
@@ -208,7 +208,7 @@ export default function ApplyPage() {
               <button
                 type="button"
                 onClick={next}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
               >
                 Continue <ArrowRight className="h-4 w-4" />
               </button>
@@ -217,7 +217,7 @@ export default function ApplyPage() {
                 type="button"
                 onClick={submit}
                 disabled={submitting}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5 disabled:opacity-60"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5 disabled:opacity-60"
               >
                 {submitting ? "Submitting…" : "Submit application"} <ArrowRight className="h-4 w-4" />
               </button>
@@ -379,7 +379,7 @@ function Step3({ files, setFiles }: { files: File[]; setFiles: (f: File[]) => vo
       {files.length > 0 && (
         <ul className="mt-6 space-y-2">
           {files.map((f, i) => (
-            <li key={i} className="flex items-center gap-3 rounded-xl border border-border bg-background p-3">
+            <li key={i} className="flex items-center gap-3 rounded-lg border border-border bg-background p-3">
               <div className="grid h-9 w-9 place-items-center rounded-lg bg-brand/10 text-brand-deep">
                 <FileText className="h-4 w-4" />
               </div>
@@ -471,13 +471,13 @@ function SuccessScreen() {
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
             href="/"
-            className="inline-flex h-12 items-center justify-center rounded-xl bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep"
+            className="inline-flex h-12 items-center justify-center rounded-lg bg-brand px-6 text-sm font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep"
           >
             Back to home
           </Link>
           <Link
             href="/blogs"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-border bg-background px-6 text-sm font-semibold hover:bg-accent"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-background px-6 text-sm font-semibold hover:bg-accent"
           >
             <Sparkles className="h-4 w-4" /> Read the blog
           </Link>

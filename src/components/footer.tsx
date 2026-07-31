@@ -15,19 +15,19 @@ export function Footer() {
     return null;
   }
   return (
-    <footer className="border-t border-border bg-white mt-24">
+    <footer className="mt-8 md:mt-16 border-t border-border bg-[#01235C]">
       <div className="container-page py-16">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
               <Image
-                src="/iris-logo-v2.png"
+                src="/iris-logo-v5.png"
                 alt="IRIS Capital Partners"
                 width={180}
                 height={48}
                 priority
                 className="h-18 w-auto object-contain"
               />
-            <p className="mt-1 max-w-xs text-sm leading-relaxed text-gray-600">
+            <p className="mt-1 max-w-xs text-sm leading-relaxed text-gray-300">
               Transparent business funding for U.S. small and medium businesses.
               Fast approvals. Real specialists.
             </p>
@@ -96,7 +96,7 @@ export function Footer() {
                   key={label}
                   href={href}
                   aria-label={label}
-                  className="grid h-10 w-10 place-items-center rounded-xl border border-border bg-background text-gray-600 transition-colors hover:border-brand/40 hover:text-brand-deep"
+                  className="grid h-10 w-10 place-items-center rounded-lg border border-border bg-background text-gray-600 transition-colors hover:border-brand/40 hover:text-brand-deep"
                 >
                   {Icon}
                 </a>
@@ -122,8 +122,8 @@ export function Footer() {
           />
 
           <div>
-            <h4 className="text-sm font-semibold text-foreground">Get funding insights</h4>
-            <p className="mt-2 text-sm text-gray-600">
+            <h4 className="text-sm font-semibold text-blue-400">Get funding insights</h4>
+            <p className="mt-2 text-sm text-gray-300">
               Monthly briefings for small business owners. No spam.
             </p>
             <form
@@ -144,11 +144,11 @@ export function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="your email"
-                className="h-11 w-full min-w-0 rounded-xl border border-input bg-background px-4 text-sm outline-none transition-colors placeholder:text-gray-600 focus:border-brand"
+                className="h-11 w-full min-w-0 rounded-lg border border-gray-400 bg-background px-4 text-sm outline-none transition-colors placeholder:text-gray-400 text-white focus:border-brand"
               />
               <button
                 type="submit"
-                className="inline-flex h-11 w-full shrink-0 items-center justify-center rounded-xl bg-brand px-5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-brand-deep sm:w-auto lg:w-full xl:w-auto"
+                className="inline-flex h-11 w-full shrink-0 items-center justify-center rounded-lg bg-brand px-5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-brand-deep sm:w-auto lg:w-full xl:w-auto"
               >
                 Subscribe
               </button>
@@ -156,12 +156,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col-reverse items-start justify-between gap-4 border-t border-border pt-6 md:flex-row md:items-center">
-          <p className="text-xs text-gray-600">
+        <div className="mt-14 flex flex-col-reverse items-start justify-between gap-4 border-t border-white/20 pt-6 md:flex-row md:items-center">
+          <p className="text-xs text-gray-400">
             © {new Date().getFullYear()} IRIS Capital Partners. All rights reserved.
             IRIS Capital Partners is not a bank.
           </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-600">
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-400">
             <a href="#" className="hover:text-foreground">Privacy Policy</a>
             <a href="#" className="hover:text-foreground">Terms of Service</a>
             <a href="#" className="hover:text-foreground">Disclosures</a>
@@ -182,13 +182,13 @@ function FooterCol({
 }) {
   return (
     <div>
-      <h4 className="text-sm font-semibold text-foreground">{title}</h4>
+      <h4 className="text-sm font-semibold text-blue-400">{title}</h4>
       <ul className="mt-4 space-y-3">
         {links.map((l) => (
           <li key={l.to}>
             <Link
               href={l.to}
-              className="text-sm text-gray-600 transition-colors hover:text-foreground hover:text-black"
+              className="text-sm text-gray-300 transition-colors hover:text-white hover:text-black"
             >
               {l.label}
             </Link>
