@@ -219,14 +219,14 @@ function Services() {
       title: "Business Term Loan",
       desc: "Predictable, fixed-payment funding for expansion, equipment, hiring, or working capital.",
       bullets: ["$5K – $500K", "Terms 6–60 months", "Fixed monthly payments"],
-      to: "/business-term-loan",
+      to: "/terms",
     },
     {
       icon: Layers,
       title: "Business Line of Credit",
       desc: "Flexible working capital you can draw on as needed. Only pay interest on what you use.",
       bullets: ["Revolving credit", "Draw anytime", "Interest on used funds only"],
-      to: "/line-of-credit",
+      to: "/credit",
     },
   ];
   return (

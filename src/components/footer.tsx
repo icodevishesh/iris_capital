@@ -107,8 +107,8 @@ export function Footer() {
           <FooterCol
             title="Products"
             links={[
-              { to: "/business-term-loan", label: "Business Term Loan" },
-              { to: "/line-of-credit", label: "Line of Credit" },
+              { to: "/terms", label: "Business Term Loan" },
+              { to: "/credit", label: "Line of Credit" },
               { to: "/apply", label: "Apply" },
             ]}
           />
@@ -116,7 +116,7 @@ export function Footer() {
             title="Company"
             links={[
               { to: "/about", label: "About us" },
-              { to: "/blog", label: "Blog" },
+              { to: "/blogs", label: "Blog" },
               { to: "/contact", label: "Contact" },
             ]}
           />

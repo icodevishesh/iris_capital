@@ -2,7 +2,7 @@
 
 import React, { memo, useMemo, useState, useCallback } from "react";
 import { Search, Mail, Phone, Trash2, Loader2, Inbox } from "lucide-react";
-import { StatusBadge } from "../dashboard/page";
+import { StatusBadge } from "@/components/status-badge";
 import {
   useLeadsData,
   useUpdateLead,

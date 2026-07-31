@@ -24,14 +24,60 @@ const createSchema = z.object({
 
 // Public: list blogs (newest first). Available to everyone for the blog page.
 export async function GET() {
+  console.time("API");
+
   const db = await getDb();
+
+  console.time("Mongo");
   const docs = await db
     .collection(COLLECTIONS.blogs)
-    .find({})
+    .find({}, {
+      projection: {
+        title: 1,
+        slug: 1,
+        subtitle: 1,
+        author: 1,
+        category: 1,
+        bannerImage: 1,
+        createdAt: 1,
+      },
+    })
     .sort({ createdAt: -1 })
     .toArray();
-  return NextResponse.json({ blogs: docs.map(serialize) });
+  console.timeEnd("Mongo");
+
+  console.time("Serialize");
+  const blogs = docs.map(serialize);
+  console.timeEnd("Serialize");
+
+  console.timeEnd("API");
+
+  return NextResponse.json({ blogs });
 }
+
+// export async function GET() {
+//   console.time("API");
+
+//   console.time("DB");
+//   const db = await getDb();
+//   console.timeEnd("DB");
+
+//   console.timeEnd("DB");
+
+//   console.time("collection");
+//   const docs = await db
+//     .collection(COLLECTIONS.blogs)
+//     .find({})
+//     .sort({ createdAt: -1 })
+//     .toArray();
+//   console.timeEnd("collection");
+
+//   console.time("map");
+//   return NextResponse.json({ blogs: docs.map(serialize) });
+//   console.timeEnd("map");
+
+//   console.timeEnd("API");
+// }
 
 // Admin: create a blog post.
 export async function POST(request: Request) {

@@ -2,7 +2,7 @@
 
 import React, { memo, useMemo, useState, useCallback } from "react";
 import { Download, FileText, Search, X, Loader2, Inbox, Trash2 } from "lucide-react";
-import { StatusBadge } from "../dashboard/page";
+import { StatusBadge } from "@/components/status-badge";
 import {
   useApplicationsData,
   useUpdateApplication,
