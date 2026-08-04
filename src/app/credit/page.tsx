@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   Layers,
   Check,
@@ -59,18 +60,19 @@ export default function LineOfCreditPage() {
             </ul>
           </div>
           <div className="overflow-hidden rounded-3xl border border-border shadow-elevated">
-            <img
-              src={heroImg.src}
+            <Image
+              src={heroImg}
               alt="Business owner managing finances online"
               width={1600}
               height={1200}
+              loading="lazy"
               className="aspect-[5/4] w-full object-cover"
             />
           </div>
         </div>
       </section>
 
-      <section className="container-page py-8 md:py-16">
+      <section className="container-page py-8 md:py-0">
         <div className="grid gap-4 rounded-3xl border border-border bg-white p-4 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
           {[
             { icon: Wallet, label: "Credit line", value: "Up to $250K" },
@@ -123,7 +125,7 @@ export default function LineOfCreditPage() {
         </div>
       </section>
 
-      <section className="container-page py-8 md:py-16">
+      <section className="container-page py-8 md:py-0">
         <div className="mx-auto max-w-3xl">
           <div className="text-center">
             <span className="eyebrow">FAQ</span>
@@ -149,7 +151,7 @@ export default function LineOfCreditPage() {
         </div>
       </section>
 
-      <section className="container-page py-8 md:py-16">
+      <section className="container-page py-8 md:pt-16">
         <div className="rounded-3xl border border-border bg-white p-10 text-center shadow-soft md:p-16">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Open your line of credit</h2>
           <p className="mx-auto mt-3 max-w-lg text-gray-600">

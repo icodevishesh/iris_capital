@@ -180,6 +180,7 @@ export default function BlogsAdmin() {
                           <img
                             src={p.bannerImage}
                             alt=""
+                            loading="lazy"
                             className="h-12 w-16 shrink-0 rounded-lg object-cover"
                           />
                         ) : (
@@ -300,7 +301,7 @@ function PostEditor({
               {p.bannerImage ? (
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.bannerImage} alt="Banner preview" className="h-40 w-full object-cover" />
+                  <img src={p.bannerImage} alt="Banner preview" loading="lazy" className="h-40 w-full object-cover" />
                   <button
                     type="button"
                     onClick={(e) => {

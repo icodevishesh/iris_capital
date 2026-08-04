@@ -92,6 +92,7 @@ export default async function BlogDetailPage({
             <img
               src={blog.bannerImage}
               alt={blog.title}
+              loading="lazy"
               className="w-full max-h-[360px] md:max-h-[400px] object-cover"
             />
           </div>

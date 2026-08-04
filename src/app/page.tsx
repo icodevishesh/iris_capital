@@ -155,7 +155,7 @@ function Highlights() {
     { icon: TrendingUp, label: "Rates", value: "Competitive rates" },
   ];
   return (
-    <section className="container-page py-8 md:py-16">
+    <section className="container-page py-8 md:py-0">
       <div className="grid gap-4 rounded-3xl border border-border bg-white p-4 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
         {items.map(({ icon: Icon, label, value }) => (
           <div key={label} className="flex items-center gap-4 rounded-2xl p-4 transition-colors hover:bg-blue-600/5">
@@ -252,7 +252,7 @@ function Services() {
     },
   ];
   return (
-    <section className="container-page py-8 md:py-16">
+    <section className="container-page py-8 md:py-0">
       <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
         <div className="max-w-xl">
           <span className="eyebrow">Funding solutions</span>
@@ -324,6 +324,7 @@ function WhyIris() {
                 width={1400}
                 height={1000}
                 className="h-full w-full object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -379,7 +380,7 @@ function WhyIris() {
 
 function CtaBanner() {
   return (
-    <section className="container-page py-8 md:py-16">
+    <section className="container-page py-8 md:pt-16">
       <div className="relative overflow-hidden rounded-3xl border border-brand/20 bg-gradient-to-r from-[#032B6B] via-[#032B6B] to-[#022153] p-10 text-brand-foreground shadow-elevated md:p-16">
         <div
           aria-hidden

@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link";
-
-
 import { useCallback, useMemo, useState } from "react";
 import {
   ArrowLeft,
@@ -247,7 +245,7 @@ function Step1({
   return (
     <div>
       <h2 className="text-2xl font-bold tracking-tight">Tell us about you</h2>
-      <p className="mt-1 text-sm text-gray-600">We'll use this to reach out with your offer.</p>
+      <p className="mt-1 text-sm text-gray-600">We&apos;ll use this to reach out with your offer.</p>
       <div className="mt-8 grid gap-5 md:grid-cols-2">
         <Field label="Full name" error={errors.fullName}>
           <input value={form.fullName} onChange={(e) => setForm({ ...form, fullName: e.target.value })} className="input" placeholder="Jane Cooper" autoComplete="name" />

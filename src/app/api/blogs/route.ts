@@ -24,11 +24,8 @@ const createSchema = z.object({
 
 // Public: list blogs (newest first). Available to everyone for the blog page.
 export async function GET() {
-  console.time("API");
-
   const db = await getDb();
 
-  console.time("Mongo");
   const docs = await db
     .collection(COLLECTIONS.blogs)
     .find({}, {
@@ -44,15 +41,17 @@ export async function GET() {
     })
     .sort({ createdAt: -1 })
     .toArray();
-  console.timeEnd("Mongo");
 
-  console.time("Serialize");
   const blogs = docs.map(serialize);
-  console.timeEnd("Serialize");
 
-  console.timeEnd("API");
-
-  return NextResponse.json({ blogs });
+  return NextResponse.json(
+    { blogs },
+    {
+      headers: {
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+      },
+    },
+  );
 }
 
 // export async function GET() {

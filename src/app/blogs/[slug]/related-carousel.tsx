@@ -91,6 +91,7 @@ export function RelatedBlogsCarousel({ blogs }: { blogs: BlogWithId[] }) {
                       <img
                         src={b.bannerImage}
                         alt={b.title}
+                        loading="lazy"
                         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (

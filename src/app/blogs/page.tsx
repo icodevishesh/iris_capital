@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Search, ArrowRight, Clock, Loader2 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 
 const CATEGORIES = ["All", "Funding 101", "Growth", "Cash Flow", "Case Studies"] as const;
@@ -60,19 +60,36 @@ export default function BlogPage() {
   const [cat, setCat] = useState<(typeof CATEGORIES)[number]>("All");
   const [email, setEmail] = useState("");
 
+  const fetchBlogs = useCallback(async () => {
+    try {
+      const res = await fetch("/api/blogs");
+      if (!res.ok) throw new Error();
+      const data = await res.json();
+      setBlogs(data.blogs ?? []);
+    } catch {
+      // Silent fail on public page; show empty state.
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
+    let isMounted = true;
     (async () => {
       try {
         const res = await fetch("/api/blogs");
         if (!res.ok) throw new Error();
         const data = await res.json();
-        setBlogs(data.blogs);
+        if (isMounted) setBlogs(data.blogs ?? []);
       } catch {
         // Silent fail on public page; show empty state.
       } finally {
-        setLoading(false);
+        if (isMounted) setLoading(false);
       }
     })();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const filtered = useMemo(() => {

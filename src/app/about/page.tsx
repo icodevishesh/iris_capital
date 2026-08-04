@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Compass, Handshake, Heart, ShieldCheck, Sparkles, Users } from "lucide-react";
 import handshakeImg from "@/assets/handshake.jpg";
 import ownerDogImg from "@/assets/professional-girl.png";
@@ -7,7 +8,7 @@ import ownerDogImg from "@/assets/professional-girl.png";
 export default function AboutPage() {
   return (
     <div>
-      <section className="container-page pt-6 pb-8 md:pb-14">
+      <section className="container-page py-8 md:py-16">
         <div className="grid gap-0 md:gap-12 lg:grid-cols-2 lg:items-center">
           <div className="mx-auto max-w-3xl">
           <span className="eyebrow">About IRIS Capital Partners</span>
@@ -24,19 +25,21 @@ export default function AboutPage() {
           </p>
           </div>
           <div className="mt-14 overflow-hidden rounded-3xl border border-border shadow-elevated">
-          <img
-            src={handshakeImg.src}
+          <Image
+            src={handshakeImg}
             alt="Business partners meeting"
             width={1600}
             height={800}
+            loading="lazy"
             className="aspect-7/5 w-full object-cover"
           />
           </div>
         </div>
       </section>
 
-      <section className="container-page mt-8 border-t border-border">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center pt-12 md:pt-20">
+      {/* our philosophy */}
+      <section className="container-page pt-8">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="lg:order-2">
             <span className="eyebrow">Our Philosophy</span>
             <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
@@ -50,8 +53,8 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="overflow-hidden rounded-3xl border border-border shadow-elevated lg:order-1">
-            <img
-              src={ownerDogImg.src}
+            <Image
+              src={ownerDogImg}
               alt="Small business owner at home with her dog"
               width={1200}
               height={1000}
@@ -62,8 +65,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mt-12 border-y border-border bg-white/50 md:mt-24">
-        <div className="container-page grid gap-10 py-12 md:py-20 md:grid-cols-3">
+      <section className="mt-12 border-y border-border bg-white/50">
+        <div className="container-page grid gap-10 py-8 md:py-16 md:grid-cols-3">
           {[
             {
               icon: Compass,
@@ -95,7 +98,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container-page mt-12 md:mt-24">
+      <section className="container-page pt-8 md:pt-16">
         <div className="max-w-2xl">
           <span className="eyebrow">Why businesses choose us</span>
           <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
@@ -123,10 +126,10 @@ export default function AboutPage() {
       </section>
 
       {/* CTC section */}
-      <section className="container-page mt-12 md:mt-24">
+      <section className="container-page pt-8 md:pt-16">
         <div className="rounded-3xl border border-border bg-white p-8 text-center shadow-soft md:p-16">
           <h2 className="text-xl font-bold tracking-tight md:text-4xl">
-            Let's fund your next chapter
+            Let&apos;s fund your next chapter
           </h2>
           <Link
             href="/apply"
