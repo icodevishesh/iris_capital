@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
 import { z } from "zod";
 import { getDb } from "@/lib/mongodb";
+import redis from "@/lib/redis";
 import {
   BLOG_CATEGORIES,
   COLLECTIONS,
@@ -10,6 +11,10 @@ import {
 } from "@/lib/models";
 
 export const dynamic = "force-dynamic";
+
+// Cache a single blog for 5 hours (in seconds).
+const BLOG_CACHE_TTL = 5 * 60 * 60;
+const blogKey = (id: string) => `blog:${id}`;
 
 const updateSchema = z.object({
   title: z.string().trim().min(1).max(200),
@@ -31,6 +36,15 @@ export async function GET(
   if (!ObjectId.isValid(id)) {
     return NextResponse.json({ error: "Invalid id" }, { status: 400 });
   }
+
+  const cached = await redis.get(blogKey(id));
+  if (cached) {
+    return NextResponse.json(
+      { blog: JSON.parse(cached) },
+      { headers: { "X-Cache": "HIT" } },
+    );
+  }
+
   const db = await getDb();
   const doc = await db
     .collection(COLLECTIONS.blogs)
@@ -38,7 +52,11 @@ export async function GET(
   if (!doc) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
-  return NextResponse.json({ blog: serialize(doc) });
+
+  const blog = serialize(doc);
+  await redis.set(blogKey(id), JSON.stringify(blog), { EX: BLOG_CACHE_TTL });
+
+  return NextResponse.json({ blog }, { headers: { "X-Cache": "MISS" } });
 }
 
 // Admin: update a blog post.
@@ -76,6 +94,10 @@ export async function PATCH(
   if (result.matchedCount === 0) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
+
+  // Drop stale caches so the edit is visible on the next read.
+  await redis.del([blogKey(id), "blogs"]);
+
   return NextResponse.json({ ok: true });
 }
 
@@ -98,5 +120,9 @@ export async function DELETE(
   if (result.deletedCount === 0) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
+
+  // Drop stale caches so the deleted post disappears on the next read.
+  await redis.del([blogKey(id), "blogs"]);
+
   return NextResponse.json({ ok: true });
 }

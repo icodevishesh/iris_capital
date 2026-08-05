@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getDb } from "@/lib/mongodb";
+import redis from "@/lib/redis";
 import {
   BLOG_CATEGORIES,
   COLLECTIONS,
@@ -22,63 +23,93 @@ const createSchema = z.object({
   createdAt: z.string().optional(),
 });
 
-// Public: list blogs (newest first). Available to everyone for the blog page.
 export async function GET() {
+  const cached = await redis.get("blogs");
+
+  if (cached) {
+    return NextResponse.json(
+      { blogs: JSON.parse(cached) },
+      {
+        headers: {
+          "X-Cache": "HIT",
+        },
+      },
+    );
+  }
+
   const db = await getDb();
 
   const docs = await db
     .collection(COLLECTIONS.blogs)
-    .find({}, {
-      projection: {
-        title: 1,
-        slug: 1,
-        subtitle: 1,
-        author: 1,
-        category: 1,
-        bannerImage: 1,
-        createdAt: 1,
-      },
-    })
+    .find(
+      {},
+      {
+        projection: {
+          title: 1,
+          slug: 1,
+          subtitle: 1,
+          author: 1,
+          category: 1,
+          bannerImage: 1,
+          createdAt: 1,
+        },
+      }
+    )
     .sort({ createdAt: -1 })
     .toArray();
 
   const blogs = docs.map(serialize);
 
+  await redis.set(
+    "blogs",
+    JSON.stringify(blogs),
+    {
+      EX: 300,
+    }
+  );
+
   return NextResponse.json(
     { blogs },
     {
       headers: {
-        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+        "X-Cache": "MISS",
       },
-    },
+    }
   );
 }
 
 // export async function GET() {
-//   console.time("API");
-
-//   console.time("DB");
 //   const db = await getDb();
-//   console.timeEnd("DB");
 
-//   console.timeEnd("DB");
-
-//   console.time("collection");
 //   const docs = await db
 //     .collection(COLLECTIONS.blogs)
-//     .find({})
+//     .find({}, {
+//       projection: {
+//         title: 1,
+//         slug: 1,
+//         subtitle: 1,
+//         author: 1,
+//         category: 1,
+//         bannerImage: 1,
+//         createdAt: 1,
+//       },
+//     })
 //     .sort({ createdAt: -1 })
 //     .toArray();
-//   console.timeEnd("collection");
 
-//   console.time("map");
-//   return NextResponse.json({ blogs: docs.map(serialize) });
-//   console.timeEnd("map");
+//   const blogs = docs.map(serialize);
 
-//   console.timeEnd("API");
+//   return NextResponse.json(
+//     { blogs },
+//     {
+//       headers: {
+//         "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+//       },
+//     },
+//   );
 // }
 
-// Admin: create a blog post.
+
 export async function POST(request: Request) {
   if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -101,6 +132,10 @@ export async function POST(request: Request) {
   };
   const db = await getDb();
   const result = await db.collection(COLLECTIONS.blogs).insertOne(blog);
+
+  // Drop the list cache so the new post shows up on the next read.
+  await redis.del("blogs");
+
   return NextResponse.json(
     { id: result.insertedId.toString() },
     { status: 201 },
