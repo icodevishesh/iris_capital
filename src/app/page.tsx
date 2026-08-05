@@ -380,7 +380,7 @@ function WhyIris() {
 
 function CtaBanner() {
   return (
-    <section className="container-page py-8 md:pt-16">
+    <section className="container-page md:pt-16">
       <div className="relative overflow-hidden rounded-3xl border border-brand/20 bg-gradient-to-r from-[#032B6B] via-[#032B6B] to-[#022153] p-10 text-brand-foreground shadow-elevated md:p-16">
         <div
           aria-hidden
