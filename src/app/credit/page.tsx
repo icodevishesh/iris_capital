@@ -151,7 +151,7 @@ export default function LineOfCreditPage() {
         </div>
       </section>
 
-      <section className="container-page py-8 md:pt-16">
+      <section className="container-page md:pt-16">
         <div className="rounded-3xl border border-border bg-white p-10 text-center shadow-soft md:p-16">
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Open your line of credit</h2>
           <p className="mx-auto mt-3 max-w-lg text-gray-600">
