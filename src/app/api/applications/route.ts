@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getDb } from "@/lib/mongodb";
 import { COLLECTIONS, isAuthenticated, serialize } from "@/lib/models";
+import { sendApplicationEmails } from "@/lib/mailer";
 
 export const dynamic = "force-dynamic";
 
@@ -61,6 +62,15 @@ export async function POST(request: Request) {
   const result = await db
     .collection(COLLECTIONS.applications)
     .insertOne(application);
+
+  // Send the confirmation email to the applicant and the notification to the
+  // internal inbox. A mail failure must not fail the stored application.
+  try {
+    await sendApplicationEmails(parsed.data);
+  } catch (err) {
+    console.error("Failed to send application emails:", err);
+  }
+
   return NextResponse.json(
     { id: result.insertedId.toString() },
     { status: 201 },

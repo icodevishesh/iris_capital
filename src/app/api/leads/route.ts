@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getDb } from "@/lib/mongodb";
 import { COLLECTIONS, isAuthenticated, serialize } from "@/lib/models";
+import { sendContactEmails } from "@/lib/mailer";
 
 export const dynamic = "force-dynamic";
 
@@ -50,6 +51,15 @@ export async function POST(request: Request) {
     createdAt: new Date().toISOString(),
   };
   const result = await db.collection(COLLECTIONS.leads).insertOne(lead);
+
+  // Send the thank-you email to the user and the notification to the internal
+  // inbox. A mail failure must not fail the submission that we already stored.
+  try {
+    await sendContactEmails(parsed.data);
+  } catch (err) {
+    console.error("Failed to send contact emails:", err);
+  }
+
   return NextResponse.json(
     { id: result.insertedId.toString() },
     { status: 201 },

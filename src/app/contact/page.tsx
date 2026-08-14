@@ -36,7 +36,7 @@ export default function ContactPage() {
         <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
           <div className="space-y-4">
             {[
-              { icon: Mail, label: "Email", value: "info@iriscapital.com" },
+              { icon: Mail, label: "Email", value: "info@irisprivateequitygroup.com" },
               { icon: Phone, label: "Phone", value: "+1 4438574714" },
               { icon: MapPin, label: "Office", value: "1000 NW NORTH RIVER DR, MIAMI, US" },
             ].map(({ icon: Icon, label, value }) => (

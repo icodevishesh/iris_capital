@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Compass, Handshake, Heart, ShieldCheck, Sparkles, Users } from "lucide-react";
+import { ArrowRight, Compass, Handshake, Heart, Scale, ShieldCheck, Sparkles, Users } from "lucide-react";
 import handshakeImg from "@/assets/handshake.jpg";
 import ownerDogImg from "@/assets/professional-girl.png";
 
@@ -9,12 +9,11 @@ export default function AboutPage() {
   return (
     <div>
       <section className="container-page py-8 md:py-16">
-        <div className="grid gap-0 md:gap-12 lg:grid-cols-2 lg:items-center">
+        <div className="grid gap-0 md:gap-12 lg:grid-cols-2 lg:items-start">
           <div className="mx-auto max-w-3xl">
-          <span className="eyebrow">About IRIS Capital Partners</span>
-          <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-5xl">
-            Direct Business Lending.<br />
-            <span className="text-brand-deep">Built on Trust.</span>
+          <span className="eyebrow">About IRIS</span>
+          <h1 className="mt-5 text-3xl font-bold leading-[1.05] tracking-tight sm:text-5xl md:text-6xl">
+            A private credit <span className="text-brand-deep">partner</span> <br/>you can rely on
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-gray-600">
            
@@ -24,14 +23,14 @@ export default function AboutPage() {
             We understand that access to capital is critical to sustainable growth. Whether you are expanding operations, acquiring equipment, managing working capital, or pursuing new opportunities, our role is to provide structured financing that supports your long-term success.
           </p>
           </div>
-          <div className="mt-14 overflow-hidden rounded-3xl border border-border shadow-elevated">
+          <div className="overflow-hidden rounded-3xl border border-border shadow-elevated">
           <Image
             src={handshakeImg}
             alt="Business partners meeting"
             width={1600}
             height={800}
             loading="lazy"
-            className="aspect-7/5 w-full object-cover"
+            className="aspect-9/8 w-full object-cover"
           />
           </div>
         </div>
@@ -41,15 +40,15 @@ export default function AboutPage() {
       <section className="container-page pt-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div className="lg:order-2">
-            <span className="eyebrow">Our Philosophy</span>
+            <span className="eyebrow">Who We Are</span>
             <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Financing should be clear, efficient, and aligned with <span className="text-brand-deep">real-world business needs.</span>
+              Experienced capital, delivered directly
             </h2>
             <p className="mt-6 text-base leading-relaxed text-gray-600">
-              Traditional lending institutions often impose lengthy approval timelines, rigid qualification standards, and excessive documentation requirements.
+              We work directly with business owners, management teams, and their advisors to understand what a company needs and to structure credit that supports it. Because we originate and hold our own facilities, decisions are made by the people you speak with — not by a distant committee.
             </p>
             <p className="mt-4 text-base leading-relaxed text-gray-600">
-              We take a performance-based approach — evaluating your business revenue, operation stability, and growth trajectory to structure practical financing solutions.
+              Many of the businesses we finance come to us after finding traditional bank processes slow, rigid, or poorly matched to their circumstances. Our role is to bring judgment and flexibility to those situations while remaining disciplined about risk.
             </p>
           </div>
           <div className="overflow-hidden rounded-3xl border border-border shadow-elevated lg:order-1">
@@ -65,63 +64,48 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="mt-12 border-y border-border bg-white/50">
-        <div className="container-page grid gap-10 py-8 md:py-16 md:grid-cols-3">
-          {[
-            {
-              icon: Compass,
-              title: "Mission",
-              body: "Give every U.S. small business fast, fair access to the capital they need to grow.",
-            },
-            {
-              icon: Heart,
-              title: "Philosophy",
-              body: "Transparent terms. Human judgment. Long-term relationships over one-time transactions.",
-            },
-            {
-              icon: Sparkles,
-              title: "Promise",
-              body: "No hidden fees. No pressure tactics. A real person to talk to — from application through payoff.",
-            },
-          ].map(({ icon: Icon, title, body }) => (
-            <div
-              key={title}
-              className="group rounded-2xl border border-border bg-white p-8 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-lg"
-            >
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand/10 text-brand-deep transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
-                <Icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-6 text-xl font-semibold transition-colors duration-300 group-hover:text-brand-deep">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-600">{body}</p>
+      {/* Our Philosophy Section */}
+      <section className="mt-16 border-y border-border bg-white/40 py-12 md:py-20">
+        <div className="container-page">
+          <div className="mx-auto max-w-2xl text-center">
+            <div className="inline-flex items-center rounded-full border border-blue-200/60 bg-[#edf4ff] px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-deep">
+              OUR PHILOSOPHY
             </div>
-          ))}
-        </div>
-      </section>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-tight">
+              Integrity. Discipline.<br />Partnership.
+            </h2>
+          </div>
 
-      <section className="container-page pt-8 md:pt-16">
-        <div className="max-w-2xl">
-          <span className="eyebrow">Why businesses choose us</span>
-          <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            The difference is in the details
-          </h2>
-        </div>
-        <div className="mt-10 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:overflow-visible md:pb-0">
-          {[
-            { icon: ShieldCheck, t: "Transparent" },
-            { icon: Users, t: "Human specialists" },
-            { icon: Handshake, t: "Relationship-first" },
-            { icon: Sparkles, t: "Fast & fair" },
-          ].map(({ icon: Icon, t }) => (
-            <div
-              key={t}
-              className="group w-[60vw] max-w-[220px] shrink-0 snap-center rounded-2xl border border-border bg-white p-6 text-center shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-brand/40 hover:shadow-lg md:w-auto md:max-w-none md:shrink"
-            >
-              <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-brand/10 text-brand-deep transition-all duration-300 group-hover:scale-110 group-hover:bg-brand group-hover:text-white">
-                <Icon className="h-5 w-5" />
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                icon: ShieldCheck,
+                title: "Integrity",
+                body: "We say what we mean and we are direct about what we can and cannot do. Clear terms, clear expectations, no surprises.",
+              },
+              {
+                icon: Scale,
+                title: "Discipline",
+                body: "We underwrite carefully and structure credit that is sustainable for the business over the life of the facility.",
+              },
+              {
+                icon: Handshake,
+                title: "Partnership",
+                body: "We invest in long-term relationships and remain a responsive, accessible partner well beyond closing.",
+              },
+            ].map(({ icon: Icon, title, body }) => (
+              <div
+                key={title}
+                className="group flex flex-col items-start rounded-3xl border border-gray-200/80 bg-white p-7 sm:p-8 shadow-soft transition-all hover:shadow-elevated hover:-translate-y-0.5"
+              >
+                <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#edf4ff] text-brand-deep">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-base font-bold text-foreground">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-gray-500">{body}</p>
               </div>
-              <p className="mt-4 font-semibold transition-colors duration-300 group-hover:text-brand-deep">{t}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 

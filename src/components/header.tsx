@@ -7,10 +7,11 @@ import { useState } from "react";
 import Image from "next/image";
 
 const NAV_ITEMS = [
-  { label: "Business Term Loan", href: "/terms" },
-  { label: "Lines of Credit", href: "/credit" },
+  // { label: "Business Term Loan", href: "/terms" },
+  // { label: "Lines of Credit", href: "/credit" },
+  { label: "Private Credit", href: "/private-credit" },
   { label: "About", href: "/about" },
-  { label: "Blog", href: "/blogs" },
+  // { label: "Blog", href: "/blogs" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -27,7 +28,7 @@ export function Header() {
       <div className="container-page flex h-18 items-center justify-between">
         <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground">
           <Image
-            src="/iris-logo-v5.png"
+            src="/ic-logo.png"
             alt="IRIS Capital Partners"
             width={180}
             height={48}

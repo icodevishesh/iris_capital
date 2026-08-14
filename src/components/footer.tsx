@@ -20,7 +20,7 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-1">
               <Image
-                src="/iris-logo-v5.png"
+                src="/ic-logo.png"
                 alt="IRIS Capital Partners"
                 width={180}
                 height={48}
@@ -28,8 +28,7 @@ export function Footer() {
                 className="h-18 w-auto object-contain"
               />
             <p className="mt-1 max-w-xs text-sm leading-relaxed text-gray-300">
-              Transparent business funding for U.S. small and medium businesses.
-              Fast approvals. Real specialists.
+              Iris Private Equity Group provides privately originated credit to small and middle-market businesses across the United States.
             </p>
             {/* <div className="mt-6 hidden md:flex gap-2">
               {[
@@ -105,10 +104,11 @@ export function Footer() {
           </div>
 
           <FooterCol
-            title="Products"
+            title="Financing"
             links={[
-              { to: "/terms", label: "Business Term Loan" },
-              { to: "/credit", label: "Line of Credit" },
+              // { to: "/terms", label: "Business Term Loan" },
+              // { to: "/credit", label: "Line of Credit" },
+              { to: "/private-credit", label: "Private Credit" },
               { to: "/apply", label: "Apply" },
             ]}
           />
