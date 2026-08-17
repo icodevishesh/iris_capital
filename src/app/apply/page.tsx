@@ -223,7 +223,7 @@ export default function ApplyPage() {
           </div>
         </div>
         <p className="mx-auto mt-6 max-w-3xl text-center text-xs text-gray-600">
-          Applying will not affect your credit score. IRIS Capital Partners uses a soft pull to review your application.
+          Applying will not affect your credit score. IRIS Private Equity Group uses a soft pull to review your application.
         </p>
       </section>
       <FormStyles />
@@ -445,8 +445,8 @@ function Step4({
         />
         <span className="text-gray-600">
           I agree to the{" "}
-          <a href="#" className="font-medium text-brand-deep underline">Terms of Service</a> and{" "}
-          <a href="#" className="font-medium text-brand-deep underline">Privacy Policy</a>, and consent to a soft
+          <Link href="/terms-and-conditions" target="_blank" className="font-medium text-brand-deep underline">Terms &amp; Conditions</Link> and{" "}
+          <Link href="/privacy-policy" target="_blank" className="font-medium text-brand-deep underline">Privacy Policy</Link>, and consent to a soft
           credit inquiry for pre-qualification purposes.
         </span>
       </label>

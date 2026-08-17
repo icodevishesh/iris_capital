@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "IRIS Capital Partners — Fast Business Funding, Built on Trust",
+  title: "IRIS Private Equity Group — Fast Business Funding, Built on Trust",
   description:
     "Business term loans and lines of credit from $5,000 to $500,000. Transparent terms, fast approvals, and same-day funding for U.S. small businesses.",
 };

@@ -19,7 +19,7 @@ export default function AboutPage() {
            
           </p>
           <p className="mt-4 text-base leading-relaxed text-gray-600">
-             IRIS Capital Partners is a privately operated lending firm committed to delivering fast, transparent, and responsible financing solutions to small and mid-sized businesses across the United States. <br/><br/>
+             IRIS Private Equity Group is a privately operated lending firm committed to delivering fast, transparent, and responsible financing solutions to small and mid-sized businesses across the United States. <br/><br/>
             We understand that access to capital is critical to sustainable growth. Whether you are expanding operations, acquiring equipment, managing working capital, or pursuing new opportunities, our role is to provide structured financing that supports your long-term success.
           </p>
           </div>

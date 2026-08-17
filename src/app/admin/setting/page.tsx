@@ -4,7 +4,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 export default function SettingsPage() {
-  const [company, setCompany] = useState("IRIS Capital Partners");
+  const [company, setCompany] = useState("IRIS Private Equity Group");
   const [email, setEmail] = useState("hello@iriscapital.com");
   const [phone, setPhone] = useState("1 (800) 555-0134");
 

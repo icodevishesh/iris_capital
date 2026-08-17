@@ -21,14 +21,14 @@ export function Footer() {
           <div className="lg:col-span-1">
               <Image
                 src="/ic-logo.png"
-                alt="IRIS Capital Partners"
+                alt="IRIS Private Equity Group"
                 width={180}
                 height={48}
                 priority
                 className="h-18 w-auto object-contain"
               />
             <p className="mt-1 max-w-xs text-sm leading-relaxed text-gray-300">
-              Iris Private Equity Group provides privately originated credit to small and middle-market businesses across the United States.
+              IRIS Private Equity Group provides privately originated credit to small and middle-market businesses across the United States.
             </p>
             {/* <div className="mt-6 hidden md:flex gap-2">
               {[
@@ -156,16 +156,26 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col-reverse items-start justify-between gap-4 border-t border-white/20 pt-6 md:flex-row md:items-center">
-          <p className="text-xs text-gray-400">
-            © {new Date().getFullYear()} IRIS Capital Partners. All rights reserved.
-            IRIS Capital Partners is not a bank.
+        <div className="mt-12 border-t border-white/20 pt-8 space-y-3 text-xs leading-relaxed text-gray-400">
+          <p>
+            IRIS Private Equity Group is a direct business lender. All loans are subject to underwriting approval. Funding amounts range from $5,000 to $500,000. Rates, fees, and terms vary based on credit profile, time in business, revenue, and overall risk assessment. Not all applicants will qualify.
           </p>
-          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-400">
-            <a href="#" className="hover:text-foreground">Privacy Policy</a>
-            <a href="#" className="hover:text-foreground">Terms of Service</a>
-            <a href="#" className="hover:text-foreground">Disclosures</a>
-            <a href="#" className="hover:text-foreground">Accessibility</a>
+          <p>
+            This website is intended for business-purpose financing only. By submitting an application, you authorize IRIS Private Equity Group to verify the information provided and obtain business and/or personal credit reports where permitted by law.
+          </p>
+          <p>
+            Funding timelines may vary. Same-day funding is available in certain cases upon approval and completion of required documentation.
+          </p>
+        </div>
+
+        <div className="mt-8 flex flex-col-reverse items-start justify-between gap-4 border-t border-white/20 pt-6 md:flex-row md:items-center">
+          <p className="text-xs text-gray-400">
+            © {new Date().getFullYear()} IRIS Private Equity Group. All Rights Reserved.
+          </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-300">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            <Link href="/legal-disclaimer" className="hover:text-white transition-colors">Legal Disclaimer</Link>
           </div>
         </div>
       </div>

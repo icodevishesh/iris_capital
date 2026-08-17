@@ -15,7 +15,7 @@ import professionalGirlImg from "@/assets/team-meeting-CpfSKKcs.jpg";
 import professionalHandshakeImg from "@/assets/professional-handshake.png";
 
 export const metadata: Metadata = {
-  title: "Private Credit — IRIS Capital Partners",
+  title: "Private Credit — IRIS Private Equity Group",
   description:
     "An alternative to traditional bank financing. Privately originated credit structured around the operating reality of your business.",
 };

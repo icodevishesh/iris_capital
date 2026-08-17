@@ -29,7 +29,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2 text-lg font-semibold tracking-tight text-foreground">
           <Image
             src="/ic-logo.png"
-            alt="IRIS Capital Partners"
+            alt="IRIS Private Equity Group"
             width={180}
             height={48}
             priority
