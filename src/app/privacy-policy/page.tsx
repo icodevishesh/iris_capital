@@ -160,10 +160,10 @@ export default function PrivacyPolicyPage() {
               </p>
               <div className="flex flex-wrap gap-6 pt-2 text-sm">
                 <a
-                  href="mailto:Info@sterlingfinancialco.com"
+                  href="mailto:info@irisprivateequitygroup.com"
                   className="flex items-center gap-2 font-medium text-brand hover:text-brand-deep transition-colors"
                 >
-                  <Mail className="h-4 w-4" /> Info@sterlingfinancialco.com
+                  <Mail className="h-4 w-4" /> info@irisprivateequitygroup.com
                 </a>
                 <a
                   href="tel:9173850474"

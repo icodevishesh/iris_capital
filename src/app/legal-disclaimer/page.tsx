@@ -101,24 +101,7 @@ export default function LegalDisclaimerPage() {
               </div>
             </div>
 
-            <hr className="border-border" />
 
-            {/* Agreement Notice */}
-            <div className="rounded-2xl bg-brand/5 border border-brand/20 p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div>
-                <h3 className="font-semibold text-brand-deep text-base">Agreement to Site Terms</h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  By using this website, you agree to the terms outlined in our{" "}
-                  <Link href="/privacy-policy" className="font-semibold text-brand underline hover:text-brand-deep">
-                    Privacy Policy
-                  </Link>{" "}
-                  and{" "}
-                  <Link href="/terms-and-conditions" className="font-semibold text-brand underline hover:text-brand-deep">
-                    Terms & Conditions
-                  </Link>.
-                </p>
-              </div>
-            </div>
           </div>
 
           {/* Page Cross-Links Footer */}
