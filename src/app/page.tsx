@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/owner-dog.jpg";
 import professionalGirlImg from "@/assets/boardroom-exec-yh7islmn.jpg";
+import businessExecutive from "@/assets/hero-executive-DU5Uf8v2.jpg"
+
 import { CtaLink } from "@/components/brand";
 
 export const metadata: Metadata = {
@@ -97,12 +99,12 @@ function Hero() {
           <div className="relative">
             <div className="relative overflow-hidden rounded-3xl border border-gray-300 bg-card shadow-elevated">
               <Image
-                src={heroImg}
+                src={professionalGirlImg}
                 alt="Hero Image"
                 width={1400}
                 height={1000}
                 priority
-                className="aspect-[4/3] w-full object-contain md:aspect-[6/5]"
+                className="aspect-[4/3] w-full object-cover md:aspect-[6/5]"
               />
             </div>
           </div>
@@ -145,64 +147,36 @@ function FloatingCard({
   );
 }
 
-// function Highlights() {
-//   const items = [
-//     { icon: DollarSign, label: "Funding", value: "$5K – $500K" },
-//     { icon: Clock, label: "Funding speed", value: "As fast as 24 hours" },
-//     { icon: ShieldCheck, label: "Collateral", value: "No collateral required" },
-//     { icon: TrendingUp, label: "Rates", value: "Competitive rates" },
-//   ];
-//   return (
-//     <section className="container-page py-8 md:py-0">
-//       <div className="grid gap-4 rounded-3xl border border-border bg-white p-4 shadow-soft sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
-//         {items.map(({ icon: Icon, label, value }) => (
-//           <div key={label} className="flex items-center gap-4 rounded-2xl p-4 transition-colors hover:bg-blue-600/5">
-//             <div className="grid h-12 w-12 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand-deep">
-//               <Icon className="h-5 w-5" />
-//             </div>
-//             <div>
-//               <p className="text-xs font-medium uppercase tracking-wider text-gray-600">
-//                 {label}
-//               </p>
-//               <p className="mt-0.5 text-base font-semibold text-foreground">{value}</p>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
-
 function HowItWorks() {
   const steps = [
     {
       n: "01",
       icon: FileText,
       title: "Apply",
-      body: "Share a brief overview of your business and what you are looking to finance.",
+      body: "Complete our secure online application.",
     },
     {
       n: "02",
       icon: Sparkles,
       title: "Review",
-      body: "We review the opportunity directly and speak with you about structure, terms, and fit.",
+      body: "Our team evaluates your business, financial profile, and financing objectives.",
     },
     {
       n: "03",
       icon: Wallet,
       title: "Finance",
-      body: "Once terms are agreed, we move to close and fund — and stay engaged as a long-term partner.",
+      body: "We work efficiently to deliver a financing solution aligned with your needs.",
     },
   ];
   return (
     <section className="container-page py-8 md:pb-16">
       <div className="mx-auto max-w-2xl text-center">
-        <span className="eyebrow">How it works</span>
+        {/* <span className="eyebrow">How it works</span> */}
         <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-          A clear, considered process
+          How it works
         </h2>
         <p className="mt-4 text-gray-600">
-          Three straightforward steps — with a real conversation at every stage.
+          Three straightforward steps with a real conversation at every stage.
         </p>
       </div>
       <div className="mt-14 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
@@ -228,6 +202,9 @@ function HowItWorks() {
           </div>
         ))}
       </div>
+      <div className="mt-14 flex justify-center">
+        <CtaLink to="/apply" className="bg-brand">Apply</CtaLink>
+      </div>
     </section>
   );
 }
@@ -236,9 +213,9 @@ function PrivateCredit() {
   return (
     <section className="container-page py-12 md:py-20">
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className="relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-soft">
+        <div className="relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white  shadow-soft">
           <Image
-            src={professionalGirlImg}
+            src={businessExecutive}
             alt="Private credit executive in modern office"
             width={1200}
             height={900}
@@ -255,17 +232,18 @@ function PrivateCredit() {
             An alternative to traditional bank financing
           </h2>
           <p className="mt-6 text-base text-gray-600 leading-relaxed">
-            Private credit is capital provided directly by a private lender rather than through a bank or the public markets. For many businesses, it offers greater flexibility, a faster path to a decision, and terms shaped by the operating reality of the company rather than rigid institutional criteria.
+            Iris provides an alternative to traditional bank financing for businesses seeking greater flexibility, responsiveness, and certainty throughout the financing process.
           </p>
           <p className="mt-4 text-base text-gray-600 leading-relaxed">
-            We originate and hold our own credit, which allows us to be thoughtful about structure and direct in how we communicate.
+            Traditional bank financing can involve rigid requirements, lengthy processes, and limited flexibility. <br />
+            At Iris, we work directly with business owners and management teams to understand their businesses and structure financing around their specific circumstances providing businesses with financing designed to support their growth and long-term objectives.
           </p>
           <div className="mt-8">
             <Link
               href="/apply"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
             >
-              Learn more <ArrowRight className="h-4 w-4" />
+              Apply <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

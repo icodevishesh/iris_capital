@@ -24,10 +24,12 @@ export default function ContactPage() {
         <div className="max-w-2xl">
           <span className="eyebrow">Contact</span>
           <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
-            Talk to a funding specialist
+            Talk to a specialist
           </h1>
           <p className="mt-5 text-md md:text-lg text-gray-600">
-            Have a question about funding? A real person will get back to you within one business day.
+            Whether you are evaluating a potential financing opportunity or simply exploring your options, we welcome the opportunity to learn more about your business. 
+            <br/><br/>
+            Tell us about your company, your financing objectives, and where you are headed. Our team will be in touch to determine whether Iris may be the right financing partner for your business.
           </p>
         </div>
       </section>

@@ -34,10 +34,11 @@ export default function PrivateCreditPage() {
               An alternative to traditional bank financing
             </h1>
             <p className="mt-6 text-base sm:text-lg leading-relaxed text-gray-600">
-              Private credit is capital provided directly by a private lender rather than through a bank or the public markets. For many small and middle-market businesses, it offers a more flexible and more practical path to financing one shaped by the realities of the business rather than by rigid institutional criteria.
+              Iris provides an alternative to traditional bank financing for businesses seeking greater flexibility, responsiveness, and certainty throughout the financing process.
+              Traditional bank financing can involve rigid requirements, lengthy processes, and limited flexibility.
             </p>
             <p className="mt-4 text-base sm:text-lg leading-relaxed text-gray-600">
-              At Iris Private Equity Group, we originate and hold our own credit. That means decisions are made by the people you speak with, and structures are built around how your business actually operates.
+              At Iris, we work directly with business owners and management teams to understand their businesses and structure financing around their specific circumstances providing businesses with financing designed to support their growth and long-term objectives.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
@@ -45,12 +46,6 @@ export default function PrivateCreditPage() {
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-brand px-6 text-sm font-semibold text-white shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
               >
                 Apply <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex h-11 items-center justify-center rounded-lg border border-border bg-card px-6 text-sm font-semibold text-foreground transition-all hover:bg-accent"
-              >
-                Start a conversation
               </Link>
             </div>
           </div>

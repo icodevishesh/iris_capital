@@ -19,8 +19,11 @@ export default function AboutPage() {
            
           </p>
           <p className="mt-4 text-base leading-relaxed text-gray-600">
-             IRIS Private Equity Group is a privately operated lending firm committed to delivering fast, transparent, and responsible financing solutions to small and mid-sized businesses across the United States. <br/><br/>
-            We understand that access to capital is critical to sustainable growth. Whether you are expanding operations, acquiring equipment, managing working capital, or pursuing new opportunities, our role is to provide structured financing that supports your long-term success.
+             At Iris, our focus is simple: provide business owners with thoughtful solutions, responsive service, and a reliable source of financing.
+             <br/><br/>
+             We believe that successful financing relationships are built on understanding the business, communicating clearly, and following through.
+             <br/><br/>
+             Our team approaches every opportunity with discipline, integrity, and a long-term perspective. We seek to build lasting relationships with the businesses and management teams we finance.
           </p>
           </div>
           <div className="overflow-hidden rounded-3xl border border-border shadow-elevated">
@@ -65,7 +68,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Philosophy Section */}
-      <section className="mt-16 border-y border-border bg-white/40 py-12 md:py-20">
+      <section className="mt-16 border-t border-border bg-white/40 py-12 md:pt-20">
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <div className="inline-flex items-center rounded-full border border-blue-200/60 bg-[#edf4ff] px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-deep">
@@ -74,6 +77,10 @@ export default function AboutPage() {
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-tight">
               Integrity. Discipline.<br />Partnership.
             </h2>
+            <p className="mt-4 text-base leading-relaxed text-gray-600">
+              We treat our business partners with the same respect, transparency, and integrity that we expect in return.
+              We believe the best financing relationships are built for the long term — and that our success is ultimately measured by the success of the businesses we support.
+            </p>
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -106,21 +113,21 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* CTC section */}
-      <section className="container-page pt-8 md:pt-16">
-        <div className="rounded-3xl border border-border bg-white p-8 text-center shadow-soft md:p-16">
-          <h2 className="text-xl font-bold tracking-tight md:text-4xl">
-            Let&apos;s fund your next chapter
-          </h2>
+          <div className="flex items-center justify-center gap-4">
           <Link
             href="/apply"
-            className="mt-8 inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-brand px-8 text-base font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
+            className="mt-8 inline-flex h-14 items-center justify-center gap-2 rounded-lg bg-brand px-8 text-base font-semibold text-brand-foreground shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
           >
-            Apply now <ArrowRight className="h-5 w-5" />
+            Apply now
           </Link>
+
+          <Link
+            href="/contact"
+            className="mt-8 inline-flex h-14 items-center justify-center gap-2 rounded-lg bg-brand-foreground px-8 text-base font-semibold text-brand shadow-soft transition-all hover:bg-gray-100 border hover:-translate-y-0.5"
+          >
+            Speak with Us
+          </Link>
+        </div>
         </div>
       </section>
     </div>

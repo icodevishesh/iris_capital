@@ -108,6 +108,10 @@ export type ContactLead = {
 };
 
 export async function sendContactEmails(lead: ContactLead): Promise<void> {
+  const firstName = lead.name ? lead.name.trim().split(/\s+/)[0] : "there";
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.irisprivateequitygroup.com";
+  const appUrl = `${siteUrl.replace(/\/$/, "")}/apply`;
+
   const details: Array<[string, string]> = [
     ["Name", lead.name],
     ["Email", lead.email],
@@ -115,17 +119,45 @@ export async function sendContactEmails(lead: ContactLead): Promise<void> {
     ["Message", lead.message],
   ];
 
-  // 1) Thank-you email to the person who submitted the form.
-  const userHtml = layout(
-    `Thank you for reaching out, ${escapeHtml(lead.name)}`,
-    `<p>We have received your message and a member of our team will get back to you shortly.</p>
-     <p style="margin-top:16px;font-weight:bold;">Your submission:</p>
-     ${detailRows(details)}`,
-  );
+  // 1) Client email using requested Email Template 1
+  const userHtml = `<div style="font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; max-width: 600px; margin: 0 auto; padding: 24px; line-height: 1.6;">
+  <p>Good morning, ${escapeHtml(firstName)},</p>
+  <p>
+    This is Benjamin Chesner with <a href="${siteUrl}" style="color: #032B6B; font-weight: bold; text-decoration: underline;">Iris Private Equity Group</a>. I hope you’re having a great day.
+  </p>
+  <p>
+    Based on the information you submitted, our team will contact you shortly.
+  </p>
+  <p>
+    If you’d like to move forward, you can complete our onboarding process using the portal below:
+  </p>
+  <p style="margin: 20px 0;">
+    <a href="${appUrl}" style="display: inline-block; background-color: #032B6B; color: #ffffff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold;">Iris New Client Onboarding Portal</a>
+  </p>
+  <p>
+    If you have any questions or would like to discuss the next steps, please feel free to contact me directly at <a href="tel:9173850474" style="color: #1a1a1a; text-decoration: none;">917-385-0474</a>. I’d be happy to assist you.
+  </p>
+  <p>
+    Thank you again for choosing Iris Private Equity Group. We appreciate the opportunity to work with you and look forward to connecting.
+  </p>
+  <p style="margin-top: 24px;">
+    Sincerely,<br />
+    <strong>Benjamin Chesner</strong><br />
+    Iris Private Equity Group 917-385-0474 230 Park Avenue, New York, NY 10169
+  </p>
+</div>`;
+
   const userText =
-    `Thank you for reaching out, ${lead.name}.\n\n` +
-    `We have received your message and a member of our team will get back to you shortly.\n\n` +
-    `Your submission:\nName: ${lead.name}\nEmail: ${lead.email}\nPhone: ${lead.phone}\nMessage: ${lead.message}\n\n${BRAND}`;
+    `Good morning, ${firstName},\n\n` +
+    `This is Benjamin Chesner with Iris Private Equity Group (${siteUrl}). I hope you’re having a great day.\n\n` +
+    `Based on the information you submitted, your business may be eligible for our private equity program.\n\n` +
+    `If you’d like to move forward, you can complete our onboarding process using the portal below:\n\n` +
+    `Iris New Client Onboarding Portal: ${appUrl}\n\n` +
+    `If you have any questions or would like to discuss the next steps, please feel free to contact me directly at 917-385-0474. I’d be happy to assist you.\n\n` +
+    `Thank you again for choosing Iris Private Equity Group. We appreciate the opportunity to work with you and look forward to connecting.\n\n` +
+    `Sincerely,\n` +
+    `Benjamin Chesner\n` +
+    `Iris Private Equity Group 917-385-0474 230 Park Avenue, New York, NY 10169`;
 
   // 2) Notification email to the internal inbox.
   const adminHtml = layout(
