@@ -26,7 +26,7 @@ export default function ContactPage() {
           <h1 className="mt-5 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">
             Talk to a specialist
           </h1>
-          <p className="mt-5 text-md md:text-lg text-gray-600">
+          <p className="mt-5 text-md md:text-lg text-gray-700">
             Whether you are evaluating a potential financing opportunity or simply exploring your options, we welcome the opportunity to learn more about your business. 
             <br/><br/>
             Tell us about your company, your financing objectives, and where you are headed. Our team will be in touch to determine whether Iris may be the right financing partner for your business.
@@ -39,7 +39,7 @@ export default function ContactPage() {
           <div className="space-y-4">
             {[
               { icon: Mail, label: "Email", value: "info@irisprivateequitygroup.com" },
-              { icon: Phone, label: "Phone", value: "+1 4438574714" },
+              { icon: Phone, label: "Phone", value: "917-385-0474" },
               { icon: MapPin, label: "Office", value: "1000 NW NORTH RIVER DR, MIAMI, US" },
             ].map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-start gap-4 rounded-2xl border border-border bg-white p-6 shadow-soft">
@@ -47,7 +47,7 @@ export default function ContactPage() {
                   <Icon className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-600">{label}</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-700">{label}</p>
                   <p className="mt-1 font-medium">{value}</p>
                 </div>
               </div>

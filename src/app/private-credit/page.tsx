@@ -33,12 +33,14 @@ export default function PrivateCreditPage() {
             <h1 className="mt-5 text-3xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl text-foreground">
               An alternative to traditional bank financing
             </h1>
-            <p className="mt-6 text-base sm:text-lg leading-relaxed text-gray-600">
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-gray-700">
               Iris provides an alternative to traditional bank financing for businesses seeking greater flexibility, responsiveness, and certainty throughout the financing process.
+            </p>
+            <p className="mt-4 text-base sm:text-lg leading-relaxed text-gray-700">
               Traditional bank financing can involve rigid requirements, lengthy processes, and limited flexibility.
             </p>
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-gray-600">
-              At Iris, we work directly with business owners and management teams to understand their businesses and structure financing around their specific circumstances providing businesses with financing designed to support their growth and long-term objectives.
+            <p className="mt-4 text-base sm:text-lg leading-relaxed text-gray-700">
+              At Iris, we work directly with business owners and management teams to understand their businesses and structure financing around their specific circumstances - providing businesses with financing designed to support their growth and long-term objectives.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
@@ -100,6 +102,16 @@ export default function PrivateCreditPage() {
       {/* Section 3: Who We Work With */}
       <section className="container-page py-12 md:py-16">
         <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-white shadow-elevated">
+            <Image
+              src={professionalHandshakeImg}
+              alt="Executive team meeting in boardroom"
+              width={1400}
+              height={1000}
+              loading="lazy"
+              className="aspect-[4/3] w-full object-cover sm:aspect-[16/11]"
+            />
+          </div>
           <div>
             <span className="eyebrow">WHO WE WORK WITH</span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-foreground">
@@ -123,17 +135,6 @@ export default function PrivateCreditPage() {
                 </div>
               ))}
             </div>
-          </div>
-
-          <div className="relative overflow-hidden rounded-3xl border border-border bg-white shadow-elevated">
-            <Image
-              src={professionalHandshakeImg}
-              alt="Executive team meeting in boardroom"
-              width={1400}
-              height={1000}
-              loading="lazy"
-              className="aspect-[4/3] w-full object-cover sm:aspect-[16/11]"
-            />
           </div>
         </div>
       </section>
@@ -202,13 +203,13 @@ export default function PrivateCreditPage() {
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/apply"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-brand-deep transition-all hover:bg-white/95 hover:-translate-y-0.5"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-semibold text-brand-deep transition-all hover:bg-white/95 hover:-translate-y-0.5"
               >
                 Apply <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex h-11 items-center justify-center rounded-full border border-white/40 px-6 text-sm font-semibold text-white transition-all hover:bg-white/10"
+                className="inline-flex h-11 items-center justify-center rounded-lg border border-white/40 px-6 text-sm font-semibold text-white transition-all hover:bg-white/10"
               >
                 Contact us
               </Link>

@@ -3,21 +3,11 @@ import Image from "next/image";
 import { Metadata } from "next";
 import {
   ArrowRight,
-  Clock,
-  ShieldCheck,
-  FileText,
-  Wallet,
-  Sparkles,
-  Users,
   Layers,
   Phone,
-  Scale,
-  Heart,
-  Handshake,
 } from "lucide-react";
-import heroImg from "@/assets/owner-dog.jpg";
 import professionalGirlImg from "@/assets/boardroom-exec-yh7islmn.jpg";
-import businessExecutive from "@/assets/hero-executive-DU5Uf8v2.jpg"
+import businessExecutive from "@/assets/8e6e096a-6b3c-4f0e-b263-43860b3e4f85.jpeg"
 
 import { CtaLink } from "@/components/brand";
 
@@ -34,7 +24,6 @@ export default function Home() {
       {/* <Highlights /> */}
       <HowItWorks />
       <PrivateCredit />
-      <WhyIris />
       {/* <Stats /> */}
       <CtaBanner />
     </main>
@@ -51,17 +40,14 @@ function Hero() {
       <div className="container-page py-8 md:py-16">
         <div className="grid items-start gap-12 lg:grid-cols-[1.05fr_1fr]">
           <div className="max-w-2xl">
-            <div className="eyebrow mb-5">
-              <ShieldCheck className="h-4 w-4 text-brand-deep" />
-              <span>PRIVATE CREDIT FOR SMALL AND MIDDLE-MARKET BUSINESSES</span>
-            </div>
             <h1 className="text-5xl font-bold leading-[1.02] tracking-tight text-foreground md:text-6xl lg:text-[4.25rem]">
               Private Credit.
               <br />
               <span className="text-brand-deep">Built on trust.</span>
             </h1>
-            <p className="mt-6 max-w-lg text-lg leading-relaxed text-gray-600">
-              Iris Private Equity Group provides privately originated credit to small and middle-market businesses. We work directly with owners and management teams to structure financing that reflects how their business actually operates.
+            <p className="mt-6 max-w-lg text-lg leading-relaxed text-gray-700">
+              Iris Private Equity Group provides privately originated credit to small and middle-market businesses across North America, with a focus on historically resilient industries.<br/><br/>
+              We serve as a trusted partner, helping business owners and management teams to provide flexible financing solutions at competitive costs of capital to support their long-term growth.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <CtaLink to="/apply" className="bg-brand-deep">Apply</CtaLink>
@@ -150,20 +136,17 @@ function FloatingCard({
 function HowItWorks() {
   const steps = [
     {
-      n: "01",
-      icon: FileText,
+      n: "Step 1",
       title: "Apply",
       body: "Complete our secure online application.",
     },
     {
-      n: "02",
-      icon: Sparkles,
+      n: "Step 2",
       title: "Review",
       body: "Our team evaluates your business, financial profile, and financing objectives.",
     },
     {
-      n: "03",
-      icon: Wallet,
+      n: "Step 3",
       title: "Finance",
       body: "We work efficiently to deliver a financing solution aligned with your needs.",
     },
@@ -171,28 +154,21 @@ function HowItWorks() {
   return (
     <section className="container-page py-8 md:pb-16">
       <div className="mx-auto max-w-2xl text-center">
-        {/* <span className="eyebrow">How it works</span> */}
         <h2 className="mt-4 text-2xl font-bold tracking-tight sm:text-4xl md:text-5xl">
           How it works
         </h2>
-        <p className="mt-4 text-gray-600">
-          Three straightforward steps with a real conversation at every stage.
-        </p>
       </div>
       <div className="mt-14 flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 md:grid md:grid-cols-3 md:overflow-visible md:pb-0">
-        {steps.map(({ n, icon: Icon, title, body }, i) => (
+        {steps.map(({ n, title, body }, i) => (
           <div
             key={n}
             className="group relative w-[85vw] max-w-[320px] shrink-0 snap-center overflow-hidden rounded-3xl border border-border bg-white p-8 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elevated md:w-auto md:max-w-none md:shrink"
           >
             <div className="flex items-center justify-between">
-              <div className="grid h-12 w-12 place-items-center rounded-2xl bg-brand text-brand-foreground shadow-soft">
-                <Icon className="h-5 w-5" />
-              </div>
-              <span className="text-5xl font-bold text-brand/10">{n}</span>
+              <span className="text-sm font-semibold uppercase tracking-wider text-brand-deep rounded-full bg-[#edf4ff] px-3.5 py-1">{n}</span>
             </div>
             <h3 className="mt-6 text-xl font-semibold">{title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">{body}</p>
+            <p className="mt-2 text-sm leading-relaxed text-gray-700">{body}</p>
             {i < steps.length - 1 && (
               <div
                 aria-hidden
@@ -231,12 +207,14 @@ function PrivateCredit() {
           <h2 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-[1.15]">
             An alternative to traditional bank financing
           </h2>
-          <p className="mt-6 text-base text-gray-600 leading-relaxed">
+          <p className="mt-6 text-base text-gray-700 leading-relaxed">
             Iris provides an alternative to traditional bank financing for businesses seeking greater flexibility, responsiveness, and certainty throughout the financing process.
           </p>
-          <p className="mt-4 text-base text-gray-600 leading-relaxed">
-            Traditional bank financing can involve rigid requirements, lengthy processes, and limited flexibility. <br />
-            At Iris, we work directly with business owners and management teams to understand their businesses and structure financing around their specific circumstances providing businesses with financing designed to support their growth and long-term objectives.
+          <p className="mt-4 text-base text-gray-700 leading-relaxed">
+            Traditional bank financing can involve rigid requirements, lengthy processes, and limited flexibility.
+          </p>
+          <p className="mt-4 text-base text-gray-700 leading-relaxed">
+            At Iris, we work directly with business owners and management teams to understand their businesses and structure financing around their specific circumstances — providing businesses with financing designed to support their growth and long-term objectives.
           </p>
           <div className="mt-8">
             <Link
@@ -246,71 +224,6 @@ function PrivateCredit() {
               Apply <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function WhyIris() {
-  const points = [
-    {
-      icon: Scale,
-      title: "Thoughtful solutions",
-      body: "Financing structured around the business, not a template.",
-    },
-    {
-      icon: Clock,
-      title: "Responsive service",
-      body: "Direct access to decision-makers and timely, honest answers.",
-    },
-    {
-      icon: ShieldCheck,
-      title: "A reliable source of capital",
-      body: "We stand behind the facilities we originate.",
-    },
-    {
-      icon: Users,
-      title: "Experienced team",
-      body: "Seasoned credit professionals who understand operating businesses.",
-    },
-    {
-      icon: Heart,
-      title: "Partnership mindset",
-      body: "Long-term relationships rather than one-time transactions.",
-    },
-    {
-      icon: Handshake,
-      title: "Integrity first",
-      body: "Straightforward conversations, always. No pressure.",
-    },
-  ];
-
-  return (
-    <section className="py-12 md:py-20 border-t border-border bg-white/40">
-      <div className="container-page">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center rounded-full border border-blue-200/60 bg-[#edf4ff] px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-deep">
-            Why IRIS
-          </div>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
-            Financing that respects your business
-          </h2>
-        </div>
-
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {points.map(({ icon: Icon, title, body }) => (
-            <div
-              key={title}
-              className="group flex flex-col items-start rounded-3xl border border-gray-200/80 bg-white p-7 sm:p-8 shadow-soft transition-all hover:shadow-elevated hover:-translate-y-0.5"
-            >
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#edf4ff] text-brand-deep">
-                <Icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-base font-bold text-foreground">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-500">{body}</p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
