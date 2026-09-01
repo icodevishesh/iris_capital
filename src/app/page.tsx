@@ -23,7 +23,7 @@ export default function Home() {
       <Hero />
       {/* <Highlights /> */}
       <HowItWorks />
-      <PrivateCredit />
+      {/* <PrivateCredit /> */}
       {/* <Stats /> */}
       <CtaBanner />
     </main>
@@ -185,50 +185,50 @@ function HowItWorks() {
   );
 }
 
-function PrivateCredit() {
-  return (
-    <section className="container-page py-12 md:py-20">
-      <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        <div className="relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white  shadow-soft">
-          <Image
-            src={businessExecutive}
-            alt="Private credit executive in modern office"
-            width={1200}
-            height={900}
-            priority
-            className="h-auto w-full object-cover rounded-3xl"
-          />
-        </div>
-        <div className="flex flex-col items-start max-w-xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-200/60 bg-[#edf4ff] px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-deep">
-            <Layers className="h-3.5 w-3.5 text-brand-deep" />
-            <span>Private Credit</span>
-          </div>
-          <h2 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-[1.15]">
-            An alternative to traditional bank financing
-          </h2>
-          <p className="mt-6 text-base text-gray-700 leading-relaxed">
-            Iris provides an alternative to traditional bank financing for businesses seeking greater flexibility, responsiveness, and certainty throughout the financing process.
-          </p>
-          <p className="mt-4 text-base text-gray-700 leading-relaxed">
-            Traditional bank financing can involve rigid requirements, lengthy processes, and limited flexibility.
-          </p>
-          <p className="mt-4 text-base text-gray-700 leading-relaxed">
-            At Iris, we work directly with business owners and management teams to understand their businesses and structure financing around their specific circumstances — providing businesses with financing designed to support their growth and long-term objectives.
-          </p>
-          <div className="mt-8">
-            <Link
-              href="/apply"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
-            >
-              Apply <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+// function PrivateCredit() {
+//   return (
+//     <section className="container-page py-12 md:py-20">
+//       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+//         <div className="relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white  shadow-soft">
+//           <Image
+//             src={businessExecutive}
+//             alt="Private credit executive in modern office"
+//             width={1200}
+//             height={900}
+//             priority
+//             className="h-auto w-full object-cover rounded-3xl"
+//           />
+//         </div>
+//         <div className="flex flex-col items-start max-w-xl">
+//           <div className="inline-flex items-center gap-2 rounded-full border border-blue-200/60 bg-[#edf4ff] px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-brand-deep">
+//             <Layers className="h-3.5 w-3.5 text-brand-deep" />
+//             <span>Private Credit</span>
+//           </div>
+//           <h2 className="mt-5 text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl leading-[1.15]">
+//             An alternative to traditional bank financing
+//           </h2>
+//           <p className="mt-6 text-base text-gray-700 leading-relaxed">
+//             Iris provides an alternative to traditional bank financing for businesses seeking greater flexibility, responsiveness, and certainty throughout the financing process.
+//           </p>
+//           <p className="mt-4 text-base text-gray-700 leading-relaxed">
+//             Traditional bank financing can involve rigid requirements, lengthy processes, and limited flexibility.
+//           </p>
+//           <p className="mt-4 text-base text-gray-700 leading-relaxed">
+//             At Iris, we work directly with business owners and management teams to understand their businesses and structure financing around their specific circumstances — providing businesses with financing designed to support their growth and long-term objectives.
+//           </p>
+//           <div className="mt-8">
+//             <Link
+//               href="/apply"
+//               className="inline-flex items-center justify-center gap-2 rounded-lg bg-brand px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-brand-deep hover:-translate-y-0.5"
+//             >
+//               Apply <ArrowRight className="h-4 w-4" />
+//             </Link>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }
 
 // function Stats() {
 //   const stats = [

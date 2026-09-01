@@ -66,7 +66,7 @@ export default function PrivateCreditPage() {
       </section>
 
       {/* Section 2: Three Feature Cards */}
-      <section className="container-page py-6 md:py-8">
+      {/* <section className="container-page py-6 md:py-8">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {[
             {
@@ -97,7 +97,7 @@ export default function PrivateCreditPage() {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* Section 3: Who We Work With */}
       <section className="container-page py-12 md:py-16">
@@ -118,7 +118,7 @@ export default function PrivateCreditPage() {
               Businesses that deserve a real conversation
             </h2>
             <p className="mt-5 text-base sm:text-lg leading-relaxed text-gray-600">
-              We finance established small and middle-market companies across a wide range of industries — often in situations where conventional lenders default to no.
+              We finance established small and middle-market companies across a wide range of industries.
             </p>
             <div className="mt-8 grid gap-x-6 gap-y-3.5 sm:grid-cols-2">
               {[
@@ -140,7 +140,7 @@ export default function PrivateCreditPage() {
       </section>
 
       {/* Section 4: Our Approach */}
-      <section className="py-12 md:py-20 border-t border-border/60 bg-white/40">
+      {/* <section className="py-12 md:py-20 border-t border-border/60 bg-white/40">
         <div className="container-page">
           <div className="mx-auto max-w-2xl text-center">
             <span className="eyebrow">OUR APPROACH</span>
@@ -186,7 +186,7 @@ export default function PrivateCreditPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Section 5: CTA Banner */}
       <section className="container-page py-8">

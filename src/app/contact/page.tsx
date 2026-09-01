@@ -40,7 +40,7 @@ export default function ContactPage() {
             {[
               { icon: Mail, label: "Email", value: "info@irisprivateequitygroup.com" },
               { icon: Phone, label: "Phone", value: "917-385-0474" },
-              { icon: MapPin, label: "Office", value: "1000 NW NORTH RIVER DR, MIAMI, US" },
+              { icon: MapPin, label: "Office", value: "230 Park Avenue, New York NY 10169" },
             ].map(({ icon: Icon, label, value }) => (
               <div key={label} className="flex items-start gap-4 rounded-2xl border border-border bg-white p-6 shadow-soft">
                 <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg bg-brand/10 text-brand-deep">
