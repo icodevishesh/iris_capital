@@ -113,9 +113,8 @@ export default function PrivateCreditPage() {
             />
           </div>
           <div>
-            <span className="eyebrow">WHO WE WORK WITH</span>
             <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-foreground">
-              Businesses that deserve a real conversation
+             Who We Work With
             </h2>
             <p className="mt-5 text-base sm:text-lg leading-relaxed text-gray-600">
               We finance established small and middle-market companies across a wide range of industries.
